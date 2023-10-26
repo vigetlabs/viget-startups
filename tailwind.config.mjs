@@ -18,18 +18,17 @@ export default {
       white: '#FFFFFF',
       black: '#000000',
       primary: '#27262D',
-      secondary: '#434248',
     },
     fontFamily: {
       sans: ['Geomanist', 'system-ui', 'sans-serif'],
     },
     fontSize: {
       '2xl': [48, 1.15],
-      xl: [32, 'auto'],
+      xl: [32, 'normal'],
       lg: [24, 1.5],
-      md: [20, 'auto'],
+      md: [20, 'normal'],
       sm: [16, 1.5],
-      xs: [14, 'auto'],
+      xs: [14, 'normal'],
     },
     extend: {
       backgroundImage: {

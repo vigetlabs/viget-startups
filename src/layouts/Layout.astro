@@ -1,4 +1,6 @@
 ---
+import Nav from '@/components/Nav.astro'
+
 const { title } = Astro.props
 ---
 
@@ -14,6 +16,7 @@ const { title } = Astro.props
     <!-- TODO: add social share metadata -->
   </head>
   <body>
+    <Nav />
     <slot />
   </body>
 </html>
@@ -120,7 +123,7 @@ const { title } = Astro.props
   }
 
   body {
-    @apply text-secondary text-md bg-white font-sans font-light;
+    @apply bg-white font-sans text-md font-light text-primary;
     min-width: 320px;
   }
 

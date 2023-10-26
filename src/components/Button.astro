@@ -1,0 +1,185 @@
+---
+import InlineSvg from '@/components/InlineSvg.astro'
+
+interface Props {
+  /**
+    The label of the button.
+
+    __IMPORTANT__: Label not exceed more than 30 charachters for the animation to work.
+  */
+  label: string
+  /**
+    The URL to link to if the button is an anchor.
+  */
+  href?: string
+  /**
+    The variant style of the button.
+  */
+  variant?: 'primary' | 'secondary'
+  /**
+    The size of the button.
+  */
+  size?: 'sm' | 'md' | 'lg'
+  /**
+    Whether the button colors should be inverted.
+  */
+  inverted?: boolean
+  /**
+    Additional classes to pass to the element.
+  */
+  class?: string
+  /**
+    Button type (if applicable)
+  */
+  type?: 'button' | 'submit' | undefined
+}
+
+const {
+  label,
+  href = undefined,
+  variant = 'primary',
+  size = 'md',
+  inverted = false,
+  type = href ? undefined : 'button',
+  ...attrs
+} = Astro.props
+
+const Element = href ? 'a' : 'button'
+---
+
+<Element
+  class:list={[
+    {
+      'btn-variant--primary': variant === 'primary',
+    },
+    { 'btn-variant--secondary': variant === 'secondary' },
+    { 'btn-size--sm': size === 'sm' },
+    { 'btn-size--md': size === 'md' },
+    { 'btn-size--lg': size === 'lg' },
+    { 'btn-inverted': inverted },
+  ]}
+  type={type}
+  href={href}
+  {...attrs}
+>
+  {
+    variant === 'primary' ? (
+      <div class="--letters">{label}</div>
+    ) : (
+      <>
+        {label}
+        <InlineSvg name="arrow-right" class="shrink-0" />
+      </>
+    )
+  }
+</Element>
+
+<style lang="scss" is:global>
+  %btn-base {
+    @apply inline-flex items-center gap-2.5 font-medium leading-none tracking-wider focus-visible:outline-offset-2;
+  }
+
+  .btn-variant--primary {
+    @extend %btn-base;
+    @apply overflow-hidden rounded-full px-6;
+
+    &:not(.btn-inverted) {
+      @apply bg-black text-white;
+    }
+
+    &.btn-inverted {
+      @apply bg-white text-black;
+    }
+
+    &:hover .--letters span,
+    &:focus-visible .--letters span {
+      transform: translateY(calc(var(--btn-text-size) * -1)) translateZ(0);
+    }
+
+    .--letters {
+      @apply flex items-center overflow-hidden;
+      height: var(--btn-text-size);
+      text-shadow: 0 var(--btn-text-size) 0;
+
+      span {
+        backface-visibility: hidden;
+        transition: transform 0.3s ease;
+        transform: translateY(0) translateZ(0);
+        white-space: pre;
+
+        $i: 1;
+        // Max 30 letters
+        @while $i < 30 {
+          &:nth-child(#{$i}) {
+            transition-delay: $i / 80 + s;
+          }
+          $i: $i + 1;
+        }
+      }
+    }
+  }
+
+  .btn-variant--secondary {
+    @extend %btn-base;
+    @apply bg-transparent;
+
+    &:not(.btn-inverted) {
+      @apply text-black;
+    }
+
+    &.btn-inverted {
+      @apply text-white;
+    }
+
+    svg {
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    &:hover,
+    &:focus-visible {
+      svg {
+        transform: translateX(6px);
+      }
+    }
+  }
+
+  .btn-size--sm {
+    @apply h-7 text-xs;
+    --btn-text-size: 14px;
+
+    svg {
+      @apply w-3;
+    }
+  }
+
+  .btn-size--md,
+  .btn-size--lg {
+    @apply text-md;
+    --btn-text-size: 20px;
+
+    svg {
+      @apply w-4;
+    }
+  }
+
+  .btn-size--md {
+    @apply h-12;
+  }
+
+  .btn-size--lg {
+    @apply h-14;
+  }
+</style>
+
+<script>
+  document
+    .querySelectorAll('.btn-variant--primary .--letters')
+    .forEach(
+      (primaryBtnLetter) =>
+        (primaryBtnLetter.innerHTML = `<span>${primaryBtnLetter.textContent
+          ?.trim()
+          .split('')
+          .join('</span><span>')}</span>`),
+    )
+</script>

@@ -75,6 +75,8 @@ const Element = href ? 'a' : 'button'
 </Element>
 
 <style lang="scss" is:global>
+  @use 'sass:math';
+
   %btn-base {
     @apply inline-flex items-center gap-2.5 font-medium leading-none tracking-wider focus-visible:outline-offset-2;
   }
@@ -109,9 +111,9 @@ const Element = href ? 'a' : 'button'
 
         $i: 1;
         // Max 30 letters
-        @while $i < 30 {
+        @while $i <= 30 {
           &:nth-child(#{$i}) {
-            transition-delay: $i / 80 + s;
+            transition-delay: math.div($i, 80) + s;
           }
           $i: $i + 1;
         }

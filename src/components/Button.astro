@@ -108,15 +108,7 @@ const Element = href ? 'a' : 'button'
         transition: transform 0.3s ease;
         transform: translateY(0) translateZ(0);
         white-space: pre;
-
-        $i: 1;
-        // Max 30 letters
-        @while $i <= 30 {
-          &:nth-child(#{$i}) {
-            transition-delay: math.div($i, 80) + s;
-          }
-          $i: $i + 1;
-        }
+        transition-delay: var(--letter-delay, 0);
       }
     }
   }
@@ -175,13 +167,33 @@ const Element = href ? 'a' : 'button'
 </style>
 
 <script>
-  document
-    .querySelectorAll('.btn-variant--primary .--letters')
-    .forEach(
-      (primaryBtnLetter) =>
-        (primaryBtnLetter.innerHTML = `<span>${primaryBtnLetter.textContent
-          ?.trim()
-          .split('')
-          .join('</span><span>')}</span>`),
-    )
+  // Get all primary button labels
+  const primaryBtnLabels = document.querySelectorAll(
+    '.btn-variant--primary .--letters',
+  )
+
+  // Split primary button label letters into spans
+  Promise.all(
+    Array.from(primaryBtnLabels).map(
+      (label) =>
+        new Promise<void>((resolve) => {
+          label.innerHTML = `<span>${label.textContent
+            ?.trim()
+            .split('')
+            .join('</span><span>')}</span>`
+          resolve()
+        }),
+    ),
+  ).then(() => {
+    // Add delay to each letter within each primary button label
+    primaryBtnLabels.forEach((label) => {
+      const labelLetter = label.querySelectorAll('span')
+      labelLetter.forEach((letter, i) =>
+        (letter as HTMLElement).style.setProperty(
+          '--letter-delay',
+          `${i / 80}s`,
+        ),
+      )
+    })
+  })
 </script>

@@ -48,13 +48,13 @@ const Element = href ? 'a' : 'button'
 <Element
   class:list={[
     {
-      'btn-variant--primary': variant === 'primary',
+      'btn btn--primary': variant === 'primary',
     },
-    { 'btn-variant--secondary': variant === 'secondary' },
-    { 'btn-size--sm': size === 'sm' },
-    { 'btn-size--md': size === 'md' },
-    { 'btn-size--lg': size === 'lg' },
-    { 'btn-inverted': inverted },
+    { 'btn btn--secondary': variant === 'secondary' },
+    { 'btn--sm': size === 'sm' },
+    { 'btn--md': size === 'md' },
+    { 'btn--lg': size === 'lg' },
+    { 'btn--inverted': inverted },
   ]}
   type={type}
   href={href}
@@ -62,7 +62,7 @@ const Element = href ? 'a' : 'button'
 >
   {
     variant === 'primary' ? (
-      <div class="--letters">{label}</div>
+      <span class="btn__letters">{label}</span>
     ) : (
       <>
         {label}
@@ -72,36 +72,29 @@ const Element = href ? 'a' : 'button'
   }
 </Element>
 
-<style lang="scss" is:global>
-  @use 'sass:math';
-
-  %btn-base {
-    @apply inline-flex items-center gap-2.5 font-medium leading-none tracking-wider focus-visible:outline-offset-2;
+<style is:global>
+  .btn {
+    @apply inline-flex items-center font-medium leading-none tracking-wider focus-visible:outline-offset-2;
   }
 
-  .btn-variant--primary {
-    @extend %btn-base;
-    @apply overflow-hidden rounded-full px-6;
+  .btn--primary {
+    @apply overflow-hidden rounded-full px-24;
 
-    &:not(.btn-inverted) {
+    &:not(.btn--inverted) {
       @apply bg-black text-white;
     }
 
-    &.btn-inverted {
+    &.btn--inverted {
       @apply bg-white text-black;
     }
 
-    &:hover .--letters span,
-    &:focus-visible .--letters span {
-      transform: translateY(calc(var(--btn-text-size) * -1)) translateZ(0);
-    }
-
-    .--letters {
+    & .btn__letters {
       @apply flex items-center overflow-hidden;
       height: var(--btn-text-size);
-      text-shadow: 0 var(--btn-text-size) 0;
+      text-shadow: 0 calc(var(--btn-text-size) + 2px) 0;
 
-      span {
+      & span {
+        line-height: 0.5;
         backface-visibility: hidden;
         transition: transform 0.3s ease;
         transform: translateY(0) translateZ(0);
@@ -109,65 +102,76 @@ const Element = href ? 'a' : 'button'
         transition-delay: var(--letter-delay, 0);
       }
     }
+
+    &:hover .btn__letters span,
+    &:focus-visible .btn__letters span {
+      transform: translateY(calc((var(--btn-text-size) + 2px) * -1))
+        translateZ(0);
+    }
   }
 
-  .btn-variant--secondary {
-    @extend %btn-base;
+  .btn--secondary {
     @apply bg-transparent;
 
-    &:not(.btn-inverted) {
+    &:not(.btn--inverted) {
       @apply text-black;
     }
 
-    &.btn-inverted {
+    &.btn--inverted {
       @apply text-white;
     }
 
-    svg {
+    & svg {
       transition: transform 0.3s ease;
       flex-shrink: 0;
     }
 
     &:hover,
     &:focus-visible {
-      svg {
+      & svg {
         transform: translateX(6px);
       }
     }
   }
 
-  .btn-size--sm {
-    @apply h-7 text-xs;
-    --btn-text-size: 14px;
+  .btn--sm {
+    @apply h-28 text-xs;
 
-    svg {
-      @apply w-3;
+    &:is(.btn--primary) {
+      --btn-text-size: 14px; /* used for text shadow offset */
+    }
+
+    & svg {
+      @apply w-12;
     }
   }
 
-  .btn-size--md,
-  .btn-size--lg {
+  .btn--md,
+  .btn--lg {
     @apply text-md;
-    --btn-text-size: 20px;
 
-    svg {
-      @apply w-4;
+    &:is(.btn--primary) {
+      --btn-text-size: 20px; /* used for text shadow offset */
+    }
+
+    & svg {
+      @apply w-16;
     }
   }
 
-  .btn-size--md {
-    @apply h-12;
+  .btn--md {
+    @apply h-48;
   }
 
-  .btn-size--lg {
-    @apply h-14;
+  .btn--lg {
+    @apply h-56;
   }
 </style>
 
 <script>
   // Get all primary button labels
   const primaryBtnLabels = document.querySelectorAll(
-    '.btn-variant--primary .--letters',
+    '.btn--primary .btn__letters',
   )
 
   // Split primary button label letters into spans

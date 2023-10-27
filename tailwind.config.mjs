@@ -1,3 +1,9 @@
+import { pxPair, pxBoundsToFluidRem } from './config/tailwind/helpers'
+
+/**
+  IMPORTANT: PostCSS Converts all `px` values to `rem`
+*/
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -19,16 +25,47 @@ export default {
       black: '#000000',
       primary: '#27262D',
     },
+    spacing: {
+      ...pxPair(0),
+      ...pxPair(1),
+      ...pxPair(2),
+      ...pxPair(4),
+      ...pxPair(8),
+      ...pxPair(12),
+      ...pxPair(16),
+      ...pxPair(20),
+      ...pxPair(24),
+      ...pxPair(26),
+      ...pxPair(28),
+      ...pxPair(32),
+      ...pxPair(36),
+      ...pxPair(40),
+      ...pxPair(48),
+      ...pxPair(56),
+      ...pxPair(64),
+      ...pxPair(80),
+      ...pxPair(88),
+      ...pxPair(96),
+      ...pxPair(120),
+      ...pxPair(160),
+    },
     fontFamily: {
       sans: ['Geomanist', 'system-ui', 'sans-serif'],
     },
     fontSize: {
-      '2xl': [48, 1.15],
-      xl: [32, 'normal'],
-      lg: [24, 1.5],
-      md: [20, 'normal'],
-      sm: [16, 1.5],
-      xs: [14, 'normal'],
+      '3xl': [pxBoundsToFluidRem(36, 60), 1],
+      '3xl-static': [60, 1],
+      '2xl': [pxBoundsToFluidRem(30, 48), 1.15],
+      '2xl-static': [48, 1.15],
+      xl: [pxBoundsToFluidRem(24, 32), 1.2],
+      'xl-static': [32, 1.2],
+      lg: [pxBoundsToFluidRem(20, 24), 1.3],
+      'lg-static': [24, 1.3],
+      md: [pxBoundsToFluidRem(18, 20), 1.4],
+      'md-static': [20, 1.4],
+      sm: [pxBoundsToFluidRem(15, 16), 1.4],
+      'sm-static': [16, 1.4],
+      xs: [14, 1.3],
     },
     extend: {
       backgroundImage: {
@@ -37,6 +74,10 @@ export default {
         'card-gradient-3': 'var(--gradient-card-3)',
         'card-gradient-4': 'var(--gradient-card-4)',
       },
+      maxWidth: (theme) => ({
+        ...theme('spacing'),
+        '8xl': '1360px',
+      }),
     },
   },
   plugins: [],

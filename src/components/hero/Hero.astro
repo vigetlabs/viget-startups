@@ -1,0 +1,42 @@
+---
+import { getEntry } from 'astro:content'
+import InlineSvg from '@/components/InlineSvg.astro'
+import Button from '@/components/Button.astro'
+import HeroKPIs from '@/components/hero/HeroKPIs.astro'
+
+const entry = await getEntry('sections', 'hero')
+
+const { Content } = await entry.render()
+---
+
+<header id="hero">
+  <div
+    class="wrapper grid min-h-[80dvh] items-center gap-48 py-64 lg:grid-cols-5"
+  >
+    <div class="flex flex-col items-start gap-24 lg:col-span-3">
+      <!-- overline -->
+      <div class="flex flex-wrap gap-12 md:gap-24">
+        <InlineSvg name="logo-wordmark" title="Viget" class="h-28" />
+        <p
+          class="inline-flex whitespace-pre after:ml-16 after:h-2 after:w-36 after:self-center after:bg-black <sm:after:hidden"
+        >
+          <Fragment set:html={entry.data.overline} />
+        </p>
+      </div>
+
+      <div class="flex max-w-3xl flex-col gap-24">
+        <h1 class="text-3xl text-balance font-bold">
+          {entry.data.heading}
+        </h1>
+        <div class="rich-text">
+          <Content />
+        </div>
+      </div>
+      <Button label="Ready to Scale?" />
+    </div>
+    <div class="relative flex h-full items-center justify-center lg:col-span-2">
+      <InlineSvg name="blob" class="h-full w-full max-w-3xl" />
+      <HeroKPIs kpis={entry.data.kpis} />
+    </div>
+  </div>
+</header>

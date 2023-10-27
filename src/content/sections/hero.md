@@ -1,6 +1,6 @@
 ---
 heading: 'Designing and building high-performing products'
-overline: 'Partnering with startups since **1999**'
+overline: 'Partnering with startups since <strong>1999</strong>'
 cta: { label: 'Ready to Scale?', url: '#' }
 kpis:
   [

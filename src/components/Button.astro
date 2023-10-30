@@ -47,10 +47,11 @@ const Element = href ? 'a' : 'button'
 
 <Element
   class:list={[
+    'btn',
     {
-      'btn btn--primary': variant === 'primary',
+      'btn--primary': variant === 'primary',
     },
-    { 'btn btn--secondary': variant === 'secondary' },
+    { 'btn--secondary': variant === 'secondary' },
     { 'btn--sm': size === 'sm' },
     { 'btn--md': size === 'md' },
     { 'btn--lg': size === 'lg' },

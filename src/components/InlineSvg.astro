@@ -1,5 +1,5 @@
 ---
-export interface Props {
+interface Props {
   /**
     The file name omitting the extension.
   */
@@ -8,22 +8,31 @@ export interface Props {
     Additional classes to pass to the SVG element.
   */
   class?: string
+  /**
+    The title of the SVG. If omitted, aria-hidden will be added to the SVG.
+  */
+  title?: string
 }
 
-const { name, class: classNames } = Astro.props
+const { name, class: classNames, title } = Astro.props
 
 function addClassNamesToInnerHTMLString(
   innerHTML: string,
   classNames?: string,
+  title?: string,
 ) {
-  return innerHTML.replace(
-    /^<svg/,
-    `<svg ${classNames ? `class="${classNames}"` : ''} aria-hidden="true"`,
-  )
+  const titleElement = title ? `<title>${title}</title>` : ''
+  return innerHTML
+    .replace(
+      /^<svg/,
+      `<svg ${classNames ? `class="${classNames}"` : ''}
+      ${!title ? 'aria-hidden="true"' : ''}`,
+    )
+    .replace(/>\s*/, `>${titleElement}`) // Add title element after the first
 }
 
 const { default: svg } = await import(`../assets/svgs/${name}.svg?raw`)
-const innerHTML = addClassNamesToInnerHTMLString(svg, classNames)
+const innerHTML = addClassNamesToInnerHTMLString(svg, classNames, title)
 ---
 
 <Fragment set:html={innerHTML} />

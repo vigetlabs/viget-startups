@@ -1,0 +1,40 @@
+---
+import Button from '@/components/Button.astro'
+---
+
+<article
+  class="group flex w-full flex-col rounded-20 odd:bg-card-gradient-1 even:bg-card-gradient-2 md:w-[calc(100%+80px)] md:flex-row md:rounded-40 md:odd:-translate-x-80 md:odd:flex-row-reverse"
+>
+  <div
+    class="flex flex-col justify-center gap-32 p-32 md:min-w-[450px] md:px-[7vw] md:py-64 xl:px-96"
+  >
+    <!-- text -->
+    <div class="space-y-24">
+      <p class="text-sm">Brand + Product Design</p>
+      <div class="space-y-8">
+        <h2 class="text-2xl font-bold">GrubMarket</h2>
+        <p>
+          Branded and designed a B2B enterprise food wholesale distribution
+          platform for grocers and sellers
+        </p>
+      </div>
+      <ul class="flex flex-wrap gap-32">
+        <li class="space-y-8">
+          <p class="text-lg font-bold">$499M</p>
+          <p class="text-xs">Funding</p>
+        </li>
+        <li class="space-y-8">
+          <p class="text-lg font-bold">$499M</p>
+          <p class="text-xs">Funding</p>
+        </li>
+        <li class="space-y-8">
+          <p class="text-lg font-bold">$499M</p>
+          <p class="text-xs">Funding</p>
+        </li>
+      </ul>
+    </div>
+    <Button variant="secondary" size="sm" label="Read the Case Study" />
+  </div>
+
+  <slot name="media" />
+</article>

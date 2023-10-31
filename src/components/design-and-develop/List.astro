@@ -1,0 +1,21 @@
+---
+interface Props {
+  details: {
+    heading: string
+    items: [string]
+  }
+}
+
+const { details } = Astro.props
+---
+
+<div class="relative flex flex-col items-center gap-36 text-center">
+  <h3
+    class="text-xl font-medium text-black after:mx-auto after:mt-24 after:block after:h-2 after:w-56 after:bg-black"
+  >
+    {details.heading}
+  </h3>
+  <ul class="flex flex-col gap-16">
+    {details.items?.length > 0 && details.items.map((item) => <li>{item}</li>)}
+  </ul>
+</div>

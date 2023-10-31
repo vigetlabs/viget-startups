@@ -1,11 +1,16 @@
 ---
 import GrubMarket from '@/components/case-studies/GrubMarket.astro'
+import Button from '@/components/Button.astro'
 ---
 
-<div class="wrapper w-full">
-  <div class="flex w-full flex-col gap-80">
-    <GrubMarket />
-    <!-- TODO: temp for alternate example -->
-    <GrubMarket />
-  </div>
-</div>
+<section class="wrapper flex w-full flex-col gap-80 py-56">
+  <h2 class="sr-only">Case Studies</h2>
+  <GrubMarket />
+  <!-- TODO: temp for alternate example -->
+  <GrubMarket />
+  <Button
+    href="https://www.viget.com/work/"
+    label="Read More Case Stuides"
+    class="self-center"
+  />
+</section>

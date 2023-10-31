@@ -43,6 +43,7 @@ export default {
       ...pxPair(48),
       ...pxPair(56),
       ...pxPair(64),
+      ...pxPair(72),
       ...pxPair(80),
       ...pxPair(88),
       ...pxPair(96),
@@ -61,7 +62,7 @@ export default {
     fontSize: {
       '4xl': [pxBoundsToFluidRem(36, 60), 1],
       '4xl-static': [60, 1],
-      '3xl': [pxBoundsToFluidRem(30, 48), 1.15],
+      '3xl': [pxBoundsToFluidRem(32, 56), 1.15],
       '3xl-static': [48, 1.15],
       '2xl': [pxBoundsToFluidRem(28, 40), 1.15],
       '2xl-static': [40, 1.15],

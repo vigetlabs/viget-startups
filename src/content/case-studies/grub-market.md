@@ -11,5 +11,5 @@ kpis:
     value: $2B+
 cta:
   label: Read the Case Study
-  url: #
+  url: '#'
 ---

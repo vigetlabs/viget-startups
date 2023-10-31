@@ -15,10 +15,13 @@ import grubStock from '@/assets/images/GrubMarket/stock.png'
 import grubRowHighlight from '@/assets/images/GrubMarket/row-highlight.png'
 ---
 
-<CaseStudy {...entry}>
+<CaseStudy
+  data={entry.data}
+  class="odd:bg-card-gradient-1 even:bg-card-gradient-2"
+>
   <div
     slot="media"
-    class="relative flex aspect-[1050/776] w-full items-center <md:-order-1 <md:-mt-56 [&_img]:absolute [&_img]:h-full group-odd:[&_img]:right-0 md:[&_img]:min-w-[500px] md:[&_img]:scale-110 md:[&_img]:object-contain"
+    class="relative flex aspect-[1050/776] w-full items-center md:-my-96 <md:-order-1 <md:-mt-56 [&_img]:absolute [&_img]:h-full group-odd:[&_img]:right-0 md:[&_img]:min-w-[500px] md:[&_img]:object-contain"
   >
     <Image src={grubDotted} alt="" />
     <Image src={grubDashboard} alt="" />

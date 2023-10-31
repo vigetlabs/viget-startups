@@ -41,9 +41,9 @@ const { data, mediaAspectRatio, class: className } = Astro.props
     class="flex flex-col justify-center gap-32 p-32 md:min-w-[450px] md:px-[7vw] md:py-64 xl:px-96"
   >
     <div class="space-y-24">
-      <p class="text-sm">{data.overline}</p>
+      <p class="text-sm text-black">{data.overline}</p>
       <div class="space-y-8">
-        <h2 class="text-2xl font-bold">{data.heading}</h2>
+        <h2 class="text-2xl font-bold text-black">{data.heading}</h2>
         <p>{data.description}</p>
       </div>
       <ul class="flex flex-wrap gap-32">
@@ -51,7 +51,7 @@ const { data, mediaAspectRatio, class: className } = Astro.props
           data.kpis.map(
             ({ label, value }: { label: string; value: string }) => (
               <li class="space-y-8">
-                <p class="text-lg font-bold">{value}</p>
+                <p class="text-lg font-bold text-black">{value}</p>
                 <p class="text-xs">{label}</p>
               </li>
             ),

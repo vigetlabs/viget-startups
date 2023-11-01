@@ -24,6 +24,7 @@ export default {
       white: '#FFFFFF',
       black: '#000000',
       primary: '#27262D',
+      gray: '#F4F4F5',
     },
     spacing: {
       ...pxPair(0),
@@ -47,6 +48,7 @@ export default {
       ...pxPair(80),
       ...pxPair(88),
       ...pxPair(96),
+      ...pxPair(112),
       ...pxPair(120),
       ...pxPair(160),
     },

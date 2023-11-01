@@ -1,0 +1,18 @@
+---
+import { getEntry } from 'astro:content'
+
+import CaseStudies from '@/components/case-studies/CaseStudies.astro'
+import Button from '@/components/Button.astro'
+
+const entry = await getEntry('sections', 'case-studies')
+---
+
+<section class="wrapper flex w-full flex-col gap-80 py-56">
+  <h2 class="sr-only">{entry.data.heading}</h2>
+  <CaseStudies />
+  <Button
+    href={entry.data.cta?.url}
+    label={entry.data.cta?.label}
+    class="self-center"
+  />
+</section>

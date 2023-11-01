@@ -1,11 +1,4 @@
 ---
-interface Props {
-  details: {
-    heading: string
-    items: [string]
-  }
-}
-
 const { details } = Astro.props
 ---
 
@@ -16,6 +9,6 @@ const { details } = Astro.props
     {details.heading}
   </h3>
   <ul class="flex flex-col gap-16">
-    {details.items?.length > 0 && details.items.map((item) => <li>{item}</li>)}
+    {details.items.map((item: string) => <li>{item}</li>)}
   </ul>
 </div>

@@ -5,7 +5,7 @@ interface Props {
   /**
     The label of the button.
   */
-  label: string
+  label?: string
   /**
     The URL to link to if the button is an anchor.
   */
@@ -33,7 +33,7 @@ interface Props {
 }
 
 const {
-  label,
+  label = '',
   href = undefined,
   variant = 'primary',
   size = 'md',
@@ -67,7 +67,7 @@ const Element = href ? 'a' : 'button'
     ) : (
       <>
         {label}
-        <InlineSvg name="arrow-right" class="shrink-0" />
+        <InlineSvg name="arrow-right" class="inline-flex shrink-0" />
       </>
     )
   }
@@ -136,10 +136,15 @@ const Element = href ? 'a' : 'button'
   }
 
   .btn--sm {
-    @apply h-28 text-xs;
+    @apply h-28;
 
     &:is(.btn--primary) {
+      @apply text-xs;
       --btn-text-size: 14px; /* used for text shadow offset */
+    }
+
+    &:is(.btn--secondary) {
+      @apply text-sm;
     }
 
     & svg {

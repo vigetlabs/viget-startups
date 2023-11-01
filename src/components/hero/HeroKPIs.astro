@@ -1,20 +1,10 @@
 ---
-interface Props {
-  /**
-    KPIs to be displayed
-  */
-  kpis: {
-    label: string
-    value: string
-  }[]
-}
-
 const { kpis } = Astro.props
 ---
 
 <ul class="relative grid grid-cols-2 gap-24 sm:gap-56">
   {
-    kpis.map(({ label, value }) => (
+    kpis.map(({ label, value }: { label: string; value: string }) => (
       <li class="flex h-full w-full items-center justify-center text-center">
         <div class="flex flex-col items-center gap-8 text-center">
           <span class="text-4xl-static font-bold text-black">{value}</span>

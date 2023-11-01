@@ -1,0 +1,39 @@
+---
+import Button from '@/components/Button.astro'
+import { Image } from 'astro:assets'
+
+const { entry } = Astro.props
+
+const { Content } = await entry.render()
+---
+
+<li
+  class="mt-[46px] flex min-w-[280px] max-w-md flex-1 flex-col items-center rounded-20 border-2 border-primary"
+>
+  <Image
+    src={entry.data.author.avatar.image}
+    alt={entry.data.author.avatar.alt}
+    class="-mt-48 h-96 w-96 rounded-full bg-gray"
+  />
+  <div class="flex flex-1 flex-col gap-56 p-32">
+    <div class="rich-text">
+      <Content />
+    </div>
+    <div class="mt-auto flex flex-col gap-8 text-sm">
+      <p class="font-bold">{entry.data.author.name}</p>
+      <p>
+        {entry.data.author.label}{
+          entry.data.cta && (
+            <Button
+              class="ml-4"
+              label={entry.data.cta.label}
+              href={entry.data.cta.url}
+              variant="secondary"
+              size="sm"
+            />
+          )
+        }
+      </p>
+    </div>
+  </div>
+</li>

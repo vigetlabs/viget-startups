@@ -6,29 +6,31 @@ import InlineSvg from '@/components/InlineSvg.astro'
 const entry = await getEntry('sections', 'why-work-with-us')
 ---
 
-<section class="wrapper gap-72 flex w-full flex-col items-center py-56">
+<section class="wrapper flex w-full flex-col items-center gap-72 py-56">
   <h2 class="text-3xl font-bold text-black">{entry.data.heading}</h2>
-  <ul class="grid gap-40 md:grid-cols-2 lg:grid-cols-4">
-    {
-      entry.data.list.map(
-        ({
-          icon,
-          heading,
-          description,
-        }: {
-          icon: string
-          heading: string
-          description: string
-        }) => (
-          <li class="flex max-w-md flex-col gap-32 md:max-w-xs">
-            <InlineSvg name={icon} class="h-88 w-88" />
-            <div class="flex flex-col gap-12 after:mt-24 after:h-2 after:w-56 after:bg-black">
-              <h3 class="font-bold text-black">{heading}</h3>
-              <p class="text-sm">{description}</p>
-            </div>
-          </li>
-        ),
-      )
-    }
-  </ul>
+  {
+    entry.data.list && (
+      <ul class="grid gap-40 md:grid-cols-2 lg:grid-cols-4">
+        {entry.data.list.map(
+          ({
+            icon,
+            heading,
+            description,
+          }: {
+            icon: string
+            heading: string
+            description: string
+          }) => (
+            <li class="flex max-w-md flex-col gap-32 md:max-w-xs">
+              <InlineSvg name={icon} class="h-88 w-88" />
+              <div class="flex flex-col gap-12 after:mt-24 after:h-2 after:w-56 after:bg-black">
+                <h3 class="font-bold text-black">{heading}</h3>
+                <p class="text-sm">{description}</p>
+              </div>
+            </li>
+          ),
+        )}
+      </ul>
+    )
+  }
 </section>

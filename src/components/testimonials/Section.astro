@@ -1,0 +1,32 @@
+---
+import { getCollection, getEntry } from 'astro:content'
+
+import Testimonial from '@/components/testimonials/Testimonial.astro'
+import Marquee from '@/components/testimonials/Marquee.astro'
+import Button from '@/components/Button.astro'
+
+const entry = await getEntry('sections', 'testimonials')
+const allTestimonials = await getCollection('testimonials')
+const sortedTestiomonals = allTestimonials.sort((a, b) => {
+  return (a.data.sortOrder || Infinity) - (b.data.sortOrder || Infinity)
+})
+---
+
+<section class="flex flex-col items-center gap-72 py-56">
+  <div class="wrapper flex w-full flex-col items-center gap-72">
+    <h2
+      class="text-center text-3xl font-bold text-black after:mx-auto after:mt-32 after:block after:h-2 after:w-56 after:bg-black"
+    >
+      {entry.data.heading}
+    </h2>
+    <ul class="flex w-full flex-wrap justify-center gap-32">
+      {
+        sortedTestiomonals.map((testimonial) => (
+          <Testimonial entry={testimonial} />
+        ))
+      }
+    </ul>
+  </div>
+  <Marquee logos={entry.data.marquee} />
+  <Button label={entry.data.cta?.label} href={entry.data.cta?.url} />
+</section>

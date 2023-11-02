@@ -1,0 +1,61 @@
+---
+import { getEntry } from 'astro:content'
+
+import InlineSvg from '@/components/InlineSvg.astro'
+import Button from '@/components/Button.astro'
+
+const entry = await getEntry('sections', 'footer')
+---
+
+<footer class="bg-primary text-white">
+  <div class="wrapper py-112">
+    <div class="flex flex-wrap justify-between gap-96 lg:flex-nowrap">
+      <div
+        class="flex max-w-md flex-col items-start gap-8 lg:max-w-lg lg:flex-1 <lg:mx-auto <lg:items-center <lg:gap-16 <lg:text-center"
+      >
+        <h2 class="text-sm font-bold">{entry.data.newsletter.title}</h2>
+        <p class="text-sm">{entry.data.newsletter.description}</p>
+        <Button
+          href={entry.data.newsletter.cta.url}
+          label={entry.data.newsletter.cta.label}
+          class="!text-white lg:mt-8"
+          variant="secondary"
+          size="sm"
+        />
+      </div>
+      <div
+        class="grid sm:grid-cols-3 sm:gap-32 lg:shrink-0 <lg:w-full <lg:justify-evenly"
+      >
+        <h2 class="sr-only">Site Links</h2>
+        {
+          entry.data.nav.map(
+            ({
+              title,
+              links,
+            }: {
+              title: string
+              links: { label: string; url: string }[]
+            }) => (
+              <div class="group flex w-fit flex-col gap-16 <lg:w-full <lg:items-center <lg:text-center">
+                <h3 class="text-sm font-bold">{title}</h3>
+                <ul class="flex flex-col gap-16">
+                  {links.map(({ label, url }) => (
+                    <li class="text-sm ">
+                      <a
+                        href={url}
+                        class="whitespace-nowrap opacity-90 transition-opacity hover:underline hover:opacity-100"
+                      >
+                        {label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <div class="mb-40 mt-24 h-1 w-32 bg-white/50 group-last-of-type:hidden sm:hidden" />
+              </div>
+            ),
+          )
+        }
+      </div>
+    </div>
+  </div>
+</footer>

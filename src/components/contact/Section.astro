@@ -1,0 +1,67 @@
+---
+import { getEntry } from 'astro:content'
+
+import InlineSvg from '@/components/InlineSvg.astro'
+import Button from '@/components/Button.astro'
+
+const entry = await getEntry('sections', 'contact')
+
+const { Content } = await entry.render()
+---
+
+<section class="bg-gradient mt-56">
+  <div
+    class="wrapper flex flex-col justify-center divide-y divide-black/50 py-112 sm:flex-row sm:divide-x sm:divide-y-0"
+  >
+    <div class="flex max-w-xl flex-col items-start gap-32 p-32">
+      <h2 class="text-xl font-bold text-black">{entry.data.heading}</h2>
+      <div class="rich-text">
+        <Content />
+      </div>
+      <Button label={entry.data.cta.label} href={entry.data.cta.url} />
+    </div>
+    <div class="flex max-w-2xl flex-col items-start gap-32 p-32">
+      <InlineSvg name="logo-wordmark" title="Viget" class="h-28" />
+      <ul class="flex flex-wrap gap-32 sm:flex-col">
+        {
+          entry.data.contacts.map(
+            ({
+              label,
+              cta,
+            }: {
+              label: string
+              cta: { url?: string; label: string }
+            }) => (
+              <li class="flex flex-col">
+                <h3 class="font-medium text-black">{label}</h3>
+                {cta.url ? (
+                  <a href={cta.url} class="underline">
+                    {cta.label}
+                  </a>
+                ) : (
+                  <p>{cta.label}</p>
+                )}
+              </li>
+            ),
+          )
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bg-gradient {
+    background: radial-gradient(
+        106.52% 79.57% at 91.81% 100%,
+        hsla(12, 100%, 94%, 0.6) 0%,
+        hsla(12, 100%, 94%, 0) 100%
+      ),
+      radial-gradient(
+        141.68% 115.73% at 3.47% -4.01%,
+        hsla(194, 100%, 85%, 0.6) 0%,
+        hsla(201, 81%, 90%, 0) 100%
+      ),
+      hsla(223, 63%, 77%, 0.36);
+  }
+</style>

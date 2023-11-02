@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content'
+import { Image } from 'astro:assets'
+
+const clients = await getCollection('clients')
+---
+
+<div class="marquees mt-40 flex w-full flex-col gap-56">
+  <p class="sr-only">
+    Logos from the following companies: {
+      clients.map((entry) => entry.data.name).join(', ')
+    }
+  </p>
+  {
+    Array.from(Array(2)).map(() => (
+      // set 2 marquees with altnerating animation directions
+      <div
+        class="marquee__row flex items-center gap-56 overflow-x-hidden"
+        aria-hidden="true"
+      >
+        {Array.from(Array(6)).map(() => (
+          <ul class="marquee__list animation-marquee flex items-center gap-56">
+            {clients.map((entry) => (
+              <li class="logo" title={entry.data.name}>
+                <Image
+                  src={entry.data.logo}
+                  alt={entry.data.name}
+                  class="h-auto max-h-[5dvh] min-h-[40px] w-auto min-w-[70px] max-w-[7dvw] object-contain"
+                />
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .marquees {
+    /* adjust duration to change speed of marquee */
+    --marquee-duration: 45s;
+
+    & .marquee__list {
+      animation: marquee var(--marquee-duration) linear infinite;
+      transform: translateX(-100%);
+
+      @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+        animation-play-state: paused !important;
+      }
+    }
+
+    /* offsets the start of the animation by half and reverses it */
+    & .marquee__row:nth-child(even) .marquee__list {
+      animation-delay: calc(var(--marquee-duration) * -0.5);
+      animation-direction: reverse;
+    }
+
+    &:hover {
+      & .marquee__list {
+        animation-play-state: paused !important;
+      }
+    }
+  }
+
+  @keyframes marquee {
+    100% {
+      transform: translateX(56px);
+    }
+  }
+</style>

@@ -72,7 +72,7 @@ const { data, mediaAspectRatio, class: className } = Astro.props
   </div>
 </article>
 
-<style is:global>
+<style>
   .case__media {
     @apply relative flex w-full items-center;
 
@@ -84,7 +84,7 @@ const { data, mediaAspectRatio, class: className } = Astro.props
       @apply -my-96;
     }
 
-    & * {
+    & :global(*) {
       @apply absolute h-full;
 
       @screen md {

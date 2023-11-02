@@ -45,33 +45,35 @@ const {
 const Element = href ? 'a' : 'button'
 ---
 
-<Element
-  class:list={[
-    'btn',
-    {
-      'btn--primary': variant === 'primary',
-    },
-    { 'btn--secondary': variant === 'secondary' },
-    { 'btn--sm': size === 'sm' },
-    { 'btn--md': size === 'md' },
-    { 'btn--lg': size === 'lg' },
-    { 'btn--inverted': inverted },
-  ]}
-  type={type}
-  href={href}
-  {...attrs}
->
-  {
-    variant === 'primary' ? (
-      <span class="btn__letters">{label}</span>
-    ) : (
-      <>
-        {label}
-        <InlineSvg name="arrow-right" class="shrink-0" />
-      </>
-    )
-  }
-</Element>
+{
+  label && (
+    <Element
+      class:list={[
+        'btn',
+        {
+          'btn--primary': variant === 'primary',
+        },
+        { 'btn--secondary': variant === 'secondary' },
+        { 'btn--sm': size === 'sm' },
+        { 'btn--md': size === 'md' },
+        { 'btn--lg': size === 'lg' },
+        { 'btn--inverted': inverted },
+      ]}
+      type={type}
+      href={href}
+      {...attrs}
+    >
+      {variant === 'primary' ? (
+        <span class="btn__letters">{label}</span>
+      ) : (
+        <>
+          {label}
+          <InlineSvg name="arrow-right" class="shrink-0" />
+        </>
+      )}
+    </Element>
+  )
+}
 
 <style is:global>
   .btn {
@@ -136,10 +138,15 @@ const Element = href ? 'a' : 'button'
   }
 
   .btn--sm {
-    @apply h-28 text-xs;
+    @apply h-28;
 
     &:is(.btn--primary) {
+      @apply text-xs;
       --btn-text-size: 14px; /* used for text shadow offset */
+    }
+
+    &:is(.btn--secondary) {
+      @apply text-sm;
     }
 
     & svg {

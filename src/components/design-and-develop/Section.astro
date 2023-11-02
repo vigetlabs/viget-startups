@@ -11,8 +11,8 @@ import designDevelop from '@/assets/images/design-and-develop/full.png'
 const entry = await getEntry('sections', 'design-and-develop')
 ---
 
-<section class="bg-gray my-56">
-  <div class="wrapper py-112 flex w-full flex-col items-center gap-56">
+<section class="my-56 bg-gray">
+  <div class="wrapper flex w-full flex-col items-center gap-56 py-112">
     <div class="flex flex-col items-center gap-24 text-center">
       <h2 class="text-3xl font-bold text-black">{entry.data.heading}</h2>
       <p class="text-balance max-w-2xl text-lg">{entry.data.subheading}</p>
@@ -34,6 +34,7 @@ const entry = await getEntry('sections', 'design-and-develop')
       href={entry.data.cta.url}
       label={entry.data.cta.label}
       class="relative"
+      size="lg"
     />
   </div>
 </section>

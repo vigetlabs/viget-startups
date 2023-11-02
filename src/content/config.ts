@@ -1,7 +1,6 @@
 import { defineCollection, z } from 'astro:content'
 
 const clientsCollection = defineCollection({
-  type: 'data',
   schema: ({ image }) =>
     z.object({
       name: z.string(),
@@ -10,7 +9,6 @@ const clientsCollection = defineCollection({
 })
 
 const caseStudiesCollection = defineCollection({
-  type: 'data',
   schema: z.object({
     heading: z.string(),
     overline: z.string(),
@@ -29,7 +27,6 @@ const caseStudiesCollection = defineCollection({
 })
 
 const testimonialsCollection = defineCollection({
-  type: 'data',
   schema: ({ image }) =>
     z.object({
       author: z.object({

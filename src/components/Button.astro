@@ -5,7 +5,7 @@ interface Props {
   /**
     The label of the button.
   */
-  label?: string
+  label: string
   /**
     The URL to link to if the button is an anchor.
   */
@@ -33,7 +33,7 @@ interface Props {
 }
 
 const {
-  label = '',
+  label,
   href = undefined,
   variant = 'primary',
   size = 'md',
@@ -45,33 +45,35 @@ const {
 const Element = href ? 'a' : 'button'
 ---
 
-<Element
-  class:list={[
-    'btn',
-    {
-      'btn--primary': variant === 'primary',
-    },
-    { 'btn--secondary': variant === 'secondary' },
-    { 'btn--sm': size === 'sm' },
-    { 'btn--md': size === 'md' },
-    { 'btn--lg': size === 'lg' },
-    { 'btn--inverted': inverted },
-  ]}
-  type={type}
-  href={href}
-  {...attrs}
->
-  {
-    variant === 'primary' ? (
-      <span class="btn__letters">{label}</span>
-    ) : (
-      <>
-        {label}
-        <InlineSvg name="arrow-right" class="shrink-0" />
-      </>
-    )
-  }
-</Element>
+{
+  label && (
+    <Element
+      class:list={[
+        'btn',
+        {
+          'btn--primary': variant === 'primary',
+        },
+        { 'btn--secondary': variant === 'secondary' },
+        { 'btn--sm': size === 'sm' },
+        { 'btn--md': size === 'md' },
+        { 'btn--lg': size === 'lg' },
+        { 'btn--inverted': inverted },
+      ]}
+      type={type}
+      href={href}
+      {...attrs}
+    >
+      {variant === 'primary' ? (
+        <span class="btn__letters">{label}</span>
+      ) : (
+        <>
+          {label}
+          <InlineSvg name="arrow-right" class="shrink-0" />
+        </>
+      )}
+    </Element>
+  )
+}
 
 <style is:global>
   .btn {

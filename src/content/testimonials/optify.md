@@ -3,7 +3,7 @@ author:
   name: Pam Krulitz
   label: Founder of
   avatar:
-    image: '@/assets/images/testimonials/avatars/pam-krulitz.jpg'
+    image: './avatars/pam-krulitz.jpg'
     alt: ''
 cta:
   label: Optify

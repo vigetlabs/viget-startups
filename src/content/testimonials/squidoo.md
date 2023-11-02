@@ -3,7 +3,7 @@ author:
   name: Seth Godin
   label: Squidoo Founder
   avatar:
-    image: '@/assets/images/testimonials/avatars/seth-godin.jpg'
+    image: './avatars/seth-godin.jpg'
     alt: ''
 sortOrder: 2
 ---

@@ -1,60 +1,16 @@
 import { defineCollection, z } from 'astro:content'
 
-const sectionsCollection = defineCollection({
-  type: 'content',
+const clientsCollection = defineCollection({
+  type: 'data',
   schema: ({ image }) =>
     z.object({
-      heading: z.string(),
-      overline: z.string().optional(),
-      subheading: z.string().optional(),
-      cta: z
-        .object({
-          label: z.string(),
-          url: z.string(),
-        })
-        .optional(),
-      kpis: z
-        .array(
-          z.object({
-            label: z.string(),
-            value: z.string(),
-          }),
-        )
-        .optional(),
-      left: z
-        .object({
-          heading: z.string(),
-          items: z.array(z.string()).optional(),
-        })
-        .optional(),
-      right: z
-        .object({
-          heading: z.string(),
-          items: z.array(z.string()),
-        })
-        .optional(),
-      list: z
-        .array(
-          z.object({
-            icon: z.string(),
-            heading: z.string(),
-            description: z.string(),
-          }),
-        )
-        .optional(),
-      marquee: z
-        .array(
-          z.object({
-            name: z.string(),
-            logo: image(),
-          }),
-        )
-        .optional(),
+      name: z.string(),
+      logo: image(),
     }),
 })
 
 const caseStudiesCollection = defineCollection({
-  type: 'content',
+  type: 'data',
   schema: z.object({
     heading: z.string(),
     overline: z.string(),
@@ -73,7 +29,7 @@ const caseStudiesCollection = defineCollection({
 })
 
 const testimonialsCollection = defineCollection({
-  type: 'content',
+  type: 'data',
   schema: ({ image }) =>
     z.object({
       author: z.object({
@@ -97,7 +53,7 @@ const testimonialsCollection = defineCollection({
 })
 
 export const collections = {
-  sections: sectionsCollection,
+  clients: clientsCollection,
   'case-studies': caseStudiesCollection,
   testimonials: testimonialsCollection,
 }

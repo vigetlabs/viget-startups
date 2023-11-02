@@ -2,7 +2,7 @@
 import { getCollection, getEntry } from 'astro:content'
 
 import Testimonial from '@/components/testimonials/Testimonial.astro'
-import Marquee from '@/components/testimonials/Marquee.astro'
+import ClientsMarquee from '@/components/testimonials/ClientsMarquee.astro'
 import Button from '@/components/Button.astro'
 
 const entry = await getEntry('sections', 'testimonials')
@@ -27,6 +27,6 @@ const sortedTestiomonals = allTestimonials.sort((a, b) => {
       }
     </ul>
   </div>
-  <Marquee logos={entry.data.marquee} />
-  <Button label={entry.data.cta?.label} href={entry.data.cta?.url} size="lg" />
+  <ClientsMarquee />
+  <Button label={entry.data.cta.label} href={entry.data.cta.url} size="lg" />
 </section>

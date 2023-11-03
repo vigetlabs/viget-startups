@@ -10,64 +10,68 @@ nav:
     links:
       - cta:
         label: Work
-        url: '#'
+        url: https://www.viget.com/work/
       - cta:
         label: Services
-        url: '#'
+        url: https://www.viget.com/services/
       - cta:
         label: Articles
-        url: '#'
+        url: https://www.viget.com/articles/
   - title: People
     links:
       - cta:
         label: Company
-        url: '#'
+        url: https://www.viget.com/about/
       - cta:
         label: Careers
-        url: '#'
+        url: https://www.viget.com/careers/
       - cta:
         label: Code of Ethics
-        url: '#'
+        url: https://www.viget.com/code-of-ethics/
       - cta:
         label: Diversity & Inclusion
-        url: '#'
+        url: https://www.viget.com/diversity-equity-and-inclusion/
   - title: More
     links:
       - cta:
         label: Pointless Corp.
-        url: '#'
+        url: https://pointlesscorp.com/
       - cta:
         label: Explorations
-        url: '#'
+        url: https://explorations.viget.com/
       - cta:
         label: Code at Viget
-        url: '#'
+        url: https://code.viget.com
 socials:
   - name: Instagram
-    svg: instagram
-    url: '#'
+    icon: instagram
+    url: https://www.instagram.com/viget/
   - name: LinkedIn
-    svg: linkedin
-    url: '#'
+    icon: linkedIn
+    url: https://www.linkedin.com/company/viget-labs
   - name: Twitter
-    svg: twitter
-    url: '#'
+    icon: twitter
+    url: https://twitter.com/viget
   - name: GitHub
-    svg: github
-    url: '#'
+    icon: github
+    url: https://github.com/vigetlabs
   - name: Dribbble
-    svg: dribbble
-    url: '#'
+    icon: dribbble
+    url: https://dribbble.com/viget
   - name: Vimeo
-    svg: vimeo
-    url: '#'
+    icon: vimeo
+    url: https://vimeo.com/viget/collections
 offices:
   - name: Washington DC Metro
-    url: '#'
+    url: https://www.viget.com/dc-metro-hq/
   - name: Boulder CO
-    url: '#'
+    url: https://www.viget.com/boulder/
   - name: Durham NC
-    url: '#'
+    url: https://www.viget.com/durham/
   - name: Chattanooga TN
-    url: '#'
+    url: https://www.viget.com/chattanooga/
+legal:
+  - name: © Viget
+  - name: Privacy
+    url: https://www.viget.com/privacy-policy/
 ---

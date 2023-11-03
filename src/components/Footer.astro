@@ -9,7 +9,7 @@ const entry = await getEntry('sections', 'footer')
 
 <footer class="bg-primary text-white">
   <div class="wrapper py-112">
-    <div class="flex flex-wrap justify-between gap-96 lg:flex-nowrap">
+    <div class="flex flex-wrap justify-between gap-56 sm:gap-96 lg:flex-nowrap">
       <div
         class="flex max-w-md flex-col items-start gap-8 lg:max-w-lg lg:flex-1 <lg:mx-auto <lg:items-center <lg:gap-16 <lg:text-center"
       >
@@ -59,53 +59,57 @@ const entry = await getEntry('sections', 'footer')
     </div>
     <hr class="my-36 border-white/50" />
     <div
-      class="flex flex-col items-center justify-between gap-56 lg:flex-row lg:items-start lg:gap-96"
+      class="flex w-full flex-col items-center justify-between gap-32 text-xs text-white/50 sm:text-sm lg:items-start"
     >
-      <div class="flex shrink-0 flex-col items-center gap-16 sm:flex-row">
-        <h2 class="sr-only">Social Links</h2>
-        <a
-          href="https://www.viget.com"
-          class="text-white/50 grayscale transition-colors hover:text-white"
-        >
-          <InlineSvg name="logo-wordmark" class="h-24" />
-        </a>
-        <ul class="flex items-center gap-8">
-          {
-            entry.data.socials.map(
-              ({
-                name,
-                icon,
-                url,
-              }: {
-                name: string
-                icon: string
-                url: string
-              }) => (
-                <li>
-                  <a
-                    href={url}
-                    class="text-white/50 grayscale transition-colors hover:text-white"
-                  >
-                    <span class="sr-only">{name}</span>
-                    <InlineSvg name={icon} class="h-24" />
-                  </a>
-                </li>
-              ),
-            )
-          }
-        </ul>
-      </div>
       <div
-        class="flex flex-col items-center gap-56 text-sm text-white/50 sm:gap-24 lg:items-end"
+        class="flex w-full flex-col items-center justify-between gap-32 lg:flex-row lg:gap-96"
       >
+        <div class="flex shrink-0 flex-col items-center gap-16 sm:flex-row">
+          <h2 class="sr-only">Social Links</h2>
+          <a
+            href="https://www.viget.com"
+            class="text-white/50 grayscale transition-colors hover:text-white"
+          >
+            <InlineSvg name="logo-wordmark" class="h-24" />
+          </a>
+          <ul class="flex items-center gap-8 <sm:-order-1">
+            {
+              entry.data.socials.map(
+                ({
+                  name,
+                  icon,
+                  url,
+                }: {
+                  name: string
+                  icon: string
+                  url: string
+                }) => (
+                  <li>
+                    <a
+                      href={url}
+                      class="text-white/50 grayscale transition-colors hover:text-white"
+                    >
+                      <span class="sr-only">{name}</span>
+                      <InlineSvg name={icon} class="h-24" />
+                    </a>
+                  </li>
+                ),
+              )
+            }
+          </ul>
+        </div>
+
         <div
-          class="group flex flex-col items-center gap-24 sm:flex-row sm:gap-8"
+          class="group flex flex-col items-center gap-24 sm:flex-row sm:gap-8 <lg:-order-1"
         >
           {
             entry.data.offices.map(
               ({ name, url }: { name: string; url: string }) => (
                 <>
-                  <a href={url} class="transition-colors hover:text-white">
+                  <a
+                    href={url}
+                    class="text-center transition-colors hover:text-white"
+                  >
                     {name}
                   </a>
                   <span class="h-1 w-32 bg-white/25 last-of-type:hidden sm:h-16 sm:w-1" />
@@ -114,24 +118,26 @@ const entry = await getEntry('sections', 'footer')
             )
           }
         </div>
-        <div class="flex items-center gap-8">
-          {
-            entry.data.legal.map(
-              ({ name, url }: { name: string; url?: string }) => (
-                <>
-                  {url ? (
-                    <a href={url} class="transition-colors hover:text-white">
-                      {name}
-                    </a>
-                  ) : (
-                    <p>{name}</p>
-                  )}
-                  <span class="h-16 w-1 bg-white/25 last-of-type:hidden" />
-                </>
-              ),
-            )
-          }
-        </div>
+      </div>
+      <div class="flex items-center gap-8 lg:self-end">
+        <p>© Viget</p>
+        <span class="h-16 w-1 bg-white/25 last-of-type:hidden"></span>
+        {
+          entry.data.legal.map(
+            ({ name, url }: { name: string; url?: string }) => (
+              <>
+                {url ? (
+                  <a href={url} class="transition-colors hover:text-white">
+                    {name}
+                  </a>
+                ) : (
+                  <p>{name}</p>
+                )}
+                <span class="h-16 w-1 bg-white/25 last-of-type:hidden" />
+              </>
+            ),
+          )
+        }
       </div>
     </div>
   </div>

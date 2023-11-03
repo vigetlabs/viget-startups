@@ -71,7 +71,6 @@ offices:
   - name: Chattanooga TN
     url: https://www.viget.com/chattanooga/
 legal:
-  - name: © Viget
   - name: Privacy
     url: https://www.viget.com/privacy-policy/
 ---

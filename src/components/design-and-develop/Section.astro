@@ -2,9 +2,9 @@
 import { getEntry } from 'astro:content'
 import { Image } from 'astro:assets'
 
-import InlineSvg from '@/components/InlineSvg.astro'
 import List from '@/components/design-and-develop/List.astro'
 import Button from '@/components/Button.astro'
+import Blob from '@/components/Blob.astro'
 
 import designDevelop from '@/assets/images/design-and-develop/full.png'
 
@@ -13,7 +13,7 @@ const entry = await getEntry('sections', 'design-and-develop')
 
 <section class="my-56 bg-gray">
   <div class="wrapper flex w-full flex-col items-center gap-56 py-112">
-    <div class="flex flex-col items-center gap-24 text-center">
+    <div class="relative z-10 flex flex-col items-center gap-24 text-center">
       <h2 class="text-3xl font-bold text-black">{entry.data.heading}</h2>
       <p class="text-balance max-w-2xl text-lg">{entry.data.subheading}</p>
     </div>
@@ -22,9 +22,11 @@ const entry = await getEntry('sections', 'design-and-develop')
     >
       <List details={entry.data.left} />
       <div class="relative row-span-2 flex items-center lg:row-span-1">
-        <InlineSvg
-          name="blob"
-          class="absolute inset-0 w-full max-w-3xl translate-y-[-12.5%] scale-110"
+        <Blob
+          class="absolute inset-0 w-full max-w-3xl translate-y-[-15%] opacity-75 blur-[40px] md:scale-110"
+          noiseStep={0.001}
+          hueStart={150}
+          hueStop={210}
         />
         <Image src={designDevelop} alt="" class="relative w-full" />
       </div>

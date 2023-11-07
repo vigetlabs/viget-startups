@@ -27,6 +27,7 @@ const {
   noiseStep = 0.002,
   hueStart = 0,
   hueStop = 360,
+  ...attrs
 } = Astro.props
 ---
 
@@ -36,6 +37,7 @@ const {
   data-hue-start={hueStart}
   data-hue-stop={hueStop}
   data-noise-step={noiseStep}
+  {...attrs}
 >
   <defs>
     <linearGradient id="blob-gradient" gradientTransform="rotate(90)">

@@ -28,43 +28,46 @@ interface Props {
   class?: string
 }
 
-const { data, mediaAspectRatio, class: className } = Astro.props
+const { data, mediaAspectRatio, class: className, ...attrs } = Astro.props
 ---
 
 <article
   class:list={[
     className,
-    'group flex w-full flex-col rounded-20 md:w-[calc(100%+80px)] md:flex-row md:rounded-40 md:odd:-translate-x-80 md:odd:flex-row-reverse',
+    'group flex w-full origin-left flex-col rounded-20 md:w-[calc(100%+80px)] md:flex-row md:rounded-40 md:odd:-translate-x-80 md:odd:flex-row-reverse',
   ]}
+  data-animate
+  {...attrs}
 >
   <div
-    class="flex flex-col justify-center gap-32 p-32 md:min-w-[450px] md:px-[7vw] md:py-64 xl:px-96"
+    class="flex flex-col justify-center gap-24 p-32 md:min-w-[450px] md:px-[7vw] md:py-64 xl:px-96"
   >
-    <div class="space-y-24">
-      <p class="text-sm text-black">{data.overline}</p>
-      <div class="space-y-8">
-        <h2 class="text-2xl font-bold text-black">{data.heading}</h2>
-        <p>{data.description}</p>
-      </div>
-      <ul class="flex flex-wrap gap-32">
-        {
-          data.kpis.map(
-            ({ label, value }: { label: string; value: string }) => (
-              <li class="space-y-8">
-                <p class="text-lg font-bold text-black">{value}</p>
-                <p class="text-xs">{label}</p>
-              </li>
-            ),
-          )
-        }
-      </ul>
+    <p class="text-sm text-black" data-animate-text>{data.overline}</p>
+    <div class="space-y-8">
+      <h2 class="text-2xl font-bold text-black" data-animate-text>
+        {data.heading}
+      </h2>
+      <p data-animate-text>{data.description}</p>
     </div>
+
+    <ul class="flex flex-wrap gap-32" data-animate-text>
+      {
+        data.kpis.map(({ label, value }: { label: string; value: string }) => (
+          <li class="space-y-8">
+            <p class="text-lg font-bold text-black">{value}</p>
+            <p class="text-xs">{label}</p>
+          </li>
+        ))
+      }
+    </ul>
     <Button
       variant="secondary"
       size="sm"
+      class="mt-8"
       label={data.cta.label}
       href={data.cta.url}
       aria-label={`Read the ${data.heading} Case Study`}
+      data-animate-text
     />
   </div>
 
@@ -85,11 +88,11 @@ const { data, mediaAspectRatio, class: className } = Astro.props
       @apply -my-96;
     }
 
-    & :global(*) {
-      @apply absolute h-full;
+    & :global(> *) {
+      @apply absolute flex h-full w-full items-center justify-center;
 
       @screen md {
-        @apply min-w-[500px] object-contain group-odd:right-0;
+        @apply min-w-[500px] max-w-[700px] object-contain group-odd:right-0;
       }
     }
   }

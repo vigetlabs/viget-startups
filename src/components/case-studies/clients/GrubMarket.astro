@@ -1,0 +1,177 @@
+---
+import { getEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+
+import CaseStudy from '@/components/case-studies/CaseStudy.astro'
+
+import dashboardAsset from '@/assets/images/case-studies/grub-market/dashboard.png'
+import graphAsset from '@/assets/images/case-studies/grub-market/graph.svg'
+import tag1Asset from '@/assets/images/case-studies/grub-market/tag-1.svg'
+import tag2Asset from '@/assets/images/case-studies/grub-market/tag-2.svg'
+import tag3Asset from '@/assets/images/case-studies/grub-market/tag-3.svg'
+import stockAsset from '@/assets/images/case-studies/grub-market/stock.svg'
+import rowHighlightAsset from '@/assets/images/case-studies/grub-market/row-highlight.svg'
+import kpisAsset from '@/assets/images/case-studies/grub-market/kpis.svg'
+import dashAsset from '@/assets/images/case-studies/grub-market/dashed-path.svg?raw'
+
+const entry = await getEntry('case-studies', 'grub-market')
+---
+
+<CaseStudy
+  data={entry.data}
+  class="odd:bg-card-gradient-1 even:bg-card-gradient-2"
+  mediaAspectRatio="725/530"
+  id="grub-market"
+>
+  <div class="asset" data-grub-asset="dash">
+    <Fragment set:html={dashAsset} />
+  </div>
+  <div class="asset" data-speed="1.01">
+    <Image src={dashboardAsset} alt="" data-grub-asset="dashboard" />
+  </div>
+  <div class="asset" data-speed="0.97">
+    <Image src={kpisAsset} alt="" data-grub-asset="kpis" />
+  </div>
+  <div class="asset" data-speed="0.94">
+    <Image src={graphAsset} alt="" data-grub-asset="graph" />
+  </div>
+
+  <div class="asset" data-speed="1.02">
+    <Image src={stockAsset} alt="" data-grub-asset="stock" />
+  </div>
+  <div class="asset" data-speed="1.03">
+    <Image src={rowHighlightAsset} alt="" data-grub-asset="row-highlight" />
+  </div>
+  <div class="asset" data-speed=".98">
+    <Image src={tag1Asset} alt="" data-grub-asset="tag" />
+  </div>
+  <div class="asset" data-speed=".98">
+    <Image src={tag2Asset} alt="" data-grub-asset="tag" />
+  </div>
+  <div class="asset" data-speed=".98">
+    <Image src={tag3Asset} alt="" data-grub-asset="tag" />
+  </div>
+</CaseStudy>
+
+<script>
+  import { gsap } from 'gsap'
+
+  gsap.matchMedia().add(
+    {
+      isDesktop: '(min-width: 768px)',
+      isMobile: '(max-width: 767.98px)',
+      reduceMotion: '(prefers-reduced-motion: reduce)',
+    },
+    (context) => {
+      let { reduceMotion } = context.conditions ?? {}
+
+      gsap.set('[data-grub-asset]', { autoAlpha: 0 })
+
+      const stagger = reduceMotion ? '0' : '<0.2'
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: '#grub-market .case__media',
+            start: 'top bottom',
+            end: 'bottom top',
+            toggleActions: 'play reset play reset',
+            markers: true,
+          },
+          invalidateOnRefresh: true,
+          immediateRender: false,
+          defaults: {
+            duration: reduceMotion ? 0.2 : 1,
+            ease: 'circ.out',
+            clearProps: 'x,y',
+          },
+        })
+        .fromTo(
+          '[data-grub-asset="dash"]',
+          {
+            autoAlpha: 0,
+            y: reduceMotion ? 0 : 50,
+            scale: reduceMotion ? 1 : 0.925,
+          },
+          { autoAlpha: 1, y: 0, scale: 1 },
+        )
+        .fromTo(
+          '[data-grub-asset="dashboard"]',
+          {
+            autoAlpha: 0,
+            y: reduceMotion ? 0 : -50,
+            scale: reduceMotion ? 1 : 0.925,
+            rotation: reduceMotion ? 0 : -6,
+          },
+          { autoAlpha: 1, y: 0, scale: 1, rotation: 0 },
+          stagger,
+        )
+        .fromTo(
+          '[data-grub-asset="kpis"]',
+          {
+            autoAlpha: 0,
+            y: reduceMotion ? 0 : '-=50',
+            x: '-=25',
+            scale: reduceMotion ? 1 : 0.925,
+          },
+          {
+            autoAlpha: 1,
+            y: gsap.getProperty('[data-grub-asset="kpis"]', 'y'),
+            x: 0,
+            scale: 1,
+          },
+          stagger,
+        )
+        .fromTo(
+          '[data-grub-asset="stock"]',
+          {
+            autoAlpha: 0,
+            y: reduceMotion ? 0 : -50,
+            x: reduceMotion ? 0 : 50,
+            scale: reduceMotion ? 1 : 0.925,
+          },
+          { autoAlpha: 1, y: 0, x: 0, scale: 1 },
+          stagger,
+        )
+        .fromTo(
+          '[data-grub-asset="row-highlight"]',
+          {
+            autoAlpha: 0,
+            x: reduceMotion ? 0 : 50,
+            scale: reduceMotion ? 1 : 0.925,
+          },
+          { autoAlpha: 1, x: 0, scale: 1 },
+          stagger,
+        )
+        .fromTo(
+          '[data-grub-asset="tag"]',
+          {
+            autoAlpha: 0,
+            y: reduceMotion ? 0 : 50,
+            scale: reduceMotion ? 1 : 0.925,
+          },
+          { autoAlpha: 1, y: 0, scale: 1, stagger: reduceMotion ? 0 : 0.15 },
+          stagger,
+        )
+        .fromTo(
+          '[data-grub-asset="graph"]',
+          {
+            autoAlpha: 0,
+            x: reduceMotion ? 0 : -50,
+            scale: reduceMotion ? 1 : 0.925,
+          },
+          { autoAlpha: 1, x: 0, scale: 1 },
+          stagger,
+        )
+    },
+  )
+</script>
+
+<!--
+  TODO: This is the animation strategy to use moving forward. Apply it to Spectrum AI with matchMedia for reduce motion and mobile tweaks.
+
+  Remember to also update trigger.
+
+  Look into how to get the markers to update to new location as trigger moves
+
+ -->

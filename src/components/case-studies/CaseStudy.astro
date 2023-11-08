@@ -23,34 +23,39 @@ interface Props {
   */
   mediaAspectRatio: string
   /**
+    The unique ID for the case study
+  */
+  id?: string
+  /**
     Additional classes to pass to the component
   */
   class?: string
 }
 
-const { data, mediaAspectRatio, class: className, ...attrs } = Astro.props
+const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
 ---
 
 <article
   class:list={[
     className,
-    'group flex w-full origin-left flex-col rounded-20 md:w-[calc(100%+80px)] md:flex-row md:rounded-40 md:odd:-translate-x-80 md:odd:flex-row-reverse',
+    'group flex w-full flex-col rounded-20 odd:origin-left even:origin-right md:w-[calc(100%+80px)] md:flex-row md:rounded-40 md:odd:-translate-x-80 md:odd:flex-row-reverse',
   ]}
-  data-animate
+  data-case-study
+  id={id}
   {...attrs}
 >
   <div
     class="flex flex-col justify-center gap-24 p-32 md:min-w-[450px] md:px-[7vw] md:py-64 xl:px-96"
   >
-    <p class="text-sm text-black" data-animate-text>{data.overline}</p>
+    <p class="text-sm text-black" data-case-text>{data.overline}</p>
     <div class="space-y-8">
-      <h2 class="text-2xl font-bold text-black" data-animate-text>
+      <h2 class="text-2xl font-bold text-black" data-case-text>
         {data.heading}
       </h2>
-      <p data-animate-text>{data.description}</p>
+      <p data-case-text>{data.description}</p>
     </div>
 
-    <ul class="flex flex-wrap gap-32" data-animate-text>
+    <ul class="flex flex-wrap gap-32" data-case-text>
       {
         data.kpis.map(({ label, value }: { label: string; value: string }) => (
           <li class="space-y-8">
@@ -67,7 +72,7 @@ const { data, mediaAspectRatio, class: className, ...attrs } = Astro.props
       label={data.cta.label}
       href={data.cta.url}
       aria-label={`Read the ${data.heading} Case Study`}
-      data-animate-text
+      data-case-text
     />
   </div>
 
@@ -81,7 +86,7 @@ const { data, mediaAspectRatio, class: className, ...attrs } = Astro.props
     @apply relative flex w-full items-center;
 
     @screen <md {
-      @apply -order-1 -mt-56;
+      @apply -order-1 -mt-32;
     }
 
     @screen md {
@@ -92,8 +97,90 @@ const { data, mediaAspectRatio, class: className, ...attrs } = Astro.props
       @apply absolute flex h-full w-full items-center justify-center;
 
       @screen md {
-        @apply min-w-[500px] max-w-[700px] object-contain group-odd:right-0;
+        @apply min-w-[650px] max-w-[800px] object-contain group-odd:right-0;
       }
     }
   }
 </style>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  interface AnimatedElement extends Element {
+    dataset?: DOMStringMap
+    timeline?: gsap.core.Timeline
+  }
+
+  // only run when there is no preference for reduced motion
+  gsap.matchMedia().add(
+    {
+      isDesktop: '(min-width: 768px)',
+      isMobile: '(max-width: 767.98px)',
+      reduceMotion: '(prefers-reduced-motion: reduce)',
+    },
+    (context) => {
+      let { reduceMotion } = context.conditions ?? {}
+
+      gsap.set(['[data-case-study]', '[data-case-text]'], { opacity: 0 })
+
+      ScrollTrigger.batch(['[data-case-study]', '[data-case-text]'], {
+        start: '-10% bottom',
+        end: 'bottom top',
+        onEnter: (batch) => {
+          console.log('enter')
+          batch.forEach((el: AnimatedElement, i: number) => {
+            setAnimation(el, i)
+          })
+        },
+        onEnterBack: (batch) => {
+          batch.forEach((el: AnimatedElement, i: number) => {
+            setAnimation(el, i, -1)
+          })
+        },
+        onLeave: (batch) => {
+          batch.forEach((el: AnimatedElement) => {
+            // kill the timeline when leaving the viewport
+            el.timeline?.kill()
+            gsap.to(el, { opacity: 0 })
+          })
+        },
+        onLeaveBack: (batch) => {
+          batch.forEach((el: AnimatedElement) => {
+            // kill the timeline when leaving the viewport
+            el.timeline?.kill()
+            gsap.to(el, { opacity: 0 })
+          })
+        },
+      })
+
+      function setAnimation(
+        el: AnimatedElement,
+        index: number = 0,
+        direction?: -1 | 1,
+      ) {
+        direction = direction || 1
+        let y = 75 * direction
+
+        const timeline = gsap.timeline()
+
+        timeline.fromTo(
+          el,
+          { opacity: 0, scale: reduceMotion ? 1 : 0.925 },
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            delay: index * 0.2,
+            ease: 'circ.out',
+            duration: 1,
+            clearProps: 'x,y',
+          },
+        )
+
+        // store the timeline on the element
+        el.timeline = timeline
+      }
+    },
+  )
+</script>

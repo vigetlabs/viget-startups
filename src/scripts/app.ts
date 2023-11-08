@@ -8,8 +8,10 @@ interface AnimatedElement extends Element {
   timeline?: gsap.core.Timeline
 }
 
+const mm = gsap.matchMedia()
+
 // only run when there is no preference for reduced motion
-gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+mm.add('(prefers-reduced-motion: no-preference)', () => {
   batchAnimation(gsap.utils.toArray('[data-animate]'))
   batchAnimation(gsap.utils.toArray('[data-animate-text]'))
   batchAnimation(gsap.utils.toArray('[data-animate-assets]'))
@@ -118,14 +120,39 @@ function getAnimationDirection(el: AnimatedElement) {
 }
 
 // Parallax effect
-gsap.to('[data-speed]', {
-  y: (i, el) =>
-    (1 - parseFloat(el.getAttribute('data-speed'))) *
-    ScrollTrigger.maxScroll(window),
-  ease: 'none',
-  scrollTrigger: {
-    start: 0,
-    scrub: 0.5,
-    invalidateOnRefresh: true,
+mm.add(
+  {
+    isDesktop: '(min-width: 768px)',
+    isMobile: '(max-width: 767.98px)',
+    reduceMotion: '(prefers-reduced-motion: reduce)',
   },
-})
+  (context) => {
+    let { isMobile, reduceMotion } = context.conditions ?? {}
+
+    if (reduceMotion) return
+
+    gsap.to('[data-speed]', {
+      y: (i, el) => {
+        const speed = parseFloat(el.getAttribute('data-speed'))
+        let adjustedSpeed
+
+        // adjust speed on mobile to be half that of desktop
+        if (speed < 1 && isMobile) {
+          adjustedSpeed = speed + (1 - speed) / 2
+        } else if (speed > 1 && isMobile) {
+          adjustedSpeed = speed - (speed - 1) / 2
+        } else {
+          adjustedSpeed = speed
+        }
+
+        return (1 - adjustedSpeed) * ScrollTrigger.maxScroll(window)
+      },
+      ease: 'none',
+      scrollTrigger: {
+        start: 0,
+        scrub: 0.5,
+        invalidateOnRefresh: true,
+      },
+    })
+  },
+)

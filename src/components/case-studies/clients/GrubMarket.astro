@@ -23,7 +23,7 @@ const entry = await getEntry('case-studies', 'grub-market')
   mediaAspectRatio="725/530"
   id="grub-market"
 >
-  <div class="asset" data-grub-asset="dash">
+  <div data-grub-asset="dash">
     <Fragment set:html={dashAsset} />
   </div>
   <div class="asset" data-speed="1.01">
@@ -53,125 +53,120 @@ const entry = await getEntry('case-studies', 'grub-market')
   </div>
 </CaseStudy>
 
+<style>
+  [data-grub-asset] {
+    opacity: 0;
+
+    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+      & {
+        opacity: 1 !important;
+      }
+    }
+  }
+</style>
+
 <script>
   import { gsap } from 'gsap'
+  import { mmFilters } from '@/scripts/app.ts'
 
-  gsap.matchMedia().add(
-    {
-      isDesktop: '(min-width: 768px)',
-      isMobile: '(max-width: 767.98px)',
-      reduceMotion: '(prefers-reduced-motion: reduce)',
-    },
-    (context) => {
-      let { reduceMotion } = context.conditions ?? {}
+  gsap.matchMedia().add(mmFilters, (context) => {
+    let { reduceMotion } = context.conditions ?? {}
 
-      gsap.set('[data-grub-asset]', { autoAlpha: 0 })
+    gsap.set('[data-grub-asset]', { autoAlpha: 0 })
 
-      const stagger = reduceMotion ? '0' : '<0.2'
+    const scaleCheck = reduceMotion ? 1 : 0.925
+    const stagger = reduceMotion ? '0' : '<0.2'
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: '#grub-market .case__media',
-            start: 'top bottom',
-            end: 'bottom top',
-            toggleActions: 'play reset play reset',
-            markers: true,
-          },
-          invalidateOnRefresh: true,
-          immediateRender: false,
-          defaults: {
-            duration: reduceMotion ? 0.2 : 1,
-            ease: 'circ.out',
-            clearProps: 'x,y',
-          },
-        })
-        .fromTo(
-          '[data-grub-asset="dash"]',
-          {
-            autoAlpha: 0,
-            y: reduceMotion ? 0 : 50,
-            scale: reduceMotion ? 1 : 0.925,
-          },
-          { autoAlpha: 1, y: 0, scale: 1 },
-        )
-        .fromTo(
-          '[data-grub-asset="dashboard"]',
-          {
-            autoAlpha: 0,
-            y: reduceMotion ? 0 : -50,
-            scale: reduceMotion ? 1 : 0.925,
-            rotation: reduceMotion ? 0 : -6,
-          },
-          { autoAlpha: 1, y: 0, scale: 1, rotation: 0 },
-          stagger,
-        )
-        .fromTo(
-          '[data-grub-asset="kpis"]',
-          {
-            autoAlpha: 0,
-            y: reduceMotion ? 0 : '-=50',
-            x: '-=25',
-            scale: reduceMotion ? 1 : 0.925,
-          },
-          {
-            autoAlpha: 1,
-            y: gsap.getProperty('[data-grub-asset="kpis"]', 'y'),
-            x: 0,
-            scale: 1,
-          },
-          stagger,
-        )
-        .fromTo(
-          '[data-grub-asset="stock"]',
-          {
-            autoAlpha: 0,
-            y: reduceMotion ? 0 : -50,
-            x: reduceMotion ? 0 : 50,
-            scale: reduceMotion ? 1 : 0.925,
-          },
-          { autoAlpha: 1, y: 0, x: 0, scale: 1 },
-          stagger,
-        )
-        .fromTo(
-          '[data-grub-asset="row-highlight"]',
-          {
-            autoAlpha: 0,
-            x: reduceMotion ? 0 : 50,
-            scale: reduceMotion ? 1 : 0.925,
-          },
-          { autoAlpha: 1, x: 0, scale: 1 },
-          stagger,
-        )
-        .fromTo(
-          '[data-grub-asset="tag"]',
-          {
-            autoAlpha: 0,
-            y: reduceMotion ? 0 : 50,
-            scale: reduceMotion ? 1 : 0.925,
-          },
-          { autoAlpha: 1, y: 0, scale: 1, stagger: reduceMotion ? 0 : 0.15 },
-          stagger,
-        )
-        .fromTo(
-          '[data-grub-asset="graph"]',
-          {
-            autoAlpha: 0,
-            x: reduceMotion ? 0 : -50,
-            scale: reduceMotion ? 1 : 0.925,
-          },
-          { autoAlpha: 1, x: 0, scale: 1 },
-          stagger,
-        )
-    },
-  )
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#grub-market',
+          toggleActions: 'play reset play reverse',
+        },
+        invalidateOnRefresh: true,
+        immediateRender: false,
+        defaults: {
+          duration: 1,
+          ease: 'circ.out',
+          clearProps: 'x,y',
+        },
+      })
+      .fromTo(
+        '[data-grub-asset="dash"]',
+        {
+          autoAlpha: 0,
+          y: reduceMotion ? 0 : 50,
+          scale: scaleCheck,
+        },
+        { autoAlpha: 1, y: 0, scale: 1 },
+      )
+      .fromTo(
+        '[data-grub-asset="dashboard"]',
+        {
+          autoAlpha: 0,
+          y: reduceMotion ? 0 : -50,
+          scale: scaleCheck,
+          rotation: reduceMotion ? 0 : -6,
+        },
+        { autoAlpha: 1, y: 0, scale: 1, rotation: 0 },
+        stagger,
+      )
+      .fromTo(
+        '[data-grub-asset="kpis"]',
+        {
+          autoAlpha: 0,
+          y: reduceMotion ? 0 : '-=50',
+          x: '-=25',
+          scale: scaleCheck,
+        },
+        {
+          autoAlpha: 1,
+          y: gsap.getProperty('[data-grub-asset="kpis"]', 'y'),
+          x: 0,
+          scale: 1,
+        },
+        stagger,
+      )
+      .fromTo(
+        '[data-grub-asset="stock"]',
+        {
+          autoAlpha: 0,
+          y: reduceMotion ? 0 : -50,
+          x: reduceMotion ? 0 : 50,
+          scale: scaleCheck,
+        },
+        { autoAlpha: 1, y: 0, x: 0, scale: 1 },
+        stagger,
+      )
+      .fromTo(
+        '[data-grub-asset="row-highlight"]',
+        {
+          autoAlpha: 0,
+          x: reduceMotion ? 0 : 50,
+          scale: scaleCheck,
+        },
+        { autoAlpha: 1, x: 0, scale: 1 },
+        stagger,
+      )
+      .fromTo(
+        '[data-grub-asset="tag"]',
+        {
+          autoAlpha: 0,
+          y: reduceMotion ? 0 : 50,
+          scale: scaleCheck,
+        },
+        { autoAlpha: 1, y: 0, scale: 1, stagger: reduceMotion ? 0 : 0.15 },
+        stagger,
+      )
+      .fromTo(
+        '[data-grub-asset="graph"]',
+        {
+          autoAlpha: 0,
+          x: reduceMotion ? 0 : -50,
+          scale: scaleCheck,
+        },
+        { autoAlpha: 1, x: 0, scale: 1 },
+        stagger,
+      )
+  })
 </script>
-
-<!--
-  TODO: This is the animation strategy to use moving forward. Apply it to Spectrum AI with matchMedia for reduce motion and mobile tweaks.
-
-  Remember to also update trigger.
-
-  Look into how to get the markers to update to new location as trigger moves
-
- -->

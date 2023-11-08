@@ -90,7 +90,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
     }
 
     @screen md {
-      @apply -my-96;
+      @apply -my-96 min-w-[650px] max-w-[800px];
     }
 
     & :global(> *) {
@@ -101,86 +101,100 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
       }
     }
   }
+
+  [data-case-study],
+  [data-case-text] {
+    opacity: 0;
+
+    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+      & {
+        opacity: 1;
+      }
+    }
+  }
 </style>
 
 <script>
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-  interface AnimatedElement extends Element {
-    dataset?: DOMStringMap
-    timeline?: gsap.core.Timeline
-  }
+  import { mmFilters } from '@/scripts/app.ts'
+  import type { AnimatedElement } from '@/scripts/app.ts'
 
   // only run when there is no preference for reduced motion
-  gsap.matchMedia().add(
-    {
-      isDesktop: '(min-width: 768px)',
-      isMobile: '(max-width: 767.98px)',
-      reduceMotion: '(prefers-reduced-motion: reduce)',
-    },
-    (context) => {
-      let { reduceMotion } = context.conditions ?? {}
+  gsap.matchMedia().add(mmFilters, (context) => {
+    let { reduceMotion } = context.conditions ?? {}
 
-      gsap.set(['[data-case-study]', '[data-case-text]'], { opacity: 0 })
+    const triggers = gsap.utils.toArray(
+      '[data-case-study], [data-case-text]',
+    ) as AnimatedElement[]
 
-      ScrollTrigger.batch(['[data-case-study]', '[data-case-text]'], {
-        start: '-10% bottom',
-        end: 'bottom top',
-        onEnter: (batch) => {
-          console.log('enter')
-          batch.forEach((el: AnimatedElement, i: number) => {
-            setAnimation(el, i)
-          })
-        },
-        onEnterBack: (batch) => {
-          batch.forEach((el: AnimatedElement, i: number) => {
-            setAnimation(el, i, -1)
-          })
-        },
-        onLeave: (batch) => {
-          batch.forEach((el: AnimatedElement) => {
-            // kill the timeline when leaving the viewport
-            el.timeline?.kill()
-            gsap.to(el, { opacity: 0 })
-          })
-        },
-        onLeaveBack: (batch) => {
-          batch.forEach((el: AnimatedElement) => {
-            // kill the timeline when leaving the viewport
-            el.timeline?.kill()
-            gsap.to(el, { opacity: 0 })
-          })
-        },
+    gsap.set(triggers, { opacity: 0 })
+
+    ScrollTrigger.batch(triggers, {
+      start: 'top bottom',
+      end: 'bottom top',
+      onEnter: (batch) => {
+        batch.forEach((el: AnimatedElement, i: number) => {
+          setAnimation(el, i)
+        })
+      },
+      onEnterBack: (batch) => {
+        batch.forEach((el: AnimatedElement, i: number) => {
+          setAnimation(el, i, -1)
+        })
+      },
+      onLeave: (batch) => {
+        batch.forEach((el: AnimatedElement) => {
+          // kill the timeline when leaving the viewport
+          el.timeline?.kill()
+          gsap.to(el, { opacity: 0 })
+        })
+      },
+      onLeaveBack: (batch) => {
+        batch.forEach((el: AnimatedElement) => {
+          // kill the timeline when leaving the viewport
+          el.timeline?.kill()
+          gsap.to(el, { opacity: 0 })
+        })
+      },
+    })
+
+    function setAnimation(
+      el: AnimatedElement,
+      index: number = 0,
+      direction?: -1 | 1,
+    ) {
+      direction = direction || 1
+
+      const timeline = gsap.timeline({
+        invalidateOnRefresh: true,
+        immediateRender: false,
       })
 
-      function setAnimation(
-        el: AnimatedElement,
-        index: number = 0,
-        direction?: -1 | 1,
-      ) {
-        direction = direction || 1
-        let y = 75 * direction
+      timeline.fromTo(
+        el,
+        {
+          autoAlpha: 0,
+          y: reduceMotion ? 0 : 75 * direction,
+          scale: reduceMotion ? 1 : 0.925,
+        },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          y: 0,
+          delay: reduceMotion ? 0 : index * 0.2,
+          ease: 'circ.out',
+          duration: 1,
+          clearProps: 'x,y',
+        },
+      )
 
-        const timeline = gsap.timeline()
+      // store the timeline on the element
+      el.timeline = timeline
+    }
 
-        timeline.fromTo(
-          el,
-          { opacity: 0, scale: reduceMotion ? 1 : 0.925 },
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            delay: index * 0.2,
-            ease: 'circ.out',
-            duration: 1,
-            clearProps: 'x,y',
-          },
-        )
-
-        // store the timeline on the element
-        el.timeline = timeline
-      }
-    },
-  )
+    ScrollTrigger.addEventListener('refreshInit', () => {
+      gsap.set(triggers, { y: 0 })
+    })
+  })
 </script>

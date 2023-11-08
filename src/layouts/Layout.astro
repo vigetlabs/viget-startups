@@ -136,10 +136,6 @@ const { title } = Astro.props
       transition-delay: 0.0000000001s !important;
       transition-duration: 0.0000000001s !important;
     }
-
-    [data-animate] {
-      opacity: 1 !important;
-    }
   }
 
   body {
@@ -156,9 +152,13 @@ const { title } = Astro.props
     text-wrap: balance;
   }
 
-  [data-animate],
-  [data-animate-text],
-  [data-animate-assets] {
+  [data-animate] {
     opacity: 0;
+
+    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+      & {
+        opacity: 1;
+      }
+    }
   }
 </style>

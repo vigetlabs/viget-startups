@@ -16,7 +16,7 @@ export const mmFilters = {
 
 const mm = gsap.matchMedia()
 
-// only run when there is no preference for reduced motion
+// NOTE: May remove this later. Not sure if I'm going to use this for more broadly animating the site or not.
 mm.add(mmFilters, (context) => {
   let { reduceMotion } = context.conditions ?? {}
 

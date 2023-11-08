@@ -19,7 +19,7 @@ const entry = await getEntry('case-studies', 'grub-market')
 
 <CaseStudy
   data={entry.data}
-  class="odd:bg-card-gradient-1 even:bg-card-gradient-2"
+  class="bg-gradient"
   mediaAspectRatio="725/530"
   id="grub-market"
 >
@@ -54,6 +54,26 @@ const entry = await getEntry('case-studies', 'grub-market')
 </CaseStudy>
 
 <style>
+  .bg-gradient {
+    background: linear-gradient(
+        0deg,
+        hsla(0, 0%, 100%, 0.4) 0%,
+        hsla(0, 0%, 100%, 0.4) 100%
+      ),
+      linear-gradient(
+        263deg,
+        hsla(61, 100%, 87%, 0.6) 25.88%,
+        hsla(62, 90%, 92%, 0) 89.65%
+      ),
+      linear-gradient(
+        137deg,
+        hsla(137, 42%, 58%, 0.79) 15.32%,
+        hsl(201, 81%, 90%) 61.82%,
+        hsl(12, 100%, 94%) 111.28%,
+        hsl(223, 63%, 77%) 149.67%
+      );
+  }
+
   [data-grub-asset] {
     opacity: 0;
 

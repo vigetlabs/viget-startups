@@ -45,7 +45,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
   {...attrs}
 >
   <div
-    class="flex flex-col justify-center gap-24 p-32 md:min-w-[450px] md:px-[7vw] md:py-64 xl:px-96"
+    class="flex w-full flex-col justify-center gap-24 p-32 md:min-w-[450px] md:px-[7vw] md:py-64 xl:px-96"
   >
     <p class="text-sm text-black" data-case-text>{data.overline}</p>
     <div class="space-y-8">
@@ -120,17 +120,16 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
   import { mmFilters } from '@/scripts/app.ts'
   import type { AnimatedElement } from '@/scripts/app.ts'
 
-  // only run when there is no preference for reduced motion
   gsap.matchMedia().add(mmFilters, (context) => {
     let { reduceMotion } = context.conditions ?? {}
 
-    const triggers = gsap.utils.toArray(
-      '[data-case-study], [data-case-text]',
+    const caseStudies = gsap.utils.toArray(
+      '[data-case-study]',
     ) as AnimatedElement[]
 
-    gsap.set(triggers, { opacity: 0 })
+    gsap.set(caseStudies, { opacity: 0 })
 
-    ScrollTrigger.batch(triggers, {
+    ScrollTrigger.batch(caseStudies, {
       start: 'top bottom',
       end: 'bottom top',
       onEnter: (batch) => {
@@ -171,30 +170,53 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
         immediateRender: false,
       })
 
-      timeline.fromTo(
-        el,
-        {
-          autoAlpha: 0,
-          y: reduceMotion ? 0 : 75 * direction,
-          scale: reduceMotion ? 1 : 0.925,
-        },
-        {
-          autoAlpha: 1,
-          scale: 1,
-          y: 0,
-          delay: reduceMotion ? 0 : index * 0.2,
-          ease: 'circ.out',
-          duration: 1,
-          clearProps: 'x,y',
-        },
+      const textElements = gsap.utils.toArray(
+        el.querySelectorAll('[data-case-text]'),
       )
+
+      timeline
+        .fromTo(
+          el,
+          {
+            autoAlpha: 0,
+            y: reduceMotion ? 0 : 75 * direction,
+            scale: reduceMotion ? 1 : 0.925,
+          },
+          {
+            autoAlpha: 1,
+            scale: 1,
+            y: 0,
+            delay: reduceMotion ? 0 : index * 0.2,
+            ease: 'circ.out',
+            duration: 1,
+            clearProps: 'x,y',
+          },
+        )
+        .fromTo(
+          textElements,
+          {
+            autoAlpha: 0,
+            y: reduceMotion ? 0 : 50 * direction,
+            scale: reduceMotion ? 1 : 0.925,
+          },
+          {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            stagger: reduceMotion ? 0 : 0.15 * direction,
+            ease: 'circ.out',
+            duration: 1,
+            clearProps: 'y',
+          },
+          '<',
+        )
 
       // store the timeline on the element
       el.timeline = timeline
     }
 
     ScrollTrigger.addEventListener('refreshInit', () => {
-      gsap.set(triggers, { y: 0 })
+      gsap.set(caseStudies, { y: 0 })
     })
   })
 </script>

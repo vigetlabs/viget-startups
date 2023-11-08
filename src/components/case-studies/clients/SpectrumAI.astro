@@ -82,16 +82,6 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
         hsl(223, 63%, 77%) 211.25%
       );
   }
-
-  [data-spectrum-asset] {
-    opacity: 0;
-
-    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
-      & {
-        opacity: 1;
-      }
-    }
-  }
 </style>
 
 <script>
@@ -101,8 +91,6 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
   gsap.matchMedia().add(mmFilters, (context) => {
     let { reduceMotion } = context.conditions ?? {}
 
-    gsap.set('[data-spectrum-asset]', { autoAlpha: 0 })
-
     const scaleCheck = reduceMotion ? 1 : 0.925
     const stagger = reduceMotion ? '0' : '<0.2'
 
@@ -111,7 +99,6 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
         scrollTrigger: {
           trigger: '#spectrum-ai',
           toggleActions: 'play reset play reverse',
-          markers: true,
         },
         invalidateOnRefresh: true,
         immediateRender: false,
@@ -121,53 +108,49 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
           clearProps: 'x,y',
         },
       })
-      .fromTo(
-        '[data-spectrum-asset="brain"]',
-        {
-          autoAlpha: 0,
-          y: reduceMotion ? 0 : 50,
-          scale: scaleCheck,
-        },
-        { autoAlpha: 1, y: 0, scale: 1 },
-      )
-      .fromTo(
+      .from('[data-spectrum-asset="brain"]', {
+        opacity: 0,
+        y: reduceMotion ? 0 : 50,
+        scale: scaleCheck,
+      })
+      .from(
         '[data-spectrum-asset="screen"]',
         {
-          autoAlpha: 0,
+          opacity: 0,
           y: reduceMotion ? 0 : -50,
           scale: reduceMotion ? 1 : 0.925,
           rotation: reduceMotion ? 0 : 10,
         },
-        { autoAlpha: 1, y: 0, scale: 1, rotation: 0 },
         stagger,
       )
-      .fromTo(
+      .from(
         '[data-spectrum-asset="controls"]',
         {
-          autoAlpha: 0,
+          opacity: 0,
           y: reduceMotion ? 0 : -50,
           x: reduceMotion ? 0 : -25,
           scale: scaleCheck,
         },
-        { autoAlpha: 1, y: 0, x: 0, scale: 1 },
         stagger,
       )
-      .fromTo(
+      .from(
         '[data-spectrum-asset="tracker"]',
-        { autoAlpha: 0, y: reduceMotion ? 0 : 50, scale: scaleCheck },
-        { autoAlpha: 1, y: 0, scale: 1, stagger: reduceMotion ? 0 : 0.15 },
+        {
+          opacity: 0,
+          y: reduceMotion ? 0 : 50,
+          scale: scaleCheck,
+          stagger: reduceMotion ? 0 : 0.15,
+        },
         stagger,
       )
-      .fromTo(
+      .from(
         '[data-spectrum-asset="behavior"]',
-        { autoAlpha: 0, x: reduceMotion ? 0 : 50, scale: scaleCheck },
-        { autoAlpha: 1, x: 0, scale: 1, stagger: 0.15 },
+        { opacity: 0, x: reduceMotion ? 0 : 50, scale: scaleCheck },
         stagger,
       )
-      .fromTo(
+      .from(
         '[data-spectrum-asset="segmented-control"]',
-        { autoAlpha: 0, y: reduceMotion ? 0 : -50, scale: scaleCheck },
-        { autoAlpha: 1, y: 0, scale: 1, stagger: 0.15 },
+        { opacity: 0, y: reduceMotion ? 0 : -50, scale: scaleCheck },
         stagger,
       )
   })

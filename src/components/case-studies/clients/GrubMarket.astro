@@ -73,16 +73,6 @@ const entry = await getEntry('case-studies', 'grub-market')
         hsl(223, 63%, 77%) 149.67%
       );
   }
-
-  [data-grub-asset] {
-    opacity: 0;
-
-    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
-      & {
-        opacity: 1 !important;
-      }
-    }
-  }
 </style>
 
 <script>
@@ -91,8 +81,6 @@ const entry = await getEntry('case-studies', 'grub-market')
 
   gsap.matchMedia().add(mmFilters, (context) => {
     let { reduceMotion } = context.conditions ?? {}
-
-    gsap.set('[data-grub-asset]', { autoAlpha: 0 })
 
     const scaleCheck = reduceMotion ? 1 : 0.925
     const stagger = reduceMotion ? '0' : '<0.2'
@@ -111,81 +99,67 @@ const entry = await getEntry('case-studies', 'grub-market')
           clearProps: 'x,y',
         },
       })
-      .fromTo(
-        '[data-grub-asset="dash"]',
-        {
-          autoAlpha: 0,
-          y: reduceMotion ? 0 : 50,
-          scale: scaleCheck,
-        },
-        { autoAlpha: 1, y: 0, scale: 1 },
-      )
-      .fromTo(
+      .from('[data-grub-asset="dash"]', {
+        opacity: 0,
+        y: reduceMotion ? 0 : 50,
+        scale: scaleCheck,
+      })
+      .from(
         '[data-grub-asset="dashboard"]',
         {
-          autoAlpha: 0,
+          opacity: 0,
           y: reduceMotion ? 0 : -50,
           scale: scaleCheck,
           rotation: reduceMotion ? 0 : -6,
         },
-        { autoAlpha: 1, y: 0, scale: 1, rotation: 0 },
         stagger,
       )
-      .fromTo(
+      .from(
         '[data-grub-asset="kpis"]',
         {
-          autoAlpha: 0,
+          opacity: 0,
           y: reduceMotion ? 0 : '-=50',
-          x: '-=25',
+          x: reduceMotion ? 0 : '-=25',
           scale: scaleCheck,
-        },
-        {
-          autoAlpha: 1,
-          y: gsap.getProperty('[data-grub-asset="kpis"]', 'y'),
-          x: 0,
-          scale: 1,
         },
         stagger,
       )
-      .fromTo(
+      .from(
         '[data-grub-asset="stock"]',
         {
-          autoAlpha: 0,
+          opacity: 0,
           y: reduceMotion ? 0 : -50,
           x: reduceMotion ? 0 : 50,
           scale: scaleCheck,
         },
-        { autoAlpha: 1, y: 0, x: 0, scale: 1 },
         stagger,
       )
-      .fromTo(
+      .from(
         '[data-grub-asset="row-highlight"]',
         {
-          autoAlpha: 0,
+          opacity: 0,
           x: reduceMotion ? 0 : 50,
           scale: scaleCheck,
         },
-        { autoAlpha: 1, x: 0, scale: 1 },
         stagger,
       )
-      .fromTo(
+      .from(
         '[data-grub-asset="tag"]',
         {
-          autoAlpha: 0,
+          opacity: 0,
           y: reduceMotion ? 0 : 50,
           scale: scaleCheck,
+          stagger: reduceMotion ? 0 : 0.15,
         },
-        { autoAlpha: 1, y: 0, scale: 1, stagger: reduceMotion ? 0 : 0.15 },
         stagger,
       )
-      .fromTo(
+      .from(
         '[data-grub-asset="graph"]',
         {
-          autoAlpha: 0,
+          opacity: 0,
           x: reduceMotion ? 0 : -50,
           scale: scaleCheck,
         },
-        { autoAlpha: 1, x: 0, scale: 1 },
         stagger,
       )
   })

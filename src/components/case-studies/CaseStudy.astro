@@ -178,12 +178,12 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
         .fromTo(
           el,
           {
-            autoAlpha: 0,
+            opacity: 0,
             y: reduceMotion ? 0 : 75 * direction,
             scale: reduceMotion ? 1 : 0.925,
           },
           {
-            autoAlpha: 1,
+            opacity: 1,
             scale: 1,
             y: 0,
             delay: reduceMotion ? 0 : index * 0.2,
@@ -195,12 +195,12 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
         .fromTo(
           textElements,
           {
-            autoAlpha: 0,
+            opacity: 0,
             y: reduceMotion ? 0 : 50 * direction,
             scale: reduceMotion ? 1 : 0.925,
           },
           {
-            autoAlpha: 1,
+            opacity: 1,
             y: 0,
             scale: 1,
             stagger: reduceMotion ? 0 : 0.15 * direction,

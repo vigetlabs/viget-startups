@@ -1,0 +1,106 @@
+---
+import { getEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+
+import CaseStudy from '@/components/case-studies/CaseStudy.astro'
+
+import graphAsset from '@/assets/images/case-studies/app-omni/graph.svg'
+import dashboardAsset from '@/assets/images/case-studies/app-omni/dashboard.png'
+
+const entry = await getEntry('case-studies', 'app-omni')
+---
+
+<CaseStudy
+  data={entry.data}
+  class="bg-gradient pl-32"
+  mediaAspectRatio="730/452"
+  id="app-omni"
+>
+  <figcaption class="sr-only">
+    An image of the AppOmni dashboard with a tree graph in the background.
+  </figcaption>
+  <div data-appOmni-asset="graph">
+    <Image src={graphAsset} alt="" class="md:scale-[1.2]" />
+  </div>
+  <div data-speed="1.03">
+    <Image
+      src={dashboardAsset}
+      alt=""
+      data-appOmni-asset="dashboard"
+      class="shadow-dashboard"
+    />
+  </div>
+</CaseStudy>
+
+<style>
+  .bg-gradient {
+    background: linear-gradient(
+        263deg,
+        hsla(36, 100%, 90%, 0.4) 5.44%,
+        hsla(0, 0%, 100%, 0) 59.63%
+      ),
+      linear-gradient(
+        109deg,
+        hsla(280, 100%, 19%, 0.32) 25.23%,
+        hsla(317, 76%, 50%, 0) 70.72%
+      ),
+      linear-gradient(
+        172deg,
+        hsla(169, 42%, 58%, 0.79) -227.3%,
+        hsl(201, 81%, 90%) -75.7%,
+        hsl(12, 100%, 94%) 85.52%,
+        hsl(223, 63%, 77%) 210.65%
+      );
+  }
+
+  .shadow-dashboard {
+    filter: drop-shadow(0 36px 30px rgb(105 86 55 / 20%))
+      drop-shadow(0 28px 7px rgb(57 34 20 / 2%));
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap'
+  import { mmFilters } from '@/scripts/app.ts'
+
+  gsap.matchMedia().add(mmFilters, (context) => {
+    let { reduceMotion } = context.conditions ?? {}
+
+    const scaleCheck = reduceMotion ? 1 : 0.925
+    const stagger = reduceMotion ? '0' : '<0.2'
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#app-omni',
+          toggleActions: 'play reset play reverse',
+        },
+        invalidateOnRefresh: true,
+        immediateRender: false,
+        defaults: {
+          duration: 1,
+          ease: 'circ.out',
+          clearProps: 'x,y',
+        },
+      })
+      .from('[data-appOmni-asset="graph"]', {
+        opacity: 0,
+        y: reduceMotion ? 0 : 50,
+        transformOrigin: 'right top',
+        // skewY: reduceMotion ? 0 : 15,
+        rotation: reduceMotion ? 0 : -10,
+        scale: scaleCheck,
+      })
+      .from(
+        '[data-appOmni-asset="dashboard"]',
+        {
+          opacity: 0,
+          x: reduceMotion ? 0 : -50,
+          y: reduceMotion ? 0 : -50,
+          rotation: reduceMotion ? 0 : 5,
+          scale: scaleCheck,
+        },
+        stagger,
+      )
+  })
+</script>

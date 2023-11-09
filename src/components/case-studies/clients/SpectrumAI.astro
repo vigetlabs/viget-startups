@@ -1,0 +1,160 @@
+---
+import { getEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+
+import CaseStudy from '@/components/case-studies/CaseStudy.astro'
+
+import behaviorAsset from '@/assets/images/case-studies/spectrum-ai/behavior.svg'
+import brainAsset from '@/assets/images/case-studies/spectrum-ai/brain.svg'
+import controlsAsset from '@/assets/images/case-studies/spectrum-ai/controls.svg'
+import segmentedControlAsset from '@/assets/images/case-studies/spectrum-ai/segmented-control.svg'
+import tracker1Asset from '@/assets/images/case-studies/spectrum-ai/tracker-1.svg'
+import tracker2Asset from '@/assets/images/case-studies/spectrum-ai/tracker-2.svg'
+import tracker3Asset from '@/assets/images/case-studies/spectrum-ai/tracker-3.svg'
+import tracker4Asset from '@/assets/images/case-studies/spectrum-ai/tracker-4.svg'
+import screenAsset from '@/assets/images/case-studies/spectrum-ai/screen.png'
+
+const entry = await getEntry('case-studies', 'spectrum-ai')
+---
+
+<CaseStudy
+  data={entry.data}
+  class="bg-gradient <md:pl-16"
+  mediaAspectRatio="751/491"
+  id="spectrum-ai"
+>
+  <figcaption class="sr-only">
+    A collection of assets related to the Spectrum AI dashboard. Assets include
+    a video feed, tracking prompts, and controls for various inputs.
+  </figcaption>
+  <div data-spectrum-asset="brain">
+    <Image src={brainAsset} alt="" class="md:-translate-y-[10%]" />
+  </div>
+  <div data-speed="1.01">
+    <Image src={screenAsset} alt="" data-spectrum-asset="screen" />
+  </div>
+  <div data-speed="0.95">
+    <Image src={behaviorAsset} alt="" data-spectrum-asset="behavior" />
+  </div>
+  <div data-speed="0.97">
+    <Image
+      src={segmentedControlAsset}
+      alt=""
+      data-spectrum-asset="segmented-control"
+    />
+  </div>
+  <div data-speed="1.02">
+    <Image src={controlsAsset} alt="" data-spectrum-asset="controls" />
+  </div>
+  <div data-speed="0.98">
+    <Image src={tracker1Asset} alt="" data-spectrum-asset="tracker" />
+  </div>
+  <div data-speed="0.98">
+    <Image src={tracker2Asset} alt="" data-spectrum-asset="tracker" />
+  </div>
+  <div data-speed="0.98">
+    <Image src={tracker3Asset} alt="" data-spectrum-asset="tracker" />
+  </div>
+  <div data-speed="0.98">
+    <Image src={tracker4Asset} alt="" data-spectrum-asset="tracker" />
+  </div>
+</CaseStudy>
+
+<style>
+  .bg-gradient {
+    background: linear-gradient(
+        85deg,
+        hsla(0, 0%, 100%, 0.4) 12.02%,
+        hsla(0, 0%, 100%, 0) 89.19%
+      ),
+      linear-gradient(
+        266deg,
+        hsla(196, 100%, 94%, 0.4) 5.26%,
+        hsla(196, 100%, 94%, 0) 84.55%
+      ),
+      linear-gradient(
+        265deg,
+        hsla(255, 100%, 55%, 0.32) 1.94%,
+        hsla(234, 100%, 64%, 0) 61.64%
+      ),
+      linear-gradient(
+        160deg,
+        hsla(169, 42%, 58%, 0.79) -82.01%,
+        hsl(201, 81%, 90%) 19.5%,
+        hsl(12, 100%, 94%) 127.46%,
+        hsl(223, 63%, 77%) 211.25%
+      );
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap'
+  import { mmFilters } from '@/scripts/app.ts'
+
+  gsap.matchMedia().add(mmFilters, (context) => {
+    let { reduceMotion } = context.conditions ?? {}
+
+    const scaleCheck = reduceMotion ? 1 : 0.925
+    const stagger = reduceMotion ? '0' : '<0.2'
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#spectrum-ai',
+          toggleActions: 'play reset play reverse',
+        },
+        invalidateOnRefresh: true,
+        immediateRender: false,
+        defaults: {
+          duration: 1,
+          ease: 'circ.out',
+          clearProps: 'x,y',
+        },
+      })
+      .from('[data-spectrum-asset="brain"]', {
+        opacity: 0,
+        y: reduceMotion ? 0 : 50,
+        scale: scaleCheck,
+      })
+      .from(
+        '[data-spectrum-asset="screen"]',
+        {
+          opacity: 0,
+          y: reduceMotion ? 0 : -50,
+          scale: reduceMotion ? 1 : 0.925,
+          rotation: reduceMotion ? 0 : 10,
+        },
+        stagger,
+      )
+      .from(
+        '[data-spectrum-asset="controls"]',
+        {
+          opacity: 0,
+          y: reduceMotion ? 0 : -50,
+          x: reduceMotion ? 0 : -25,
+          scale: scaleCheck,
+        },
+        stagger,
+      )
+      .from(
+        '[data-spectrum-asset="tracker"]',
+        {
+          opacity: 0,
+          y: reduceMotion ? 0 : 50,
+          scale: scaleCheck,
+          stagger: reduceMotion ? 0 : 0.15,
+        },
+        stagger,
+      )
+      .from(
+        '[data-spectrum-asset="behavior"]',
+        { opacity: 0, x: reduceMotion ? 0 : 50, scale: scaleCheck },
+        stagger,
+      )
+      .from(
+        '[data-spectrum-asset="segmented-control"]',
+        { opacity: 0, y: reduceMotion ? 0 : -50, scale: scaleCheck },
+        stagger,
+      )
+  })
+</script>

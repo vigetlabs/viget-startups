@@ -152,16 +152,16 @@ const entry = await getEntry('case-studies', 'standard-ai')
       .from(
         '[data-standard-ai-asset="card"]',
         {
-          x: -75,
-          y: 25,
-          rotate: 25,
+          x: reduceMotion ? 0 : -75,
+          y: reduceMotion ? 0 : 25,
+          rotate: reduceMotion ? 0 : 25,
           transformOrigin: '25% center',
-          scale: 0.9,
+          scale: reduceMotion ? 1 : 0.9,
           opacity: 0,
-          stagger: -0.1,
+          stagger: reduceMotion ? 0 : -0.1,
           ease: 'back.out(1)',
         },
-        '<0.2',
+        stagger,
       )
   })
 </script>

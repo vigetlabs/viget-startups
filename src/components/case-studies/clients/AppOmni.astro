@@ -4,7 +4,7 @@ import { Image } from 'astro:assets'
 
 import CaseStudy from '@/components/case-studies/CaseStudy.astro'
 
-import graphAsset from '@/assets/images/case-studies/app-omni/graph.svg?raw'
+import graphAsset from '@/assets/images/case-studies/app-omni/graph.svg'
 import dashboardAsset from '@/assets/images/case-studies/app-omni/dashboard.png'
 
 const entry = await getEntry('case-studies', 'app-omni')
@@ -16,8 +16,11 @@ const entry = await getEntry('case-studies', 'app-omni')
   mediaAspectRatio="730/452"
   id="app-omni"
 >
+  <figcaption class="sr-only">
+    An image of the AppOmni dashboard with a tree graph in the background.
+  </figcaption>
   <div data-appOmni-asset="graph">
-    <Fragment set:html={graphAsset} />
+    <Image src={graphAsset} alt="" />
   </div>
   <div data-speed="1.03">
     <Image

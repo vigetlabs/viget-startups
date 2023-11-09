@@ -12,7 +12,7 @@ import tag3Asset from '@/assets/images/case-studies/grub-market/tag-3.svg'
 import stockAsset from '@/assets/images/case-studies/grub-market/stock.svg'
 import rowHighlightAsset from '@/assets/images/case-studies/grub-market/row-highlight.svg'
 import kpisAsset from '@/assets/images/case-studies/grub-market/kpis.svg'
-import dashAsset from '@/assets/images/case-studies/grub-market/dashed-path.svg?raw'
+import dashAsset from '@/assets/images/case-studies/grub-market/dashed-path.svg'
 
 const entry = await getEntry('case-studies', 'grub-market')
 ---
@@ -23,8 +23,13 @@ const entry = await getEntry('case-studies', 'grub-market')
   mediaAspectRatio="725/530"
   id="grub-market"
 >
+  <figcaption class="sr-only">
+    A collection of assets related to the GrubMarket dashboard. Assets include
+    an exploded out row, KPI's, inventory management, price graph, and tags
+    related to logistics.
+  </figcaption>
   <div data-grub-asset="dash">
-    <Fragment set:html={dashAsset} />
+    <Image src={dashAsset} alt="" />
   </div>
   <div class="asset" data-speed="1.01">
     <Image src={dashboardAsset} alt="" data-grub-asset="dashboard" />

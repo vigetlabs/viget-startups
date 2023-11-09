@@ -47,9 +47,14 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
   <div
     class="flex w-full flex-col justify-center gap-24 p-32 md:min-w-[450px] md:px-[7vw] md:py-64 xl:px-96"
   >
+    <p class="sr-only">{data.heading} case study</p>
     <p class="text-sm text-black" data-case-text>{data.overline}</p>
     <div class="space-y-8">
-      <h2 class="text-2xl font-bold text-black" data-case-text>
+      <h2
+        class="text-2xl font-bold text-black"
+        data-case-text
+        aria-hidden="true"
+      >
         {data.heading}
       </h2>
       <p data-case-text>{data.description}</p>
@@ -76,9 +81,9 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
     />
   </div>
 
-  <div class="case__media" style={`aspect-ratio: ${mediaAspectRatio}`}>
+  <figure class="case__media" style={`aspect-ratio: ${mediaAspectRatio}`}>
     <slot />
-  </div>
+  </figure>
 </article>
 
 <style>

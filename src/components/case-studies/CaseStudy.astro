@@ -189,7 +189,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
             delay: reduceMotion ? 0 : index * 0.2,
             ease: 'circ.out',
             duration: 1,
-            clearProps: 'x,y',
+            clearProps: 'x, y, scale',
           },
         )
         .fromTo(
@@ -214,9 +214,5 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
       // store the timeline on the element
       el.timeline = timeline
     }
-
-    ScrollTrigger.addEventListener('refreshInit', () => {
-      gsap.set(caseStudies, { y: 0 })
-    })
   })
 </script>

@@ -1,0 +1,199 @@
+---
+import { getEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+
+import CaseStudy from '@/components/case-studies/CaseStudy.astro'
+
+import stockAsset from '@/assets/images/case-studies/standard-ai/stockphoto.png'
+import phoneAsset from '@/assets/images/case-studies/standard-ai/phone.png'
+import outlineAsset from '@/assets/images/case-studies/standard-ai/outline.svg'
+import mapAsset from '@/assets/images/case-studies/standard-ai/map.svg'
+import card1Asset from '@/assets/images/case-studies/standard-ai/card-1.svg'
+import card2Asset from '@/assets/images/case-studies/standard-ai/card-2.svg'
+import card3Asset from '@/assets/images/case-studies/standard-ai/card-3.svg'
+import pinAsset from '@/assets/images/case-studies/standard-ai/pin.svg'
+
+const entry = await getEntry('case-studies', 'standard-ai')
+---
+
+<CaseStudy
+  data={entry.data}
+  class="bg-gradient pl-32"
+  mediaAspectRatio="665/492"
+  id="standard-ai"
+>
+  <div data-speed="1.03">
+    <Image src={outlineAsset} alt="" data-standard-ai-asset="outline" />
+  </div>
+  <div data-speed="1.03">
+    <Image
+      src={stockAsset}
+      alt=""
+      data-standard-ai-asset="stockphoto"
+      class="shadow-stockphoto"
+    />
+  </div>
+  <div data-speed="1.03">
+    <Image src={card1Asset} alt="" data-standard-ai-asset="card" />
+  </div>
+  <div data-speed="1.03">
+    <Image src={card2Asset} alt="" data-standard-ai-asset="card" />
+  </div>
+  <div data-speed="1.03">
+    <Image src={card3Asset} alt="" data-standard-ai-asset="card" />
+  </div>
+  <div data-speed="1.03">
+    <Image
+      src={phoneAsset}
+      alt=""
+      data-standard-ai-asset="phone"
+      class="shadow-phone"
+    />
+  </div>
+  <div data-speed="1.03">
+    <Image src={mapAsset} alt="" data-standard-ai-asset="map" />
+  </div>
+  <div data-speed="1.03">
+    <Image src={pinAsset} alt="" data-standard-ai-asset="pin" />
+  </div>
+</CaseStudy>
+
+<style>
+  .bg-gradient {
+    background: linear-gradient(
+        77deg,
+        hsla(0, 0%, 98%, 0.7) 21.84%,
+        hsla(223, 100%, 95%, 0) 56.06%
+      ),
+      linear-gradient(
+        264deg,
+        hsla(191, 81%, 62%, 0.25) 11%,
+        hsla(165, 60%, 82%, 0) 66.99%
+      ),
+      linear-gradient(
+        164deg,
+        hsla(169, 42%, 58%, 0.79) -267.34%,
+        hsl(201, 81%, 90%) -136.59%,
+        hsl(12, 100%, 94%) 2.46%,
+        hsl(223, 63%, 77%) 110.39%
+      );
+  }
+
+  .shadow-phone,
+  .shadow-stockphoto {
+    filter: drop-shadow(0px 12px 20px rgb(105 86 55 / 24%))
+      drop-shadow(0px 4px 3px rgb(0 0 0 / 8%));
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap'
+  import { mmFilters } from '@/scripts/app.ts'
+  import type { AnimatedElement } from '@/scripts/app.ts'
+
+  gsap.matchMedia().add(mmFilters, (context) => {
+    let { reduceMotion } = context.conditions ?? {}
+
+    const scaleCheck = reduceMotion ? 1 : 0.925
+    const stagger = reduceMotion ? '0' : '<0.2'
+
+    const cards = gsap.utils.toArray(
+      '[data-standard-ai-asset="card"]',
+    ) as AnimatedElement[]
+
+    // gsap.set(cards[0], {
+    //   x: 50,
+    //   y: -60,
+    //   rotate: 14,
+    //   transformOrigin: 'left center',
+    //   scale: 0.9,
+    // })
+    // gsap.set(cards[2], {
+    //   x: -22,
+    //   y: 86,
+    //   rotate: -15,
+    //   transformOrigin: 'left center',
+    //   scale: 1.1,
+    // })
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#standard-ai',
+          toggleActions: 'play reset play reverse',
+        },
+        invalidateOnRefresh: true,
+        immediateRender: false,
+        defaults: {
+          duration: 1,
+          ease: 'circ.out',
+          clearProps: 'x,y',
+        },
+      })
+      .from('[data-standard-ai-asset="phone"]', {
+        opacity: 0,
+        y: reduceMotion ? 0 : 50,
+        scale: scaleCheck,
+      })
+      .from(
+        '[data-standard-ai-asset="stockphoto"]',
+        {
+          opacity: 0,
+          x: reduceMotion ? 0 : -50,
+          rotation: reduceMotion ? 0 : -5,
+          scale: scaleCheck,
+        },
+        '<',
+      )
+      .from(
+        '[data-standard-ai-asset="map"]',
+        {
+          opacity: 0,
+          rotation: reduceMotion ? 0 : -5,
+          x: reduceMotion ? 0 : -20,
+          scale: scaleCheck,
+        },
+        stagger,
+      )
+      .from(
+        '[data-standard-ai-asset="pin"]',
+        {
+          opacity: 0,
+          transformOrigin: 'left',
+          y: reduceMotion ? 0 : -50,
+          scale: scaleCheck,
+        },
+        stagger,
+      )
+      .from(
+        '[data-standard-ai-asset="card"]',
+        {
+          x: -75,
+          y: 25,
+          rotate: 25,
+          transformOrigin: '20% center',
+          scale: 0.9,
+          opacity: 0,
+          stagger: -0.1,
+          ease: 'back.out(1)',
+          duration: 1.5,
+        },
+        '<0.2',
+      )
+    // .fromTo(
+    //   '[data-standard-ai-asset="card"]',
+    //   {
+    //     transformOrigin: 'left',
+    //     y: reduceMotion ? 0 : -100,
+    //     scale: scaleCheck,
+    //     opacity: 0,
+    //   },
+    //   {
+    //     opacity: 1,
+    //     y: 0,
+    //     scale: 1,
+    //     stagger: 0.3,
+    //   },
+    // )
+  })
+</script>

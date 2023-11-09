@@ -18,14 +18,14 @@ const entry = await getEntry('case-studies', 'standard-ai')
 
 <CaseStudy
   data={entry.data}
-  class="bg-gradient pl-32"
+  class="bg-gradient <md:pl-16"
   mediaAspectRatio="665/492"
   id="standard-ai"
 >
-  <div data-speed="1.03">
+  <div data-speed="1.02">
     <Image src={outlineAsset} alt="" data-standard-ai-asset="outline" />
   </div>
-  <div data-speed="1.03">
+  <div data-speed="1.01">
     <Image
       src={stockAsset}
       alt=""
@@ -33,13 +33,13 @@ const entry = await getEntry('case-studies', 'standard-ai')
       class="shadow-stockphoto"
     />
   </div>
-  <div data-speed="1.03">
+  <div data-speed="1.035">
     <Image src={card1Asset} alt="" data-standard-ai-asset="card" />
   </div>
   <div data-speed="1.03">
     <Image src={card2Asset} alt="" data-standard-ai-asset="card" />
   </div>
-  <div data-speed="1.03">
+  <div data-speed="1.025">
     <Image src={card3Asset} alt="" data-standard-ai-asset="card" />
   </div>
   <div data-speed="1.03">
@@ -50,10 +50,10 @@ const entry = await getEntry('case-studies', 'standard-ai')
       class="shadow-phone"
     />
   </div>
-  <div data-speed="1.03">
+  <div data-speed="1.025">
     <Image src={mapAsset} alt="" data-standard-ai-asset="map" />
   </div>
-  <div data-speed="1.03">
+  <div data-speed="1.02">
     <Image src={pinAsset} alt="" data-standard-ai-asset="pin" />
   </div>
 </CaseStudy>
@@ -89,32 +89,12 @@ const entry = await getEntry('case-studies', 'standard-ai')
 <script>
   import { gsap } from 'gsap'
   import { mmFilters } from '@/scripts/app.ts'
-  import type { AnimatedElement } from '@/scripts/app.ts'
 
   gsap.matchMedia().add(mmFilters, (context) => {
     let { reduceMotion } = context.conditions ?? {}
 
     const scaleCheck = reduceMotion ? 1 : 0.925
     const stagger = reduceMotion ? '0' : '<0.2'
-
-    const cards = gsap.utils.toArray(
-      '[data-standard-ai-asset="card"]',
-    ) as AnimatedElement[]
-
-    // gsap.set(cards[0], {
-    //   x: 50,
-    //   y: -60,
-    //   rotate: 14,
-    //   transformOrigin: 'left center',
-    //   scale: 0.9,
-    // })
-    // gsap.set(cards[2], {
-    //   x: -22,
-    //   y: 86,
-    //   rotate: -15,
-    //   transformOrigin: 'left center',
-    //   scale: 1.1,
-    // })
 
     gsap
       .timeline({
@@ -132,7 +112,7 @@ const entry = await getEntry('case-studies', 'standard-ai')
       })
       .from('[data-standard-ai-asset="phone"]', {
         opacity: 0,
-        y: reduceMotion ? 0 : 50,
+        y: reduceMotion ? 0 : 100,
         scale: scaleCheck,
       })
       .from(
@@ -160,7 +140,6 @@ const entry = await getEntry('case-studies', 'standard-ai')
         {
           opacity: 0,
           transformOrigin: 'left',
-          y: reduceMotion ? 0 : -50,
           scale: scaleCheck,
         },
         stagger,
@@ -171,29 +150,13 @@ const entry = await getEntry('case-studies', 'standard-ai')
           x: -75,
           y: 25,
           rotate: 25,
-          transformOrigin: '20% center',
+          transformOrigin: '25% center',
           scale: 0.9,
           opacity: 0,
           stagger: -0.1,
           ease: 'back.out(1)',
-          duration: 1.5,
         },
         '<0.2',
       )
-    // .fromTo(
-    //   '[data-standard-ai-asset="card"]',
-    //   {
-    //     transformOrigin: 'left',
-    //     y: reduceMotion ? 0 : -100,
-    //     scale: scaleCheck,
-    //     opacity: 0,
-    //   },
-    //   {
-    //     opacity: 1,
-    //     y: 0,
-    //     scale: 1,
-    //     stagger: 0.3,
-    //   },
-    // )
   })
 </script>

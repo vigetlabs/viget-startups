@@ -14,14 +14,21 @@ const entry = await getEntry('sections', 'design-and-develop')
 <section class="my-56 bg-gray">
   <div class="wrapper flex w-full flex-col items-center gap-56 py-112">
     <div class="relative z-10 flex flex-col items-center gap-24 text-center">
-      <h2 class="text-3xl font-bold text-black">{entry.data.heading}</h2>
-      <p class="text-balance max-w-2xl text-lg">{entry.data.subheading}</p>
+      <h2 class="text-3xl font-bold text-black" data-animate="up">
+        {entry.data.heading}
+      </h2>
+      <p class="text-balance max-w-2xl text-lg" data-animate="up">
+        {entry.data.subheading}
+      </p>
     </div>
     <div
       class="grid w-full items-center gap-x-8 gap-y-56 md:grid-cols-2 lg:grid-cols-[300px_1fr_300px] lg:gap-32"
     >
-      <List details={entry.data.left} />
-      <div class="relative row-span-2 flex items-center lg:row-span-1">
+      <List details={entry.data.left} data-animate="left" />
+      <div
+        class="relative row-span-2 flex items-center lg:row-span-1"
+        data-animate="up"
+      >
         <Blob
           class="absolute inset-0 w-full max-w-3xl translate-y-[-15%] opacity-75 blur-[40px] md:scale-110"
           noiseStep={0.001}
@@ -30,13 +37,14 @@ const entry = await getEntry('sections', 'design-and-develop')
         />
         <Image src={designDevelop} alt="" class="relative w-full" />
       </div>
-      <List details={entry.data.right} />
+      <List details={entry.data.right} data-animate="right" />
     </div>
     <Button
       href={entry.data.cta.url}
       label={entry.data.cta.label}
       class="relative"
       size="lg"
+      data-animate="up"
     />
   </div>
 </section>

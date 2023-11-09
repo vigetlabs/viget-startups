@@ -15,7 +15,10 @@ const { Content } = await entry.render()
   <div
     class="wrapper grid min-h-[600px] items-center gap-48 py-64 lg:grid-cols-5"
   >
-    <div class="flex flex-col items-start gap-24 lg:col-span-3">
+    <div
+      class="flex flex-col items-start gap-24 lg:col-span-3"
+      data-animate="up"
+    >
       <!-- overline -->
       <div class="flex flex-wrap gap-12 md:gap-24">
         <InlineSvg name="logo-wordmark" title="Viget" class="h-28" />
@@ -27,15 +30,22 @@ const { Content } = await entry.render()
       </div>
 
       <div class="flex max-w-3xl flex-col gap-24">
-        <h1 class="text-balance text-4xl font-bold text-black">
+        <h1
+          class="text-balance text-4xl font-bold text-black"
+          data-animate="up"
+        >
           {entry.data.heading}
         </h1>
-        <div class="rich-text">
+        <div class="rich-text" data-animate="up">
           <Content />
         </div>
       </div>
 
-      <Button label={entry.data.cta.label} href={entry.data.cta.url} />
+      <Button
+        label={entry.data.cta.label}
+        href={entry.data.cta.url}
+        data-animate="up"
+      />
     </div>
     <div
       class="relative mx-auto flex w-3/4 items-center justify-center md:h-full md:w-1/2 lg:col-span-2 lg:w-full"
@@ -45,6 +55,7 @@ const { Content } = await entry.render()
         noiseStep={0.002}
         hueStart={120}
         hueStop={160}
+        data-animate="down"
       />
       <HeroKPIs kpis={entry.data.kpis} />
     </div>

@@ -29,14 +29,14 @@ const entry = await getEntry('sections', 'design-and-develop')
       <div class="relative row-span-2 flex items-center lg:row-span-1">
         <div class="absolute inset-0 w-full max-w-3xl">
           <Blob
-            class="translate-y-[-15%] opacity-75 blur-[40px] md:scale-110"
+            class="translate-y-[-20%] opacity-75 blur-[20px] md:scale-110"
             noiseStep={0.001}
             hueStart={150}
             hueStop={210}
           />
         </div>
         <div class="relative aspect-[650/406] w-full">
-          <!-- <Image
+          <Image
             src={dashboardAsset}
             alt=""
             class="absolute h-full w-full"
@@ -49,7 +49,7 @@ const entry = await getEntry('sections', 'design-and-develop')
             class="absolute h-full w-full"
             data-animate="up"
             data-animate-duration="1"
-          /> -->
+          />
         </div>
       </div>
       <List details={entry.data.right} data-animate="right" />

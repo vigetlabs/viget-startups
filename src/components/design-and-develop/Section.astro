@@ -26,29 +26,33 @@ const entry = await getEntry('sections', 'design-and-develop')
       class="grid w-full items-center gap-x-8 gap-y-56 md:grid-cols-2 lg:grid-cols-[300px_1fr_300px] lg:gap-32"
     >
       <List details={entry.data.left} data-animate="left" />
-      <div
-        class="relative row-span-2 flex items-center lg:row-span-1"
-        data-animate="up"
-        data-animate-duration="1"
-      >
-        <Blob
-          class="absolute inset-0 w-full max-w-3xl translate-y-[-15%] opacity-75 blur-[40px] md:scale-110"
-          noiseStep={0.001}
-          hueStart={150}
-          hueStop={210}
-        />
+      <div class="relative row-span-2 flex items-center lg:row-span-1">
+        <div
+          class="absolute inset-0 w-full max-w-3xl"
+          data-animate="up"
+          data-animate-duration="1"
+        >
+          <Blob
+            class="translate-y-[-15%] opacity-75 blur-[40px] md:scale-110"
+            noiseStep={0.001}
+            hueStart={150}
+            hueStop={210}
+          />
+        </div>
         <div class="relative aspect-[650/406] w-full">
           <Image
             src={dashboardAsset}
             alt=""
             class="absolute h-full w-full"
             data-animate="up"
+            data-animate-duration="1"
           />
           <Image
             src={sidebarAsset}
             alt=""
             class="absolute h-full w-full"
             data-animate="up"
+            data-animate-duration="1"
           />
         </div>
       </div>

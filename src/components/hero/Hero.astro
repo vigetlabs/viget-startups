@@ -50,13 +50,18 @@ const { Content } = await entry.render()
     <div
       class="relative mx-auto flex w-3/4 items-center justify-center md:h-full md:w-1/2 lg:col-span-2 lg:w-full"
     >
-      <Blob
-        class="absolute inset-0 max-w-3xl opacity-75 blur-[20px] <md:translate-y-[-12.5%]"
-        noiseStep={0.002}
-        hueStart={120}
-        hueStop={160}
-        data-animate="down"
-      />
+      <div
+        class="absolute inset-0 max-w-3xl <md:translate-y-[-12.5%]"
+        data-animate
+        data-animate-duration="2"
+      >
+        <Blob
+          class="h-full w-full opacity-75 blur-[20px]"
+          noiseStep={0.002}
+          hueStart={120}
+          hueStop={160}
+        />
+      </div>
       <HeroKPIs kpis={entry.data.kpis} />
     </div>
   </div>

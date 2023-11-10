@@ -15,7 +15,7 @@ const entry = await getEntry('sections', 'design-and-develop')
 <section class="my-56 bg-gray">
   <div class="wrapper flex w-full flex-col items-center gap-56 py-112">
     <div class="relative z-10 flex flex-col items-center gap-24 text-center">
-      <h2 class="text-3xl font-bold text-black" data-animate="up">
+      <h2 class="text-balance text-3xl font-bold text-black" data-animate="up">
         {entry.data.heading}
       </h2>
       <p class="text-balance max-w-2xl text-lg" data-animate="up">
@@ -29,6 +29,7 @@ const entry = await getEntry('sections', 'design-and-develop')
       <div
         class="relative row-span-2 flex items-center lg:row-span-1"
         data-animate="up"
+        data-animate-duration="1"
       >
         <Blob
           class="absolute inset-0 w-full max-w-3xl translate-y-[-15%] opacity-75 blur-[40px] md:scale-110"

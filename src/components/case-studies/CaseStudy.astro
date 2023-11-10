@@ -73,7 +73,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
     <Button
       variant="secondary"
       size="sm"
-      class="mt-8"
+      class="mt-8 self-start"
       label={data.cta.label}
       href={data.cta.url}
       aria-label={`Read the ${data.heading} Case Study`}
@@ -136,8 +136,9 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
 
     ScrollTrigger.batch(caseStudies, {
       batchMax: 3,
-      start: 'top bottom',
+      start: 'top 85%',
       end: 'bottom top',
+      once: true,
       onEnter: (batch) => {
         batch.forEach((el: AnimatedElement, i: number) => {
           setAnimation(el, i)
@@ -148,7 +149,6 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
           setAnimation(el, i, -1)
         })
       },
-      once: true,
     })
 
     function setAnimation(

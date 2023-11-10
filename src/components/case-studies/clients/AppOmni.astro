@@ -73,6 +73,8 @@ const entry = await getEntry('case-studies', 'app-omni')
       .timeline({
         scrollTrigger: {
           trigger: '#app-omni',
+          start: 'top 85%',
+          end: 'bottom top',
           toggleActions: 'play none play none',
           once: true,
         },

@@ -6,7 +6,8 @@ import List from '@/components/design-and-develop/List.astro'
 import Button from '@/components/Button.astro'
 import Blob from '@/components/Blob.astro'
 
-import designDevelop from '@/assets/images/design-and-develop/full.png'
+import dashboardAsset from '@/assets/images/design-and-develop/spectrum-dash.png'
+import sidebarAsset from '@/assets/images/design-and-develop/spectrum-sidebar.png'
 
 const entry = await getEntry('sections', 'design-and-develop')
 ---
@@ -35,7 +36,20 @@ const entry = await getEntry('sections', 'design-and-develop')
           hueStart={150}
           hueStop={210}
         />
-        <Image src={designDevelop} alt="" class="relative w-full" />
+        <div class="relative aspect-[650/406] w-full">
+          <Image
+            src={dashboardAsset}
+            alt=""
+            class="absolute h-full w-full"
+            data-animate="up"
+          />
+          <Image
+            src={sidebarAsset}
+            alt=""
+            class="absolute h-full w-full"
+            data-animate="up"
+          />
+        </div>
       </div>
       <List details={entry.data.right} data-animate="right" />
     </div>

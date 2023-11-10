@@ -57,7 +57,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
       >
         {data.heading}
       </h2>
-      <p data-case-text>{data.description}</p>
+      <p data-case-text class="text-balance">{data.description}</p>
     </div>
 
     <ul class="flex flex-wrap gap-32" data-case-text>
@@ -135,6 +135,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
     gsap.set(caseStudies, { opacity: 0 })
 
     ScrollTrigger.batch(caseStudies, {
+      batchMax: 3,
       start: 'top bottom',
       end: 'bottom top',
       onEnter: (batch) => {
@@ -180,7 +181,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
             y: 0,
             delay: reduceMotion ? 0 : index * 0.2,
             ease: 'circ.out',
-            duration: 1,
+            duration: 0.5,
             clearProps: 'x, y, scale',
           },
         )
@@ -197,7 +198,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
             scale: 1,
             stagger: reduceMotion ? 0 : 0.15 * direction,
             ease: 'circ.out',
-            duration: 1,
+            duration: 0.5,
             clearProps: 'y',
           },
           '<',

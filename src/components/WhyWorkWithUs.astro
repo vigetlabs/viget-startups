@@ -24,11 +24,11 @@ const entry = await getEntry('sections', 'why-work-with-us')
             description: string
           }) => (
             <li
-              class="flex max-w-md flex-col gap-32 md:max-w-xs"
+              class="flex max-w-sm flex-col gap-32 md:max-w-xs <md:items-center <md:text-center"
               data-animate="up"
             >
               <InlineSvg name={icon} class="h-88 w-88" />
-              <div class="flex flex-col gap-12 after:mt-24 after:h-2 after:w-56 after:bg-black">
+              <div class="flex flex-col gap-12 after:mt-24 after:h-2 after:w-56 after:bg-black <md:after:mx-auto">
                 <h3 class="font-bold text-black">{heading}</h3>
                 <p class="text-sm">{description}</p>
               </div>

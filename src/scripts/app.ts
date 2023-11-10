@@ -23,6 +23,7 @@ mm.add(mmFilters, (context) => {
   gsap.set('[data-animate]', { opacity: 0 })
 
   ScrollTrigger.batch('[data-animate]', {
+    batchMax: 5,
     onEnter: (batch) => {
       batch.forEach((el: AnimatedElement, i: number) => {
         setAnimation(el, i)
@@ -79,7 +80,7 @@ mm.add(mmFilters, (context) => {
         x: 0,
         delay: reduceMotion ? 0 : index * animationStagger,
         ease: 'circ.out',
-        duration: 1,
+        duration: 0.5,
         clearProps: 'x,y,scale',
       },
     )

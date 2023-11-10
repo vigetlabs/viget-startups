@@ -27,11 +27,7 @@ const entry = await getEntry('sections', 'design-and-develop')
     >
       <List details={entry.data.left} data-animate="left" />
       <div class="relative row-span-2 flex items-center lg:row-span-1">
-        <div
-          class="absolute inset-0 w-full max-w-3xl"
-          data-animate="up"
-          data-animate-duration="1"
-        >
+        <div class="absolute inset-0 w-full max-w-3xl">
           <Blob
             class="translate-y-[-15%] opacity-75 blur-[40px] md:scale-110"
             noiseStep={0.001}

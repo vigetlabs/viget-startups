@@ -64,7 +64,8 @@ const Element = href ? 'a' : 'button'
       {...attrs}
     >
       {variant === 'primary' ? (
-        <span class="btn__letters">{label}</span>
+        <span class="sr-only">{label}</span>
+        <span class="btn__letters" aria-hidden="true">{label}</span>
       ) : (
         <>
           {label}

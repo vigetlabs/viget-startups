@@ -33,20 +33,7 @@ mm.add(mmFilters, (context) => {
         setAnimation(el, i, -1)
       })
     },
-    onLeave: (batch) => {
-      batch.forEach((el: AnimatedElement) => {
-        // kill the timeline when leaving the viewport
-        el.timeline?.kill()
-        gsap.to(el, { opacity: 0 })
-      })
-    },
-    onLeaveBack: (batch) => {
-      batch.forEach((el: AnimatedElement) => {
-        // kill the timeline when leaving the viewport
-        el.timeline?.kill()
-        gsap.to(el, { opacity: 0 })
-      })
-    },
+    once: true,
   })
 
   function setAnimation(

@@ -93,7 +93,8 @@ const entry = await getEntry('case-studies', 'grub-market')
       .timeline({
         scrollTrigger: {
           trigger: '#grub-market',
-          toggleActions: 'play reset play reverse',
+          toggleActions: 'play none play none',
+          once: true,
         },
         invalidateOnRefresh: true,
         immediateRender: false,

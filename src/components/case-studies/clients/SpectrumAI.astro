@@ -101,7 +101,8 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
       .timeline({
         scrollTrigger: {
           trigger: '#spectrum-ai',
-          toggleActions: 'play reset play reverse',
+          toggleActions: 'play none play none',
+          once: true,
         },
         invalidateOnRefresh: true,
         immediateRender: false,

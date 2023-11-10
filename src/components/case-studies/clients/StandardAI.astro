@@ -105,7 +105,8 @@ const entry = await getEntry('case-studies', 'standard-ai')
       .timeline({
         scrollTrigger: {
           trigger: '#standard-ai',
-          toggleActions: 'play reset play reverse',
+          toggleActions: 'play none play none',
+          once: true,
         },
         invalidateOnRefresh: true,
         immediateRender: false,

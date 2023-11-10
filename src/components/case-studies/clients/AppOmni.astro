@@ -73,7 +73,8 @@ const entry = await getEntry('case-studies', 'app-omni')
       .timeline({
         scrollTrigger: {
           trigger: '#app-omni',
-          toggleActions: 'play reset play reverse',
+          toggleActions: 'play none play none',
+          once: true,
         },
         invalidateOnRefresh: true,
         immediateRender: false,
@@ -87,7 +88,6 @@ const entry = await getEntry('case-studies', 'app-omni')
         opacity: 0,
         y: reduceMotion ? 0 : 50,
         transformOrigin: 'right top',
-        // skewY: reduceMotion ? 0 : 15,
         rotation: reduceMotion ? 0 : -10,
         scale: scaleCheck,
       })

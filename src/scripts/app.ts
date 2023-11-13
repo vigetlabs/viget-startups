@@ -23,6 +23,8 @@ mm.add(mmFilters, (context) => {
   gsap.set('[data-animate]', { opacity: 0 })
 
   ScrollTrigger.batch('[data-animate]', {
+    start: 'top 90%',
+    batchMax: 5,
     onEnter: (batch) => {
       batch.forEach((el: AnimatedElement, i: number) => {
         setAnimation(el, i)
@@ -33,20 +35,7 @@ mm.add(mmFilters, (context) => {
         setAnimation(el, i, -1)
       })
     },
-    onLeave: (batch) => {
-      batch.forEach((el: AnimatedElement) => {
-        // kill the timeline when leaving the viewport
-        el.timeline?.kill()
-        gsap.to(el, { opacity: 0 })
-      })
-    },
-    onLeaveBack: (batch) => {
-      batch.forEach((el: AnimatedElement) => {
-        // kill the timeline when leaving the viewport
-        el.timeline?.kill()
-        gsap.to(el, { opacity: 0 })
-      })
-    },
+    once: true,
   })
 
   function setAnimation(
@@ -63,27 +52,24 @@ mm.add(mmFilters, (context) => {
 
     switch (el.dataset?.animate) {
       case 'up':
-        y = reduceMotion ? 0 : 75 * direction
+        y = reduceMotion ? 0 : 50 * direction
         break
 
       case 'down':
-        y = reduceMotion ? 0 : -75
+        y = reduceMotion ? 0 : -50
         break
 
       case 'left':
-        x = reduceMotion ? 0 : -75
+        x = reduceMotion ? 0 : -50
         break
 
       case 'right':
-        x = reduceMotion ? 0 : 75
+        x = reduceMotion ? 0 : 50
         break
 
       default:
         break
     }
-
-    const initialX = gsap.getProperty(el, 'x')
-    const initialY = gsap.getProperty(el, 'y')
 
     timeline.fromTo(
       el,
@@ -91,12 +77,12 @@ mm.add(mmFilters, (context) => {
       {
         opacity: 1,
         scale: 1,
-        y: initialY,
-        x: initialX,
+        y: 0,
+        x: 0,
         delay: reduceMotion ? 0 : index * animationStagger,
         ease: 'circ.out',
-        duration: 1,
-        clearProps: 'x,y',
+        duration: el.dataset?.animateDuration || 0.5,
+        clearProps: 'x,y,scale',
       },
     )
 

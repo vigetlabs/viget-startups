@@ -57,7 +57,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
       >
         {data.heading}
       </h2>
-      <p data-case-text>{data.description}</p>
+      <p data-case-text class="text-balance">{data.description}</p>
     </div>
 
     <ul class="flex flex-wrap gap-32" data-case-text>
@@ -73,7 +73,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
     <Button
       variant="secondary"
       size="sm"
-      class="mt-8"
+      class="mt-8 self-start"
       label={data.cta.label}
       href={data.cta.url}
       aria-label={`Read the ${data.heading} Case Study`}
@@ -135,8 +135,10 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
     gsap.set(caseStudies, { opacity: 0 })
 
     ScrollTrigger.batch(caseStudies, {
-      start: 'top bottom',
+      batchMax: 3,
+      start: 'top 85%',
       end: 'bottom top',
+      once: true,
       onEnter: (batch) => {
         batch.forEach((el: AnimatedElement, i: number) => {
           setAnimation(el, i)
@@ -145,20 +147,6 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
       onEnterBack: (batch) => {
         batch.forEach((el: AnimatedElement, i: number) => {
           setAnimation(el, i, -1)
-        })
-      },
-      onLeave: (batch) => {
-        batch.forEach((el: AnimatedElement) => {
-          // kill the timeline when leaving the viewport
-          el.timeline?.kill()
-          gsap.to(el, { opacity: 0 })
-        })
-      },
-      onLeaveBack: (batch) => {
-        batch.forEach((el: AnimatedElement) => {
-          // kill the timeline when leaving the viewport
-          el.timeline?.kill()
-          gsap.to(el, { opacity: 0 })
         })
       },
     })
@@ -193,7 +181,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
             y: 0,
             delay: reduceMotion ? 0 : index * 0.2,
             ease: 'circ.out',
-            duration: 1,
+            duration: 0.5,
             clearProps: 'x, y, scale',
           },
         )
@@ -210,7 +198,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
             scale: 1,
             stagger: reduceMotion ? 0 : 0.15 * direction,
             ease: 'circ.out',
-            duration: 1,
+            duration: 0.5,
             clearProps: 'y',
           },
           '<',

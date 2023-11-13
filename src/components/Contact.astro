@@ -14,8 +14,10 @@ const { Content } = await entry.render()
     class="wrapper flex flex-col justify-center divide-y divide-black/50 py-112 sm:flex-row sm:divide-x sm:divide-y-0"
   >
     <div class="flex max-w-xl flex-col items-start gap-32 p-32">
-      <h2 class="text-xl font-bold text-black">{entry.data.heading}</h2>
-      <div class="rich-text">
+      <h2 class="text-balance text-xl font-bold text-black">
+        {entry.data.heading}
+      </h2>
+      <div class="rich-text text-balance">
         <Content />
       </div>
       <Button label={entry.data.cta.label} href={entry.data.cta.url} />
@@ -35,7 +37,7 @@ const { Content } = await entry.render()
               <li class="flex flex-col">
                 <h3 class="font-medium text-black">{label}</h3>
                 {cta.url ? (
-                  <a href={cta.url} class="underline">
+                  <a href={cta.url} class="underline hover:decoration-2">
                     {cta.label}
                   </a>
                 ) : (

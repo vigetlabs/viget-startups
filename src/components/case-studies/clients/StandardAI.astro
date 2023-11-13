@@ -18,7 +18,7 @@ const entry = await getEntry('case-studies', 'standard-ai')
 
 <CaseStudy
   data={entry.data}
-  class="bg-gradient <md:pl-16"
+  class="bg-gradient <md:pl-16 [&_figure]:pb-56"
   mediaAspectRatio="665/492"
   id="standard-ai"
 >
@@ -27,10 +27,10 @@ const entry = await getEntry('case-studies', 'standard-ai')
     include fanned out credit cards, a mobile wallet, and a top-down map with
     icons representing people moving within a space.
   </figcaption>
-  <div data-speed="1.02">
+  <div data-speed="0.99">
     <Image src={outlineAsset} alt="" data-standard-ai-asset="outline" />
   </div>
-  <div data-speed="1.01">
+  <div data-speed="0.99">
     <Image
       src={stockAsset}
       alt=""
@@ -38,16 +38,16 @@ const entry = await getEntry('case-studies', 'standard-ai')
       class="shadow-stockphoto"
     />
   </div>
-  <div data-speed="1.035">
+  <div data-speed="0.99">
     <Image src={card1Asset} alt="" data-standard-ai-asset="card" />
   </div>
-  <div data-speed="1.03">
+  <div data-speed="0.985">
     <Image src={card2Asset} alt="" data-standard-ai-asset="card" />
   </div>
-  <div data-speed="1.025">
+  <div data-speed="0.98">
     <Image src={card3Asset} alt="" data-standard-ai-asset="card" />
   </div>
-  <div data-speed="1.03">
+  <div data-speed="1.01">
     <Image
       src={phoneAsset}
       alt=""
@@ -55,10 +55,10 @@ const entry = await getEntry('case-studies', 'standard-ai')
       class="shadow-phone"
     />
   </div>
-  <div data-speed="1.025">
+  <div data-speed="0.99">
     <Image src={mapAsset} alt="" data-standard-ai-asset="map" />
   </div>
-  <div data-speed="1.02">
+  <div data-speed="0.995">
     <Image src={pinAsset} alt="" data-standard-ai-asset="pin" />
   </div>
 </CaseStudy>
@@ -89,6 +89,14 @@ const entry = await getEntry('case-studies', 'standard-ai')
     filter: drop-shadow(0px 12px 20px rgb(105 86 55 / 24%))
       drop-shadow(0px 4px 3px rgb(0 0 0 / 8%));
   }
+
+  [data-standard-ai-asset='card'] {
+    @apply -mt-32;
+
+    @screen md {
+      @apply -mt-64;
+    }
+  }
 </style>
 
 <script>
@@ -105,7 +113,10 @@ const entry = await getEntry('case-studies', 'standard-ai')
       .timeline({
         scrollTrigger: {
           trigger: '#standard-ai',
-          toggleActions: 'play reset play reverse',
+          start: 'top 85%',
+          end: 'bottom top',
+          toggleActions: 'play none play none',
+          once: true,
         },
         invalidateOnRefresh: true,
         immediateRender: false,

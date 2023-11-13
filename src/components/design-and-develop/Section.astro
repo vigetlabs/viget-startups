@@ -6,7 +6,8 @@ import List from '@/components/design-and-develop/List.astro'
 import Button from '@/components/Button.astro'
 import Blob from '@/components/Blob.astro'
 
-import designDevelop from '@/assets/images/design-and-develop/full.png'
+import dashboardAsset from '@/assets/images/design-and-develop/spectrum-dash.png'
+import sidebarAsset from '@/assets/images/design-and-develop/spectrum-sidebar.png'
 
 const entry = await getEntry('sections', 'design-and-develop')
 ---
@@ -14,29 +15,51 @@ const entry = await getEntry('sections', 'design-and-develop')
 <section class="my-56 bg-gray">
   <div class="wrapper flex w-full flex-col items-center gap-56 py-112">
     <div class="relative z-10 flex flex-col items-center gap-24 text-center">
-      <h2 class="text-3xl font-bold text-black">{entry.data.heading}</h2>
-      <p class="text-balance max-w-2xl text-lg">{entry.data.subheading}</p>
+      <h2 class="text-balance text-3xl font-bold text-black" data-animate="up">
+        {entry.data.heading}
+      </h2>
+      <p class="text-balance max-w-2xl text-lg" data-animate="up">
+        {entry.data.subheading}
+      </p>
     </div>
     <div
       class="grid w-full items-center gap-x-8 gap-y-56 md:grid-cols-2 lg:grid-cols-[300px_1fr_300px] lg:gap-32"
     >
-      <List details={entry.data.left} />
+      <List details={entry.data.left} data-animate="left" />
       <div class="relative row-span-2 flex items-center lg:row-span-1">
-        <Blob
-          class="absolute inset-0 w-full max-w-3xl translate-y-[-15%] opacity-75 blur-[40px] md:scale-110"
-          noiseStep={0.001}
-          hueStart={150}
-          hueStop={210}
-        />
-        <Image src={designDevelop} alt="" class="relative w-full" />
+        <div class="absolute inset-0 w-full max-w-3xl">
+          <Blob
+            class="translate-y-[-20%] opacity-75 blur-[20px] md:scale-110"
+            noiseStep={0.001}
+            hueStart={150}
+            hueStop={210}
+          />
+        </div>
+        <div class="relative aspect-[650/406] w-full">
+          <Image
+            src={dashboardAsset}
+            alt=""
+            class="absolute h-full w-full"
+            data-animate="up"
+            data-animate-duration="1"
+          />
+          <Image
+            src={sidebarAsset}
+            alt=""
+            class="absolute h-full w-full"
+            data-animate="up"
+            data-animate-duration="1"
+          />
+        </div>
       </div>
-      <List details={entry.data.right} />
+      <List details={entry.data.right} data-animate="right" />
     </div>
     <Button
       href={entry.data.cta.url}
       label={entry.data.cta.label}
       class="relative"
       size="lg"
+      data-animate="up"
     />
   </div>
 </section>

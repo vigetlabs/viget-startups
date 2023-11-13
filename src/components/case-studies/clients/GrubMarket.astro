@@ -29,30 +29,26 @@ const entry = await getEntry('case-studies', 'grub-market')
     related to logistics.
   </figcaption>
   <div data-grub-asset="dash">
-    <Image src={dashAsset} alt="" />
+    <Image src={dashAsset} alt="" class="md:scale-110" />
   </div>
-  <div class="asset" data-speed="1.01">
+  <div data-speed="1.01">
     <Image src={dashboardAsset} alt="" data-grub-asset="dashboard" />
   </div>
-  <div class="asset" data-speed="0.97">
+  <div data-speed="0.97">
     <Image src={kpisAsset} alt="" data-grub-asset="kpis" />
   </div>
-  <div class="asset" data-speed="0.94">
+  <div data-speed="0.94">
     <Image src={graphAsset} alt="" data-grub-asset="graph" />
   </div>
-  <div class="asset" data-speed="1.02">
+  <div data-speed="1.02">
     <Image src={stockAsset} alt="" data-grub-asset="stock" />
   </div>
-  <div class="asset" data-speed="1.03">
+  <div data-speed="1.03">
     <Image src={rowHighlightAsset} alt="" data-grub-asset="row-highlight" />
   </div>
-  <div class="asset" data-speed=".98">
+  <div data-speed=".98">
     <Image src={tag1Asset} alt="" data-grub-asset="tag" />
-  </div>
-  <div class="asset" data-speed=".98">
     <Image src={tag2Asset} alt="" data-grub-asset="tag" />
-  </div>
-  <div class="asset" data-speed=".98">
     <Image src={tag3Asset} alt="" data-grub-asset="tag" />
   </div>
 </CaseStudy>
@@ -76,6 +72,10 @@ const entry = await getEntry('case-studies', 'grub-market')
         hsl(12, 100%, 94%) 111.28%,
         hsl(223, 63%, 77%) 149.67%
       );
+  }
+
+  [data-grub-asset='tag'] {
+    @apply absolute inset-0 m-auto;
   }
 </style>
 

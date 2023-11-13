@@ -18,7 +18,7 @@ const entry = await getEntry('case-studies', 'standard-ai')
 
 <CaseStudy
   data={entry.data}
-  class="bg-gradient <md:pl-16 [&_figure]:pb-56"
+  class="bg-gradient <md:pl-16"
   mediaAspectRatio="665/492"
   id="standard-ai"
 >
@@ -27,10 +27,10 @@ const entry = await getEntry('case-studies', 'standard-ai')
     include fanned out credit cards, a mobile wallet, and a top-down map with
     icons representing people moving within a space.
   </figcaption>
-  <div data-speed="0.99">
+  <div data-speed="1.01">
     <Image src={outlineAsset} alt="" data-standard-ai-asset="outline" />
   </div>
-  <div data-speed="0.99">
+  <div data-speed="1.015">
     <Image
       src={stockAsset}
       alt=""
@@ -38,16 +38,12 @@ const entry = await getEntry('case-studies', 'standard-ai')
       class="shadow-stockphoto"
     />
   </div>
-  <div data-speed="0.99">
+  <div data-speed=".97">
     <Image src={card1Asset} alt="" data-standard-ai-asset="card" />
-  </div>
-  <div data-speed="0.985">
     <Image src={card2Asset} alt="" data-standard-ai-asset="card" />
-  </div>
-  <div data-speed="0.98">
     <Image src={card3Asset} alt="" data-standard-ai-asset="card" />
   </div>
-  <div data-speed="1.01">
+  <div data-speed="1.025">
     <Image
       src={phoneAsset}
       alt=""
@@ -55,10 +51,10 @@ const entry = await getEntry('case-studies', 'standard-ai')
       class="shadow-phone"
     />
   </div>
-  <div data-speed="0.99">
+  <div data-speed="1.01">
     <Image src={mapAsset} alt="" data-standard-ai-asset="map" />
   </div>
-  <div data-speed="0.995">
+  <div data-speed="1.02">
     <Image src={pinAsset} alt="" data-standard-ai-asset="pin" />
   </div>
 </CaseStudy>
@@ -91,11 +87,7 @@ const entry = await getEntry('case-studies', 'standard-ai')
   }
 
   [data-standard-ai-asset='card'] {
-    @apply -mt-32;
-
-    @screen md {
-      @apply -mt-64;
-    }
+    @apply absolute inset-0 m-auto -translate-y-96;
   }
 </style>
 

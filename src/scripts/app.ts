@@ -99,7 +99,7 @@ mm.add(mmFilters, (context) => {
 
   gsap.to('[data-speed]', {
     y: (i, el) => {
-      const speed = parseFloat(el.getAttribute('data-speed'))
+      const speed = el.getAttribute('data-speed')
       let adjustedSpeed
 
       // adjust speed on mobile to be half that of desktop
@@ -111,12 +111,13 @@ mm.add(mmFilters, (context) => {
         adjustedSpeed = speed
       }
 
-      return (1 - adjustedSpeed) * ScrollTrigger.maxScroll(window)
+      return (1 - parseFloat(adjustedSpeed)) * ScrollTrigger.maxScroll(window)
     },
     ease: 'none',
     scrollTrigger: {
       start: 0,
-      scrub: 0.5,
+      end: 'max',
+      scrub: 0,
       invalidateOnRefresh: true,
     },
   })

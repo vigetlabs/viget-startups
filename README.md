@@ -2,7 +2,7 @@
 
 [**Demo Link**](https://trailbuddy-astro-view-transition-demo.netlify.app/)
 
-The Viget Startups page is a public facing marketing site by [Viget](www.viget.com) to help promote and showcase some of our startup specific client work. The site is built on the [Astro](https://astro.build/) Framework and features quite a bit of animation work being powered by [GSAP](https://gsap.com/).
+The Viget Startups page is a public facing marketing site by [Viget](https://www.viget.com) to help promote and showcase some of our startup specific client work. The site is built on the [Astro](https://astro.build/) Framework and features quite a bit of animation work being powered by [GSAP](https://gsap.com/).
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/~/github.com/vigetlabs/viget-startups)
 

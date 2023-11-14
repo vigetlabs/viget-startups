@@ -14,6 +14,16 @@ import rowHighlightAsset from '@/assets/images/case-studies/grub-market/row-high
 import kpisAsset from '@/assets/images/case-studies/grub-market/kpis.svg'
 import dashAsset from '@/assets/images/case-studies/grub-market/dashed-path.svg'
 
+import dashboardAssetOld from '@/assets/images/case-studies/grub-market/old/dashboard.png'
+import graphAssetOld from '@/assets/images/case-studies/grub-market/old/graph.svg'
+import tag1AssetOld from '@/assets/images/case-studies/grub-market/old/tag-1.svg'
+import tag2AssetOld from '@/assets/images/case-studies/grub-market/old/tag-2.svg'
+import tag3AssetOld from '@/assets/images/case-studies/grub-market/old/tag-3.svg'
+import stockAssetOld from '@/assets/images/case-studies/grub-market/old/stock.svg'
+import rowHighlightAssetOld from '@/assets/images/case-studies/grub-market/old/row-highlight.svg'
+import kpisAssetOld from '@/assets/images/case-studies/grub-market/old/kpis.svg'
+import dashAssetOld from '@/assets/images/case-studies/grub-market/old/dashed-path.svg'
+
 const entry = await getEntry('case-studies', 'grub-market')
 ---
 
@@ -28,25 +38,53 @@ const entry = await getEntry('case-studies', 'grub-market')
     an exploded out row, KPI's, inventory management, price graph, and tags
     related to logistics.
   </figcaption>
-  <div data-grub-asset="dash">
-    <Image src={dashAsset} alt="" class="md:scale-110" />
+  <!-- <div data-grub-asset="dash">
+    <Image src={dashAssetOld} alt="" class="md:scale-110" />
+  </div> -->
+  <div>
+    <Image src={dashAsset} alt="" />
   </div>
-  <div data-speed="1.01">
-    <Image src={dashboardAsset} alt="" data-grub-asset="dashboard" />
+  <!-- <div data-speed="1.01">
+    <Image src={dashboardAssetOld} alt="" data-grub-asset="dashboard"   />
+  </div> -->
+  <div>
+    <Image
+      src={dashboardAsset}
+      alt=""
+      class="w-[60%] rounded-[2%]"
+      data-grub-asset="dashboard"
+    />
   </div>
-  <div data-speed="0.97">
+  <div>
     <Image src={kpisAsset} alt="" data-grub-asset="kpis" />
   </div>
-  <div data-speed="0.94">
+  <!-- <div data-speed="0.97">
+    <Image src={kpisAssetOld} alt="" data-grub-asset="kpis" />
+  </div> -->
+  <!-- <div data-speed="0.94">
+    <Image src={graphAssetOld} alt="" data-grub-asset="graph" />
+  </div> -->
+  <div>
     <Image src={graphAsset} alt="" data-grub-asset="graph" />
   </div>
-  <div data-speed="1.02">
+  <!-- <div data-speed="1.02">
+    <Image src={stockAssetOld} alt="" data-grub-asset="stock" />
+  </div> -->
+  <div>
     <Image src={stockAsset} alt="" data-grub-asset="stock" />
   </div>
-  <div data-speed="1.03">
+  <div>
     <Image src={rowHighlightAsset} alt="" data-grub-asset="row-highlight" />
   </div>
-  <div data-speed=".98">
+  <!-- <div data-speed="1.03">
+    <Image src={rowHighlightAssetOld} alt="" data-grub-asset="row-highlight" />
+  </div> -->
+  <!-- <div data-speed=".98">
+    <Image src={tag1AssetOld} alt="" data-grub-asset="tag" />
+    <Image src={tag2AssetOld} alt="" data-grub-asset="tag" />
+    <Image src={tag3AssetOld} alt="" data-grub-asset="tag" />
+  </div> -->
+  <div>
     <Image src={tag1Asset} alt="" data-grub-asset="tag" />
     <Image src={tag2Asset} alt="" data-grub-asset="tag" />
     <Image src={tag3Asset} alt="" data-grub-asset="tag" />
@@ -74,8 +112,61 @@ const entry = await getEntry('case-studies', 'grub-market')
       );
   }
 
+  [data-grub-asset='stock'] {
+    @apply relative left-[31%] top-[-17.7%] w-[22%] rounded-[1vmin];
+
+    box-shadow:
+      0px 6px 16px rgba(105, 86, 55, 0.12),
+      0px 2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  [data-grub-asset='kpis'] {
+    @apply relative left-[-15%] top-[-32.5%] w-[53%] rounded-[1vmin];
+
+    box-shadow:
+      0px 6px 16px 0px rgba(0, 102, 182, 0.12),
+      0px 2px 6px 0px rgba(0, 0, 0, 0.08),
+      -6px -12px 16px 0px rgba(141, 88, 2, 0.06);
+  }
+
+  [data-grub-asset='row-highlight'] {
+    @apply relative left-[-7%] top-[-4%] w-[67%] rounded-[0.5vmin];
+
+    box-shadow:
+      0px 10px 20px 0px rgba(136, 116, 84, 0.32),
+      0px 5px 4px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  [data-grub-asset='graph'] {
+    @apply relative left-[-25%] top-[16%] w-[22%] rounded-[1vmin];
+
+    box-shadow:
+      0px 6px 16px 0px rgba(105, 86, 55, 0.12),
+      0px 2px 6px -2px rgba(0, 0, 0, 0.08);
+  }
+
   [data-grub-asset='tag'] {
-    @apply absolute inset-0 m-auto;
+    --tag-top: 65%;
+    --tag-height: 4.5%;
+    --tag-gap: 0.75%;
+
+    @apply absolute left-[72%] w-auto rounded-[1vmin];
+
+    height: var(--tag-height);
+    top: var(--tag-top);
+    box-shadow:
+      0px 6px 16px 0px rgba(105, 86, 55, 0.12),
+      0px 2px 6px -2px rgba(0, 0, 0, 0.08);
+
+    &:nth-of-type(2) {
+      top: calc(var(--tag-top) + var(--tag-height) + var(--tag-gap));
+    }
+
+    &:nth-of-type(3) {
+      top: calc(
+        var(--tag-top) + (var(--tag-height) * 2) + (var(--tag-gap) * 2)
+      );
+    }
   }
 </style>
 

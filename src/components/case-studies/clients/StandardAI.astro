@@ -27,10 +27,10 @@ const entry = await getEntry('case-studies', 'standard-ai')
     include fanned out credit cards, a mobile wallet, and a top-down map with
     icons representing people moving within a space.
   </figcaption>
-  <div data-speed="1.01">
+  <div>
     <Image src={outlineAsset} alt="" data-standard-ai-asset="outline" />
   </div>
-  <div data-speed="1.015">
+  <div>
     <Image
       src={stockAsset}
       alt=""
@@ -38,12 +38,12 @@ const entry = await getEntry('case-studies', 'standard-ai')
       class="shadow-stockphoto"
     />
   </div>
-  <div data-speed=".97">
+  <div>
     <Image src={card1Asset} alt="" data-standard-ai-asset="card" />
     <Image src={card2Asset} alt="" data-standard-ai-asset="card" />
     <Image src={card3Asset} alt="" data-standard-ai-asset="card" />
   </div>
-  <div data-speed="1.025">
+  <div>
     <Image
       src={phoneAsset}
       alt=""
@@ -51,10 +51,10 @@ const entry = await getEntry('case-studies', 'standard-ai')
       class="shadow-phone"
     />
   </div>
-  <div data-speed="1.01">
+  <div>
     <Image src={mapAsset} alt="" data-standard-ai-asset="map" />
   </div>
-  <div data-speed="1.02">
+  <div>
     <Image src={pinAsset} alt="" data-standard-ai-asset="pin" />
   </div>
 </CaseStudy>
@@ -87,7 +87,15 @@ const entry = await getEntry('case-studies', 'standard-ai')
   }
 
   [data-standard-ai-asset='card'] {
-    @apply absolute inset-0 m-auto -translate-y-96;
+    @apply absolute inset-0 m-auto;
+  }
+
+  div {
+    @apply -mt-48;
+
+    @screen md {
+      @apply -mt-96;
+    }
   }
 </style>
 

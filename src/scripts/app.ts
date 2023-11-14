@@ -90,35 +90,3 @@ mm.add(mmFilters, (context) => {
     el.timeline = timeline
   }
 })
-
-// Parallax effect
-mm.add(mmFilters, (context) => {
-  let { isMobile, reduceMotion } = context.conditions ?? {}
-
-  if (reduceMotion) return
-
-  gsap.to('[data-speed]', {
-    y: (i, el) => {
-      const speed = el.getAttribute('data-speed')
-      let adjustedSpeed
-
-      // adjust speed on mobile to be half that of desktop
-      if (speed < 1 && isMobile) {
-        adjustedSpeed = speed + (1 - speed) / 2
-      } else if (speed > 1 && isMobile) {
-        adjustedSpeed = speed - (speed - 1) / 2
-      } else {
-        adjustedSpeed = speed
-      }
-
-      return (1 - parseFloat(adjustedSpeed)) * ScrollTrigger.maxScroll(window)
-    },
-    ease: 'none',
-    scrollTrigger: {
-      start: 0,
-      end: 'max',
-      scrub: 0,
-      invalidateOnRefresh: true,
-    },
-  })
-})

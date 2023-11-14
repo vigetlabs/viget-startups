@@ -28,12 +28,12 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
     a video feed, tracking prompts, and controls for various inputs.
   </figcaption>
   <div data-spectrum-asset="brain">
-    <Image src={brainAsset} alt="" class="md:-translate-y-[10%]" />
+    <Image src={brainAsset} alt="" class="md:-translate-y-[10%] md:scale-110" />
   </div>
   <div data-speed="1.01">
     <Image src={screenAsset} alt="" data-spectrum-asset="screen" />
   </div>
-  <div data-speed="0.95">
+  <div data-speed="0.96">
     <Image src={behaviorAsset} alt="" data-spectrum-asset="behavior" />
   </div>
   <div data-speed="0.97">
@@ -48,14 +48,8 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
   </div>
   <div data-speed="0.98">
     <Image src={tracker1Asset} alt="" data-spectrum-asset="tracker" />
-  </div>
-  <div data-speed="0.98">
     <Image src={tracker2Asset} alt="" data-spectrum-asset="tracker" />
-  </div>
-  <div data-speed="0.98">
     <Image src={tracker3Asset} alt="" data-spectrum-asset="tracker" />
-  </div>
-  <div data-speed="0.98">
     <Image src={tracker4Asset} alt="" data-spectrum-asset="tracker" />
   </div>
 </CaseStudy>
@@ -84,6 +78,10 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
         hsl(12, 100%, 94%) 127.46%,
         hsl(223, 63%, 77%) 211.25%
       );
+  }
+
+  [data-spectrum-asset='tracker'] {
+    @apply absolute inset-0 m-auto;
   }
 </style>
 

@@ -1,6 +1,6 @@
 # Viget Startups &nbsp;&nbsp;&nbsp;[![Netlify Status](https://api.netlify.com/api/v1/badges/b4ea76dd-97db-4305-87fd-d7aeee751929/deploy-status)](https://app.netlify.com/sites/viget-startups/deploys)
 
-[**Demo Link**](https://trailbuddy-astro-view-transition-demo.netlify.app/)
+[**Demo Link**](https://viget-startups.netlify.app/)
 
 The Viget Startups page is a public facing marketing site by [Viget](https://www.viget.com) to help promote and showcase some of our startup specific client work. The site is built on the [Astro](https://astro.build/) Framework and features quite a bit of animation work being powered by [GSAP](https://gsap.com/).
 

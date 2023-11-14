@@ -105,11 +105,16 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
         @apply min-w-[650px] max-w-[800px] object-contain group-odd:right-0;
       }
     }
+
+    & :global(img) {
+      will-change: transform, opacity;
+    }
   }
 
   [data-case-study],
   [data-case-text] {
     opacity: 0;
+    will-change: transform, opacity;
 
     @media screen and (prefers-reduced-motion: reduce), (update: slow) {
       & {

@@ -28,7 +28,7 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
     a video feed, tracking prompts, and controls for various inputs.
   </figcaption>
   <div data-spectrum-asset="brain">
-    <Image src={brainAsset} alt="" class="md:-translate-y-[10%] md:scale-110" />
+    <Image src={brainAsset} alt="" class="md:-translate-y-[5%]" />
   </div>
   <div data-speed="1.01">
     <Image src={screenAsset} alt="" data-spectrum-asset="screen" />
@@ -55,6 +55,11 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
 </CaseStudy>
 
 <style>
+  :root {
+    --spectrum-shadow-1: 0px 12px 40px 0px rgba(0, 102, 182, 0.24),
+      0px 4px 6px -2px rgba(0, 0, 0, 0.08);
+  }
+
   .bg-gradient {
     background: linear-gradient(
         85deg,
@@ -80,8 +85,64 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
       );
   }
 
+  [data-spectrum-asset='screen'] {
+    @apply relative left-[6%] w-[55.5%];
+
+    box-shadow:
+      0px 12px 40px 0px rgba(105, 86, 55, 0.24),
+      0px 4px 6px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  [data-spectrum-asset='controls'] {
+    @apply relative left-[-16%] top-[-14%] w-[20%];
+
+    filter: drop-shadow(0px 12px 40px rgba(0, 102, 182, 0.24))
+      drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.08));
+  }
+
+  [data-spectrum-asset='behavior'] {
+    @apply relative left-[-28%] top-[-4%] w-[25%];
+    box-shadow:
+      0px 6px 16px 0px rgba(0, 102, 182, 0.12),
+      0px 2px 6px 0px rgba(0, 0, 0, 0.08);
+  }
+
+  [data-spectrum-asset='segmented-control'] {
+    @apply relative left-[-13%] top-[16%] w-[35%];
+
+    box-shadow: var(--spectrum-shadow-1);
+  }
+
   [data-spectrum-asset='tracker'] {
-    @apply absolute inset-0 m-auto;
+    --tracker-top: 42%;
+    --tracker-height: 6%;
+    --tracker-gap: 1%;
+
+    @apply absolute left-[70%] w-auto rounded-[0.25vmin];
+
+    height: var(--tracker-height);
+    top: var(--tracker-top);
+    box-shadow: var(--spectrum-shadow-1);
+
+    &:nth-of-type(2) {
+      top: calc(
+        var(--tracker-top) + var(--tracker-height) + var(--tracker-gap)
+      );
+    }
+
+    &:nth-of-type(3) {
+      top: calc(
+        var(--tracker-top) + (var(--tracker-height) * 2) +
+          (var(--tracker-gap) * 2)
+      );
+    }
+
+    &:nth-of-type(4) {
+      top: calc(
+        var(--tracker-top) + (var(--tracker-height) * 3) +
+          (var(--tracker-gap) * 3)
+      );
+    }
   }
 </style>
 

@@ -7,7 +7,7 @@ author:
     alt: ''
 cta:
   label: Fiscal Note
-  url: '#'
+  url: 'https://www.viget.com/work/fiscalnote/'
 sortOrder: 1
 ---
 

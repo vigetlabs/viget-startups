@@ -19,5 +19,5 @@ marquee:
     logo: '@/assets/images/testimonials/logos/unknown-logo-3.png'
 cta:
   label: See Who Else We’re Working With
-  url: '#'
+  url: 'https://www.viget.com/clients/'
 ---

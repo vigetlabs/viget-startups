@@ -1,15 +1,13 @@
 ---
 heading: AppOmni
-overline: Brand + Product Design
-description: Overhauled and redesigned the interface for threat analysis for cyber security teams
+overline: Product Design
+description: Overhauled and redesigned the interface for cybersecurity teams conducting threat analysis
 kpis:
   - label: Funding
-    value: $499M
+    value: $123M
   - label: Status
-    value: Series F
-  - label: Valuation
-    value: $2B+
+    value: Series C
 cta:
   label: Read the Case Study
-  url: '#'
+  url: 'https://www.viget.com/work/appomni-product-design/'
 ---

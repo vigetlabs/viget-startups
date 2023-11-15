@@ -12,7 +12,7 @@ const entry = await getEntry('case-studies', 'app-omni')
 
 <CaseStudy
   data={entry.data}
-  class="bg-gradient pl-32"
+  class="bg-gradient md:pl-32"
   mediaAspectRatio="730/452"
   id="app-omni"
 >
@@ -23,7 +23,7 @@ const entry = await getEntry('case-studies', 'app-omni')
     <Image
       src={graphAsset}
       alt=""
-      class="relative left-[7.5%] md:left-[20%] md:scale-110"
+      class="relative left-[15%] md:left-[20%] md:scale-110"
     />
   </div>
   <div data-speed="1.03" class="md:pl-80 lg:pl-0">
@@ -58,14 +58,14 @@ const entry = await getEntry('case-studies', 'app-omni')
   }
 
   [data-appOmni-asset='dashboard'] {
-    @apply relative left-[-16%] top-[30%] w-[70%] rounded-[1vmin];
+    @apply relative left-[-13%] top-[15%] w-[70%] rounded-[1vmin];
 
     box-shadow:
       0px 36px 68px 14px rgba(105, 86, 55, 0.2),
       0px 27px 14px -2px rgba(57, 34, 0, 0.02);
 
     @screen md {
-      @apply top-[7.5%] -mr-112;
+      @apply left-[-16%] top-[7.5%] -mr-112;
     }
 
     @screen lg {

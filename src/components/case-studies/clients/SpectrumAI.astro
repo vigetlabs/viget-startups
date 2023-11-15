@@ -19,7 +19,7 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
 
 <CaseStudy
   data={entry.data}
-  class="bg-gradient <md:pl-16"
+  class="bg-gradient"
   mediaAspectRatio="751/491"
   id="spectrum-ai"
 >
@@ -28,7 +28,11 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
     a video feed, tracking prompts, and controls for various inputs.
   </figcaption>
   <div data-spectrum-asset="brain">
-    <Image src={brainAsset} alt="" class="md:-translate-y-[5%]" />
+    <Image
+      src={brainAsset}
+      alt=""
+      class="translate-y-[-10%] md:translate-y-[-5%] <md:w-4/5"
+    />
   </div>
   <div data-speed="1.01">
     <Image src={screenAsset} alt="" data-spectrum-asset="screen" />
@@ -101,10 +105,15 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
   }
 
   [data-spectrum-asset='behavior'] {
-    @apply relative left-[-28%] top-[-3%] w-[25%];
+    @apply relative left-[-28%] top-[-10%] w-[25%];
+
     box-shadow:
       0px 6px 16px 0px rgba(0, 102, 182, 0.12),
       0px 2px 6px 0px rgba(0, 0, 0, 0.08);
+
+    @screen md {
+      @apply top-[-3%];
+    }
   }
 
   [data-spectrum-asset='segmented-control'] {

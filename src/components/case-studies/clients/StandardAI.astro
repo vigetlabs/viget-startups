@@ -18,8 +18,8 @@ const entry = await getEntry('case-studies', 'standard-ai')
 
 <CaseStudy
   data={entry.data}
-  class="bg-gradient <md:pl-16"
-  mediaAspectRatio="665/492"
+  class="bg-gradient"
+  mediaAspectRatio="665/525"
   id="standard-ai"
 >
   <figcaption class="sr-only">
@@ -31,12 +31,7 @@ const entry = await getEntry('case-studies', 'standard-ai')
     <Image src={outlineAsset} alt="" data-standard-ai-asset="outline" />
   </div>
   <div data-speed="1.015">
-    <Image
-      src={stockAsset}
-      alt=""
-      data-standard-ai-asset="stockphoto"
-      class="shadow-stockphoto"
-    />
+    <Image src={stockAsset} alt="" data-standard-ai-asset="stockphoto" />
   </div>
   <div data-speed=".97">
     <Image src={card1Asset} alt="" data-standard-ai-asset="card" />
@@ -44,12 +39,7 @@ const entry = await getEntry('case-studies', 'standard-ai')
     <Image src={card3Asset} alt="" data-standard-ai-asset="card" />
   </div>
   <div data-speed="1.025">
-    <Image
-      src={phoneAsset}
-      alt=""
-      data-standard-ai-asset="phone"
-      class="shadow-phone"
-    />
+    <Image src={phoneAsset} alt="" data-standard-ai-asset="phone" />
   </div>
   <div data-speed="1.01">
     <Image src={mapAsset} alt="" data-standard-ai-asset="map" />
@@ -60,6 +50,11 @@ const entry = await getEntry('case-studies', 'standard-ai')
 </CaseStudy>
 
 <style>
+  :root {
+    --standard-ai-shadow: 0px 12px 40px 0px rgba(105, 86, 55, 0.24),
+      0px 4px 6px -2px rgba(0, 0, 0, 0.08);
+  }
+
   .bg-gradient {
     background: linear-gradient(
         77deg,
@@ -80,14 +75,101 @@ const entry = await getEntry('case-studies', 'standard-ai')
       );
   }
 
-  .shadow-phone,
-  .shadow-stockphoto {
-    filter: drop-shadow(0px 12px 20px rgb(105 86 55 / 24%))
-      drop-shadow(0px 4px 3px rgb(0 0 0 / 8%));
+  [data-standard-ai-asset='outline'] {
+    @apply w-9/10;
+
+    @screen md-lg {
+      @apply relative left-[-5%];
+    }
+  }
+
+  [data-standard-ai-asset='phone'] {
+    @apply relative top-[8%] w-[28%] rounded-[2vmin];
+
+    box-shadow: var(--standard-ai-shadow);
+
+    @screen md-lg {
+      @apply left-[-10%];
+    }
+  }
+
+  [data-standard-ai-asset='stockphoto'] {
+    @apply relative left-[-30%] top-[10%] w-[40%] rounded-[1vmin];
+
+    box-shadow: var(--standard-ai-shadow);
+
+    @screen md-lg {
+      @apply left-[-35%];
+    }
+  }
+
+  [data-standard-ai-asset='map'] {
+    @apply relative left-[34%] top-[25%] w-[40%];
+
+    @screen lg {
+      @apply left-[32%] top-[16%] w-[35%];
+    }
+
+    @screen md-lg {
+      @apply left-[22%];
+    }
+  }
+
+  [data-standard-ai-asset='pin'] {
+    @apply relative left-[-35%] top-[-20%] w-[4%];
+
+    @screen md {
+      @apply top-[-12%];
+    }
   }
 
   [data-standard-ai-asset='card'] {
-    @apply absolute inset-0 m-auto -translate-y-96;
+    --card-top: -22.5%;
+    --card-height: 17.5%;
+    --card-gap: -10%;
+
+    @apply absolute left-[59%] w-auto origin-bottom-left rounded-[1vmin];
+
+    height: var(--card-height);
+    top: var(--card-top);
+    box-shadow:
+      0px 12px 40px 0px rgba(105, 86, 55, 0.24),
+      0px 4px 6px -2px rgba(0, 0, 0, 0.08);
+    transform: rotate(-36deg);
+
+    @screen sm {
+      --card-top: -15%;
+    }
+
+    @screen md {
+      --card-top: 10%;
+      --card-height: 15%;
+    }
+
+    @screen md-lg {
+      @apply left-[49%];
+    }
+
+    &:nth-of-type(2),
+    &:nth-of-type(3) {
+      @apply left-[60%];
+
+      @screen md-lg {
+        @apply left-[50%];
+      }
+    }
+
+    &:nth-of-type(2) {
+      top: calc(var(--card-top) + var(--card-height) + var(--card-gap));
+      transform: rotate(-21deg);
+    }
+
+    &:nth-of-type(3) {
+      top: calc(
+        var(--card-top) + (var(--card-height) * 2) + (var(--card-gap) * 2)
+      );
+      transform: rotate(-6deg);
+    }
   }
 </style>
 
@@ -155,10 +237,9 @@ const entry = await getEntry('case-studies', 'standard-ai')
       .from(
         '[data-standard-ai-asset="card"]',
         {
-          x: reduceMotion ? 0 : -75,
+          x: reduceMotion ? 0 : -100,
           y: reduceMotion ? 0 : 25,
           rotate: reduceMotion ? 0 : 25,
-          transformOrigin: '25% center',
           scale: reduceMotion ? 1 : 0.9,
           opacity: 0,
           stagger: reduceMotion ? 0 : -0.1,

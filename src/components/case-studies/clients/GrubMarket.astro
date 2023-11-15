@@ -29,7 +29,11 @@ const entry = await getEntry('case-studies', 'grub-market')
     related to logistics.
   </figcaption>
   <div data-grub-asset="dash">
-    <Image src={dashAsset} alt="" class="md:scale-110" />
+    <Image
+      src={dashAsset}
+      alt=""
+      class="md:scale-110 <md:w-4/5 <md:translate-y-[-10%]"
+    />
   </div>
   <div data-speed="1.01">
     <Image src={dashboardAsset} alt="" data-grub-asset="dashboard" />
@@ -46,7 +50,7 @@ const entry = await getEntry('case-studies', 'grub-market')
   <div data-speed="1.03">
     <Image src={rowHighlightAsset} alt="" data-grub-asset="row-highlight" />
   </div>
-  <div data-speed=".98">
+  <div data-speed="0.98">
     <Image src={tag1Asset} alt="" data-grub-asset="tag" />
     <Image src={tag2Asset} alt="" data-grub-asset="tag" />
     <Image src={tag3Asset} alt="" data-grub-asset="tag" />
@@ -74,8 +78,81 @@ const entry = await getEntry('case-studies', 'grub-market')
       );
   }
 
+  [data-grub-asset='dashboard'] {
+    @apply w-3/5 rounded-[1vmin];
+
+    box-shadow:
+      0px -11.20424px 37.34746px 0px rgba(105, 86, 55, 0.22),
+      0px -3.73475px 5.60212px 0px rgba(0, 0, 0, 0.16);
+  }
+
+  [data-grub-asset='stock'] {
+    @apply relative left-[31%] top-[-23.5%] w-[22%] rounded-[1vmin];
+
+    box-shadow:
+      0px 6px 16px rgba(105, 86, 55, 0.12),
+      0px 2px 6px rgba(0, 0, 0, 0.08);
+
+    @screen md {
+      @apply top-[-17.7%];
+    }
+  }
+
+  [data-grub-asset='kpis'] {
+    @apply relative left-[-15%] top-[-50%] w-[53%] rounded-[1vmin];
+
+    box-shadow:
+      0px 6px 16px 0px rgba(0, 102, 182, 0.12),
+      0px 2px 6px 0px rgba(0, 0, 0, 0.08),
+      -6px -12px 16px 0px rgba(141, 88, 2, 0.06);
+
+    @screen md {
+      @apply top-[-32.5%];
+    }
+  }
+
+  [data-grub-asset='row-highlight'] {
+    @apply relative left-[-7%] top-[-4%] w-[67%] rounded-[0.5vmin];
+
+    box-shadow:
+      0px 10px 20px 0px rgba(136, 116, 84, 0.32),
+      0px 5px 4px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  [data-grub-asset='graph'] {
+    @apply relative left-[-25%] top-[5%] w-[22%] rounded-[1vmin];
+
+    box-shadow:
+      0px 6px 16px 0px rgba(105, 86, 55, 0.12),
+      0px 2px 6px -2px rgba(0, 0, 0, 0.08);
+
+    @screen md {
+      @apply top-[16%];
+    }
+  }
+
   [data-grub-asset='tag'] {
-    @apply absolute inset-0 m-auto;
+    --tag-top: 65%;
+    --tag-height: 4.5%;
+    --tag-gap: 0.75%;
+
+    @apply absolute left-[72%] w-auto rounded-[1vmin];
+
+    height: var(--tag-height);
+    top: var(--tag-top);
+    box-shadow:
+      0px 6px 16px 0px rgba(105, 86, 55, 0.12),
+      0px 2px 6px -2px rgba(0, 0, 0, 0.08);
+
+    &:nth-of-type(2) {
+      top: calc(var(--tag-top) + var(--tag-height) + var(--tag-gap));
+    }
+
+    &:nth-of-type(3) {
+      top: calc(
+        var(--tag-top) + (var(--tag-height) * 2) + (var(--tag-gap) * 2)
+      );
+    }
   }
 </style>
 

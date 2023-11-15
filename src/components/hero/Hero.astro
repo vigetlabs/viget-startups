@@ -13,10 +13,10 @@ const { Content } = await entry.render()
 
 <header id="hero">
   <div
-    class="wrapper grid min-h-[600px] items-center gap-48 py-64 lg:grid-cols-5"
+    class="wrapper grid min-h-[600px] items-center gap-48 py-64 md:grid-cols-5"
   >
     <div
-      class="flex flex-col items-start gap-24 lg:col-span-3"
+      class="flex flex-col items-start gap-24 md:col-span-3"
       data-animate="up"
     >
       <!-- overline -->
@@ -48,7 +48,7 @@ const { Content } = await entry.render()
       />
     </div>
     <div
-      class="relative mx-auto flex w-3/4 items-center justify-center md:h-full md:w-1/2 lg:col-span-2 lg:w-full"
+      class="relative mx-auto flex w-full items-center justify-center md:col-span-2 md:h-full"
     >
       <div
         class="absolute inset-0 max-w-3xl <md:translate-y-[-12.5%]"
@@ -56,7 +56,7 @@ const { Content } = await entry.render()
         data-animate-duration="2"
       >
         <Blob
-          class="h-full w-full opacity-75 blur-[20px]"
+          class="h-full w-full opacity-75 blur-[20px] <md:scale-150"
           noiseStep={0.002}
           hueStart={120}
           hueStop={160}

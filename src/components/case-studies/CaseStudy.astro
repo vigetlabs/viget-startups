@@ -45,7 +45,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
   {...attrs}
 >
   <div
-    class="flex w-full flex-col justify-center gap-24 p-32 md:min-w-[450px] md:px-[7vw] md:py-64 xl:px-96"
+    class="flex w-full flex-col justify-center gap-24 p-24 sm:p-32 md:min-w-[450px] md:px-[7vw] md:py-64 xl:px-96"
   >
     <p class="sr-only">{data.heading} case study</p>
     <p class="text-sm text-black" data-case-text>{data.overline}</p>
@@ -88,14 +88,14 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
 
 <style>
   .case__media {
-    @apply relative flex w-full items-center;
+    @apply relative -order-1 mx-auto flex w-[calc(100%-32px)] items-center;
 
-    @screen <md {
-      @apply -order-1 -mt-32;
+    @screen sm {
+      @apply -mt-32;
     }
 
     @screen md {
-      @apply -my-96 min-w-[650px] max-w-[800px];
+      @apply order-none -my-96 w-full min-w-[650px] max-w-[800px];
     }
 
     & :global(> *) {

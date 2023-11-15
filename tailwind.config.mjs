@@ -13,6 +13,7 @@ export default {
       md: '768px',
       lg: '1024px',
       xl: '1440px',
+      'md-lg': { min: '768px', max: '1023.98px' },
       '<sm': { max: '549.98px' },
       '<md': { max: '767.98px' },
       '<lg': { max: '1023.98px' },
@@ -84,6 +85,9 @@ export default {
         'card-gradient-2': 'var(--gradient-card-2)',
         'card-gradient-3': 'var(--gradient-card-3)',
         'card-gradient-4': 'var(--gradient-card-4)',
+      },
+      width: {
+        '9/10': '90%',
       },
       maxWidth: (theme) => ({
         ...theme('spacing'),

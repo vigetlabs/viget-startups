@@ -3,14 +3,14 @@ heading: Why work with us?
 list:
   - icon: illustration-stopwatch
     heading: Accelerate velocity and time to market
-    description: Since we provide both design and development in-house, you can spend less time in handoff and more time on what matters.
+    description: We start designing or writing code on day 1 and bring the process, team, and expertise that would typically take months to build in-house.
   - icon: illustration-safety
     heading: Decrease execution risk
-    description: With Viget, [because we decrease execution risk by doing x, this will probably be about this long], you can have confidence in your end product—whether we deploy it or you do.
+    description: You benefit from working with a team that’s built numerous net new products for 200+ startup teams along with 23+ years of institutional knowledge and experience.
   - icon: illustration-chat
     heading: Fill gaps for technical or co-founder roles
-    description: Our people are our greatest asset—and they can be yours too. We provide staff augmentation so that your project can get off the ground no matter what stage you’re at.
+    description: Our design and development leadership can serve as a fractional  CPO or CTO, reducing your knowledge gap without carving up ownership.
   - icon: illustration-education
     heading: Educate, train, and hire internal teams
-    description: We believe in life after handoff. We provide the tools and trainings necessary to ensure that you can sustain your high-quality product even after we leave it with you.
+    description: When the time is right, we can backfill our teams by evaluating candidates, running code or design walkthroughs, and ramping up new team members.
 ---

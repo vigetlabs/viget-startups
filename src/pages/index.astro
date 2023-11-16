@@ -10,7 +10,15 @@ import Contact from '@/components/Contact.astro'
 import Footer from '@/components/Footer.astro'
 ---
 
-<Layout title="Startups">
+<Layout
+  title="Viget | Startups"
+  description={{
+    long: 'Whether designing and building the MVP, extending internal teams to improve design or increase development velocity, or re-imagining the next version of an enterprise product, Viget has helped to ship and grow over 200 startup products.',
+    short:
+      'Viget has propelled over 200 startups to success through design enhancement, development acceleration, and enterprise product innovation.',
+  }}
+  socialImage="https://www.viget.com/images/viget-social-share-1200.png"
+>
   <Hero />
   <CaseStudies />
   <WhyWorkWithUs />

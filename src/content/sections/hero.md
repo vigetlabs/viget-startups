@@ -5,12 +5,12 @@ cta:
   label: Ready to Scale?
   url: 'https://www.viget.com/contact/'
 kpis:
-  - label: 'Unicorns'
-    value: '11'
   - label: 'Startup clients'
     value: '200'
   - label: 'Funding raised'
     value: '$23B'
+  - label: 'Unicorns'
+    value: '11'
   - label: 'Acquired'
     value: '39'
 ---

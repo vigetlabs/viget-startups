@@ -1,5 +1,5 @@
 ---
-heading: Have an unsolvable problem or audacious idea?
+heading: Just getting started or ready to level up?
 cta:
   label: Let’s Get to Work
   url: https://www.viget.com/contact/
@@ -14,4 +14,4 @@ contacts:
       url: tel:7038910670
 ---
 
-One last pitch to get the client to like us. Or maybe it’s just a simple, how-to-contact us kind of deal. Two lines max. Maybe three if you’re generous.
+We can help you get to market faster, elevate the quality of your product experience, and strategically navigate critical growth inflection points.

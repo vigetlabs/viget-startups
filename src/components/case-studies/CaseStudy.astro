@@ -70,15 +70,19 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
         ))
       }
     </ul>
-    <Button
-      variant="secondary"
-      size="sm"
-      class="mt-8 self-start"
-      label={data.cta.label}
-      href={data.cta.url}
-      aria-label={`Read the ${data.heading} Case Study`}
-      data-case-text
-    />
+    {
+      data.cta && (
+        <Button
+          variant="secondary"
+          size="sm"
+          class="mt-8 self-start"
+          label={data.cta.label}
+          href={data.cta.url}
+          aria-label={`Read the ${data.heading} Case Study`}
+          data-case-text
+        />
+      )
+    }
   </div>
 
   <figure class="case__media" style={`aspect-ratio: ${mediaAspectRatio}`}>

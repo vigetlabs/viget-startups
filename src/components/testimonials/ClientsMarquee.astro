@@ -3,6 +3,11 @@ import { getCollection } from 'astro:content'
 import { Image } from 'astro:assets'
 
 const clients = await getCollection('clients')
+
+const half = Math.ceil(clients.length / 2)
+
+const clientsFirstHalf = clients.slice(0, half)
+const clientsSecondHalf = clients.slice(half)
 ---
 
 <div class="marquees mt-40 flex w-full flex-col gap-56" data-animate="up">
@@ -12,20 +17,20 @@ const clients = await getCollection('clients')
     }
   </p>
   {
-    Array.from(Array(2)).map(() => (
+    [clientsFirstHalf, clientsSecondHalf].map((clientHalf) => (
       // set 2 marquees with altnerating animation directions
       <div
         class="marquee__row flex items-center gap-56 overflow-x-hidden"
         aria-hidden="true"
       >
-        {Array.from(Array(6)).map(() => (
+        {Array.from(Array(clientHalf.length)).map(() => (
           <ul class="marquee__list animation-marquee flex items-center gap-56">
-            {clients.map((entry) => (
+            {clientHalf.map((entry) => (
               <li class="logo" title={entry.data.name}>
                 <Image
                   src={entry.data.logo}
                   alt={entry.data.name}
-                  class="h-auto max-h-[5dvh] min-h-[40px] w-auto min-w-[70px] max-w-[7dvw] object-contain"
+                  class="h-auto max-h-[5dvh] min-h-[50px] w-auto min-w-[100px] max-w-[6dvw] object-contain"
                 />
               </li>
             ))}
@@ -39,7 +44,7 @@ const clients = await getCollection('clients')
 <style>
   .marquees {
     /* adjust duration to change speed of marquee */
-    --marquee-duration: 45s;
+    --marquee-duration: 80s;
 
     & .marquee__list {
       animation: marquee var(--marquee-duration) linear infinite;

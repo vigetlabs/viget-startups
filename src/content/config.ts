@@ -19,10 +19,12 @@ const caseStudiesCollection = defineCollection({
         value: z.string(),
       }),
     ),
-    cta: z.object({
-      label: z.string(),
-      url: z.string(),
-    }),
+    cta: z
+      .object({
+        label: z.string(),
+        url: z.string(),
+      })
+      .optional(),
   }),
 })
 

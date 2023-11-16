@@ -7,7 +7,7 @@ author:
     alt: ''
 cta:
   label: Optify
-  url: '#'
+  url: 'https://www.viget.com/work/optify/'
 sortOrder: 3
 ---
 

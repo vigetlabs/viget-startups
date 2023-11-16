@@ -1,4 +1,4 @@
 ---
-name: Cyber GRX
+name: CyberGRX
 logo: ./logos/cyber-grx.png
 ---

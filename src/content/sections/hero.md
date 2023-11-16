@@ -15,4 +15,4 @@ kpis:
     value: '39'
 ---
 
-Whether designing and building the MVP, extending internal teams to increase dev velocity, or re-imagining the next version of an enterprise product, Viget has helped to ship and grow over 200 startup products.
+Whether designing and building the MVP, extending internal teams to improve design or increase development velocity, or re-imagining the next version of an enterprise product, Viget has helped to ship and grow over 200 startup products.

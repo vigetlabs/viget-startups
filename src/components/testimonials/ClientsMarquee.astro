@@ -23,10 +23,13 @@ const clientsSecondHalf = clients.slice(half)
         class="marquee__row flex items-center gap-56 overflow-x-hidden"
         aria-hidden="true"
       >
-        {Array.from(Array(clientHalf.length)).map(() => (
+        {Array.from(Array(2)).map(() => (
           <ul class="marquee__list animation-marquee flex items-center gap-56">
             {clientHalf.map((entry) => (
-              <li class="logo" title={entry.data.name}>
+              <li
+                class="max-h-[5dvh] min-h-[50px] w-auto min-w-[100px] max-w-[6dvw]"
+                title={entry.data.name}
+              >
                 <Image
                   src={entry.data.logo}
                   alt={entry.data.name}
@@ -55,9 +58,8 @@ const clientsSecondHalf = clients.slice(half)
       }
     }
 
-    /* offsets the start of the animation by half and reverses it */
+    /* reverse list */
     & .marquee__row:nth-child(even) .marquee__list {
-      animation-delay: calc(var(--marquee-duration) * -0.5);
       animation-direction: reverse;
     }
 

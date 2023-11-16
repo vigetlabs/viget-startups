@@ -10,7 +10,7 @@ const clientsFirstHalf = clients.slice(0, half)
 const clientsSecondHalf = clients.slice(half)
 ---
 
-<div class="marquees mt-40 flex w-full flex-col gap-56" data-animate="up">
+<div class="marquees mt-40 flex w-full flex-col gap-[5dvh]" data-animate="up">
   <p class="sr-only">
     Logos from the following companies: {
       clients.map((entry) => entry.data.name).join(', ')

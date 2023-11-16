@@ -88,6 +88,10 @@ const entry = await getEntry('case-studies', 'standard-ai')
 
     box-shadow: var(--standard-ai-shadow);
 
+    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+      @apply top-0;
+    }
+
     @screen md-lg {
       @apply left-[-10%];
     }
@@ -137,13 +141,25 @@ const entry = await getEntry('case-studies', 'standard-ai')
       0px 4px 6px -2px rgba(0, 0, 0, 0.08);
     transform: rotate(-36deg);
 
+    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+      --card-top: 5%;
+    }
+
     @screen sm {
       --card-top: -15%;
+
+      @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+        --card-top: 10%;
+      }
     }
 
     @screen md {
       --card-top: 10%;
       --card-height: 15%;
+
+      @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+        --card-top: 20%;
+      }
     }
 
     @screen md-lg {
@@ -228,7 +244,6 @@ const entry = await getEntry('case-studies', 'standard-ai')
         '[data-standard-ai-asset="pin"]',
         {
           opacity: 0,
-          transformOrigin: 'left',
           scale: scaleCheck,
         },
         stagger,
@@ -238,8 +253,8 @@ const entry = await getEntry('case-studies', 'standard-ai')
         {
           x: reduceMotion ? 0 : -100,
           y: reduceMotion ? 0 : 25,
-          rotate: reduceMotion ? 0 : 25,
-          scale: reduceMotion ? 1 : 0.9,
+          rotate: reduceMotion ? '+=0' : '+=25',
+          scale: scaleCheck,
           opacity: 0,
           stagger: reduceMotion ? 0 : -0.1,
           ease: 'back.out(1)',

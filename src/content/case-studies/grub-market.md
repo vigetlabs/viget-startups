@@ -1,6 +1,6 @@
 ---
 heading: GrubMarket
-overline: Brand + Product Design
+overline: Brand & Product Design
 description: Branded and designed a B2B enterprise food wholesale distribution platform for grocers and sellers
 kpis:
   - label: Funding

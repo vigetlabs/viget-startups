@@ -117,14 +117,8 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
 
   [data-case-study],
   [data-case-text] {
-    opacity: 0;
+    @apply opacity-0 motion-reduce:opacity-100;
     will-change: transform, opacity;
-
-    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
-      & {
-        opacity: 1;
-      }
-    }
   }
 </style>
 

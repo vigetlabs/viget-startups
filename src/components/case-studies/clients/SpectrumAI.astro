@@ -127,7 +127,11 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
     --tracker-height: 6%;
     --tracker-gap: 1%;
 
-    @apply absolute left-[65%] w-auto rounded-[0.25vmin];
+    @apply absolute left-[70%] w-auto rounded-[0.25vmin];
+
+    @screen md {
+      @apply left-[65%];
+    }
 
     height: var(--tracker-height);
     top: var(--tracker-top);
@@ -171,8 +175,7 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
           trigger: '#spectrum-ai',
           start: 'top 85%',
           end: 'bottom top',
-          toggleActions: 'play none play none',
-          once: true,
+          toggleActions: 'play none none none',
         },
         invalidateOnRefresh: true,
         immediateRender: false,

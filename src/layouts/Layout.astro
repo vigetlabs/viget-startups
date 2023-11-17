@@ -1,7 +1,16 @@
 ---
 import Nav from '@/components/Nav.astro'
 
-const { title } = Astro.props
+interface Props {
+  title: string
+  description: {
+    short: string
+    long: string
+  }
+  socialImage: string
+}
+
+const { title, description, socialImage } = Astro.props
 ---
 
 <script src="@/scripts/app.ts"></script>
@@ -11,11 +20,24 @@ const { title } = Astro.props
     <meta charset="UTF-8" />
     <title>{title}</title>
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description.long} />
+    <meta name="viewport" content="width=device-width" />
 
-    <!-- TODO: add social share metadata -->
+    <meta itemprop="name" content={title} />
+    <meta itemprop="description" content={description.long} />
+    <meta itemprop="image" content={socialImage} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description.short} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:url" content="https://viget-startups.netlify.app/" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@viget" />
+    <meta name="twitter:image:alt" content={description.short} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
     <main class="overflow-x-hidden">
@@ -83,13 +105,7 @@ const { title } = Astro.props
   }
 
   [data-animate] {
-    opacity: 0;
+    @apply opacity-0 motion-reduce:opacity-100;
     will-change: transform, opacity;
-
-    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
-      & {
-        opacity: 1;
-      }
-    }
   }
 </style>

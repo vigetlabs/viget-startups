@@ -53,7 +53,7 @@ const clientsSecondHalf = clients.slice(half)
       animation: marquee var(--marquee-duration) linear infinite;
       transform: translateX(-100%);
 
-      @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+      @screen reduce-motion {
         animation-play-state: paused !important;
       }
     }

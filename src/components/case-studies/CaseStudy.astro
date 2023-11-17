@@ -120,7 +120,7 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
     opacity: 0;
     will-change: transform, opacity;
 
-    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+    @screen reduce-motion {
       & {
         opacity: 1;
       }

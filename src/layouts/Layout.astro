@@ -72,7 +72,7 @@ const { title, description, socialImage } = Astro.props
     font-display: swap;
   }
 
-  @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+  @screen reduce-motion {
     html {
       scroll-behavior: auto;
     }
@@ -108,7 +108,7 @@ const { title, description, socialImage } = Astro.props
     opacity: 0;
     will-change: transform, opacity;
 
-    @media screen and (prefers-reduced-motion: reduce), (update: slow) {
+    @screen reduce-motion {
       & {
         opacity: 1;
       }

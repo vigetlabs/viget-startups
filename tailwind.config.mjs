@@ -18,9 +18,6 @@ export default {
       '<md': { max: '767.98px' },
       '<lg': { max: '1023.98px' },
       '<xl': { max: '1439.98px' },
-      'reduce-motion': {
-        raw: 'screen and (prefers-reduced-motion: reduce), (update: slow)',
-      },
     },
     colors: {
       transparent: 'transparent',

@@ -84,13 +84,9 @@ const entry = await getEntry('case-studies', 'standard-ai')
   }
 
   [data-standard-ai-asset='phone'] {
-    @apply relative top-[8%] w-[28%] rounded-[2vmin];
+    @apply relative top-[8%] w-[28%] rounded-[2vmin] motion-reduce:top-0;
 
     box-shadow: var(--standard-ai-shadow);
-
-    @screen reduce-motion {
-      @apply top-0;
-    }
 
     @screen md-lg {
       @apply left-[-10%];
@@ -132,7 +128,7 @@ const entry = await getEntry('case-studies', 'standard-ai')
     --card-height: 17.5%;
     --card-gap: -10%;
 
-    @apply absolute left-[59%] w-auto origin-bottom-left rounded-[1vmin];
+    @apply absolute left-[59%] w-auto origin-bottom-left rounded-[1vmin] motion-reduce:[--card-top:5%];
 
     height: var(--card-height);
     top: var(--card-top);
@@ -141,25 +137,12 @@ const entry = await getEntry('case-studies', 'standard-ai')
       0px 4px 6px -2px rgba(0, 0, 0, 0.08);
     transform: rotate(-36deg);
 
-    @screen reduce-motion {
-      --card-top: 5%;
-    }
-
     @screen sm {
-      --card-top: -15%;
-
-      @screen reduce-motion {
-        --card-top: 10%;
-      }
+      @apply [--card-top:-15%] motion-reduce:[--card-top:10%];
     }
 
     @screen md {
-      --card-top: 10%;
-      --card-height: 15%;
-
-      @screen reduce-motion {
-        --card-top: 20%;
-      }
+      @apply [--card-height:15%] [--card-top:10%] motion-reduce:[--card-top:20%];
     }
 
     @screen md-lg {

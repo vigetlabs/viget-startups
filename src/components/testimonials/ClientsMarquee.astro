@@ -50,12 +50,7 @@ const clientsSecondHalf = clients.slice(half)
     --marquee-duration: 80s;
 
     & .marquee__list {
-      animation: marquee var(--marquee-duration) linear infinite;
-      transform: translateX(-100%);
-
-      @screen reduce-motion {
-        animation-play-state: paused !important;
-      }
+      @apply -translate-x-full motion-safe:animate-[marquee_var(--marquee-duration)_linear_infinite];
     }
 
     /* reverse list */

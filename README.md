@@ -1,4 +1,4 @@
-# Viget Startups &nbsp;&nbsp;&nbsp;[![Netlify Status](https://api.netlify.com/api/v1/badges/b4ea76dd-97db-4305-87fd-d7aeee751929/deploy-status)](https://app.netlify.com/sites/viget-startups/deploys)
+# Viget Startups &nbsp;&nbsp;&nbsp;[![Netlify Status](https://api.netlify.com/api/v1/badges/d9a2787b-58d6-4bf3-b2c3-7cb21cbf9c8a/deploy-status)](https://app.netlify.com/sites/viget-startups/deploys)
 
 [**Demo Link**](https://viget-startups.netlify.app/)
 

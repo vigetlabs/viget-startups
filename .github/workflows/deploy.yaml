@@ -1,0 +1,45 @@
+name: Build and Deploy
+
+on:
+  workflow_call:
+    inputs:
+      role_to_assume:
+        required: true
+        type: string
+      bucket_name:
+        required: true
+        type: string
+
+# These permissions are needed to interact with GitHub's OIDC Token endpoint.
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
+jobs:
+  deploy:
+    name: Deploy to Amazon S3
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Node Dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.role_to_assume }}
+          aws-region: us-east-1
+
+      - name: Copy files to S3 with the AWS CLI
+        run: |
+          aws s3 sync --delete ./dist/ s3://${{ inputs.bucket_name }}/

@@ -1,0 +1,30 @@
+name: Empty S3 Bucket
+
+on:
+  workflow_call:
+    inputs:
+      role_to_assume:
+        required: true
+        type: string
+      bucket_name:
+        required: true
+        type: string
+
+# These permissions are needed to interact with GitHub's OIDC Token endpoint.
+permissions:
+  id-token: write   # This is required for requesting the JWT
+
+jobs:
+  empty-bucket:
+    name: Empty S3 Bucket
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.role_to_assume }}
+          aws-region: us-east-1
+
+      - name: Empty Bucket
+        run: |
+          aws s3 rm s3://${{ inputs.bucket_name }} --recursive

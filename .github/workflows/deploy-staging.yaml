@@ -1,0 +1,27 @@
+name: Build and Deploy to Staging
+
+on:
+  push:
+    branches: [staging]
+  workflow_call:
+
+# These permissions are needed to interact with GitHub's OIDC Token endpoint.
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
+concurrency: deploy_staging
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      role_to_assume: arn:aws:iam::268122344015:role/system/viget-startups-staging-github
+      bucket_name: viget-startups-staging
+
+  clear-cache:
+    needs: deploy
+    uses: ./.github/workflows/clear-cloudfront.yaml
+    with:
+      role_to_assume: arn:aws:iam::268122344015:role/system/viget-startups-staging-github
+      distribution_id: E3CYHUISG646NA

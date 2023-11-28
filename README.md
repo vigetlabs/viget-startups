@@ -1,6 +1,6 @@
-# Viget Startups &nbsp;&nbsp;&nbsp;[![Netlify Status](https://api.netlify.com/api/v1/badges/d9a2787b-58d6-4bf3-b2c3-7cb21cbf9c8a/deploy-status)](https://app.netlify.com/sites/viget-startups/deploys)
+# Viget Startups
 
-[**Demo Link**](https://viget-startups.netlify.app/)
+[**Staging Link**](https://staging.startups.viget.com/)
 
 The Viget Startups page is a public facing marketing site by [Viget](https://www.viget.com) to help promote and showcase some of our startup specific client work. The site is built on the [Astro](https://astro.build/) Framework and features quite a bit of animation work being powered by [GSAP](https://gsap.com/).
 
@@ -74,3 +74,14 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## Deployment
+
+Deployment is automated through GitHub Actions and once the deployment is complete the cache for the environment is cleared. There is a manual refresh action included for each environment that when run will empty the bucket entirely and redeploy the site (be sure to run it using the appropriate branch).
+
+Each branch listed will deploy out to its own environment.
+
+Branches:
+
+- staging -> [Staging](https://staging.startups.viget.com/)
+- production -> [Production](https://startups.viget.com/)

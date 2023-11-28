@@ -1,0 +1,18 @@
+name: Refresh Staging
+
+on: workflow_dispatch
+
+concurrency: refresh_staging
+
+jobs:
+  empty-bucket:
+    if: github.ref == 'refs/heads/staging'
+    uses: ./.github/workflows/empty-s3.yaml
+    with:
+      role_to_assume: arn:aws:iam::268122344015:role/system/viget-startups-staging-github
+      bucket_name: viget-startups-staging
+
+  deploy:
+    needs: empty-bucket
+    if: github.ref == 'refs/heads/staging'
+    uses: ./.github/workflows/deploy-staging.yaml

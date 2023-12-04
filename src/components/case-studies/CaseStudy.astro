@@ -95,11 +95,11 @@ const { data, mediaAspectRatio, class: className, id, ...attrs } = Astro.props
     @apply relative -order-1 mx-auto flex w-[calc(100%-32px)] items-center;
 
     @screen sm {
-      @apply -mt-32;
+      /* @apply -mt-32; */
     }
 
     @screen md {
-      @apply order-none -my-96 w-full min-w-[650px] max-w-[800px];
+      @apply order-none  w-full min-w-[650px] max-w-[800px];
     }
 
     & :global(> *) {

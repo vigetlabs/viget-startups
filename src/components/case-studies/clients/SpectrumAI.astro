@@ -31,7 +31,7 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
     <Image
       src={brainAsset}
       alt=""
-      class="translate-y-[-5%] sm:translate-y-0 md:w-4/5 <md:w-4/5"
+      class="w-4/5 translate-y-[-5%] sm:translate-y-0 sm:scale-110"
     />
   </div>
   <div data-speed="1.01">
@@ -98,14 +98,14 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
   }
 
   [data-spectrum-asset='controls'] {
-    @apply relative left-[-16%] top-[-16%] w-[20%];
+    @apply relative left-[-16%] top-[-23%] w-[20%] motion-reduce:top-[-30%];
 
     filter: drop-shadow(0px 12px 40px rgba(0, 102, 182, 0.24))
       drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.08));
   }
 
   [data-spectrum-asset='behavior'] {
-    @apply relative left-[-28%] top-[-10%] w-[25%];
+    @apply relative left-[-28%] top-[-10%] w-[25%] motion-reduce:top-[-2%];
 
     box-shadow:
       0px 6px 16px 0px rgba(0, 102, 182, 0.12),
@@ -117,14 +117,14 @@ const entry = await getEntry('case-studies', 'spectrum-ai')
   }
 
   [data-spectrum-asset='segmented-control'] {
-    @apply relative left-[-13%] top-[16%] w-[35%];
+    @apply relative left-[-13%] top-[22%] w-[35%];
 
     box-shadow: var(--spectrum-shadow-1);
   }
 
   [data-spectrum-asset='tracker'] {
-    --tracker-top: 42%;
-    --tracker-height: 6%;
+    --tracker-top: 45%;
+    --tracker-height: 8%;
     --tracker-gap: 1%;
 
     @apply absolute left-[70%] w-auto rounded-[0.25vmin];

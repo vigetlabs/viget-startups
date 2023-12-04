@@ -9,11 +9,13 @@ export default {
   content: ['./src/**/*.{astro,html,svg,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     screens: {
+      xs: '400px',
       sm: '550px',
       md: '768px',
       lg: '1024px',
       xl: '1440px',
       'md-lg': { min: '768px', max: '1023.98px' },
+      '<xs': { max: '399.98px' },
       '<sm': { max: '549.98px' },
       '<md': { max: '767.98px' },
       '<lg': { max: '1023.98px' },

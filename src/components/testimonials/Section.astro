@@ -32,7 +32,19 @@ const sortedTestiomonals = allTestimonials.sort((a, b) => {
   <Button
     label={entry.data.cta.label}
     href={entry.data.cta.url}
+    class="<xs:!hidden"
     size="lg"
     data-animate="up"
   />
+  {
+    entry.data.cta.shortLabel && (
+      <Button
+        label={entry.data.cta.shortLabel}
+        href={entry.data.cta.url}
+        class="xs:!hidden"
+        size="lg"
+        data-animate="up"
+      />
+    )
+  }
 </section>

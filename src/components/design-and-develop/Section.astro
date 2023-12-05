@@ -35,7 +35,7 @@ const entry = await getEntry('sections', 'design-and-develop')
             hueStop={210}
           />
         </div>
-        <div class="relative aspect-[650/406] w-full">
+        <figure class="relative aspect-[650/406] w-full">
           <Image
             src={dashboardAsset}
             alt=""
@@ -50,7 +50,11 @@ const entry = await getEntry('sections', 'design-and-develop')
             data-animate="up"
             data-animate-duration="1"
           />
-        </div>
+          <figcaption class="sr-only">
+            Screenshots of the Spectrum AI in-session dashboard with the
+            sidebar open displaying a live video feed.
+          </figcaption>
+        </figure>
       </div>
       <List details={entry.data.right} data-animate="right" />
     </div>

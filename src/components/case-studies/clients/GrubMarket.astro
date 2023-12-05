@@ -94,7 +94,7 @@ const entry = await getEntry('case-studies', 'grub-market')
       0px 2px 6px rgba(0, 0, 0, 0.08);
 
     @screen md {
-      @apply top-[-17.7%];
+      @apply top-[-23%];
     }
   }
 
@@ -107,12 +107,12 @@ const entry = await getEntry('case-studies', 'grub-market')
       -6px -12px 16px 0px rgba(141, 88, 2, 0.06);
 
     @screen md {
-      @apply top-[-32.5%];
+      @apply top-[-50%];
     }
   }
 
   [data-grub-asset='row-highlight'] {
-    @apply relative left-[-7%] top-[-4%] w-[67%] rounded-[0.5vmin];
+    @apply relative left-[-7%] top-[-2%] w-[67%] rounded-[0.5vmin] motion-reduce:top-[-4%];
 
     box-shadow:
       0px 10px 20px 0px rgba(136, 116, 84, 0.32),
@@ -120,21 +120,21 @@ const entry = await getEntry('case-studies', 'grub-market')
   }
 
   [data-grub-asset='graph'] {
-    @apply relative left-[-25%] top-[5%] w-[22%] rounded-[1vmin];
+    @apply relative left-[-25%] top-[7%] w-[22%] rounded-[1vmin] motion-reduce:top-[30%];
 
     box-shadow:
       0px 6px 16px 0px rgba(105, 86, 55, 0.12),
       0px 2px 6px -2px rgba(0, 0, 0, 0.08);
 
     @screen md {
-      @apply top-[16%];
+      @apply top-[20%];
     }
   }
 
   [data-grub-asset='tag'] {
     --tag-top: 65%;
-    --tag-height: 4.5%;
-    --tag-gap: 0.75%;
+    --tag-height: 6%;
+    --tag-gap: 1%;
 
     @apply absolute left-[72%] w-auto rounded-[1vmin];
 

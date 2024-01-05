@@ -85,3 +85,29 @@ Branches:
 
 - staging -> [Staging](https://staging.startups.viget.com/)
 - production -> [Production](https://startups.viget.com/)
+
+## Performance Testing with Lighthouse
+
+Lighthouse CI has been configured to automatically run and post status checks on pull requests. You can also run this locally using the same configuration.
+
+First install lighthouse-ci globally:
+
+```sh
+npm install -g @lhci/cli
+```
+
+Then run a production build and the `lhci` commands:
+
+```sh
+npm run build
+lhci autorun
+lhci open
+```
+
+Lighthouse writes to the `.lighthouseci` directory and reports are saved to the `.lhci` directory. Both paths have been added to the `.gitignore` file.
+
+By default, Lighthouse will run using mobile settings. To use desktop settings, uncomment the `preset: 'desktop'` setting in the lighthouserc file, or run the `autorun` command with the appropriate flag:
+
+```sh
+lhci autorun --collect.settings.preset=desktop
+```
